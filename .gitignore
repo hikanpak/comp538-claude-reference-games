@@ -49,3 +49,5 @@ weights/
 lab/data/raw/
 lab/results/**/*.pt
 lab/results/**/*.safetensors
+.unlazy/
+.unlazy-hook-state.json
