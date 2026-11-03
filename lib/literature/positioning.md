@@ -1,34 +1,34 @@
 # Positioning
 
-Five slots. Fill every one before writing any methodology. The claim in slot 4
-is the claim in `CONTEXT.md` and in the abstract, in the same words.
+Course project, so the claim stays Halil's. This file holds the facts around it.
 
 ## 1. Setting
 
-FILL. The problem, the parties, and what each one is assumed to know.
+An agent harness on ALFWorld. Sys1 picks commands from a menu, and hands steps to Gemma
+when it falls back. Hand-over rules keep the LLM in control for several rounds. The
+teacher in training is ALFWorld's handcoded expert, and the game's own checker gives the
+verifiable return.
 
 ## 2. What exists
 
-FILL. The two or three closest works, by citation key, each with a note under
-`lib/literature/notes/`. A work named here without a note is not yet read.
+See `related-work.md`. Closest are Bonn (arXiv 2609.37647) for the numbers we line up
+with, ETO (arXiv 2403.02502) for fine-tuning and PPO on the same 134 games, and ReDAct
+(arXiv 2604.07036) for handing steps to a large model on uncertainty.
 
 ## 3. The gap
 
-FILL. A factual limitation with a pointer to where the work states it or where
-it stops. Never "nobody has tried". Say whether the limitation is stated by the
-authors or found by us, because those are different facts.
+Found by us from what we read, not stated by the authors: no source reports a trained
+Sys1 in front of Gemma on ALFWorld, and no source keeps the large model in control for
+several rounds. A paper we did not read could still exist (Open).
 
 ## 4. The claim
 
-FILL. The narrowest claim worth publishing, in one sentence. Carry the
-qualifiers that make it true, and carry them here rather than adding them later
-under review.
+Halil's words: "make Gemma-4-E4B to match about qwen 3.8 27B model in terms of success".
+He writes the report's claim after the results exist.
 
 ## 5. Why it is hard
 
-FILL. The obstacle that makes the claim non-trivial. If there is none, the gap
-is probably already closed.
-
-## Status
-
-Written on FILL. Approved on FILL.
+Bonn reports Qwen 27B at 54.5 success with 0.222 step match, so a model can solve games
+while disagreeing with the expert at most steps, on that setup. Step match alone therefore
+does not settle success. Under teacher forcing the game's outcome does not depend on Sys1,
+so the checker's return carries signal only when Sys1's own picks run.
