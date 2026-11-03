@@ -7,8 +7,8 @@ not Halil's, and every threshold is a guess he should accept or rewrite. A thres
 only by a dated line in the changes section at the end, with the reason, and never after
 looking at a result in order to pass it.
 
-All gates are measured with no Gemma, on the 140 dev games, on the mean of 3 seeds, with the
-worst seed reported beside it. Test games are not used. Sys1 alone means fallback is masked,
+All gates are measured with no Gemma, on the dev games of held-out rooms (at least 140 games, carved from the training games), on the mean of 3 seeds, with the
+worst seed reported beside it. The 140 `valid_seen` games are reported beside them and carry no gate, because they share rooms with training games. Test games are not used. Sys1 alone means fallback is masked,
 so Sys1 must pick a menu command at every step, which the plan already defines for this
 table.
 
@@ -31,6 +31,8 @@ Step match on the teacher's states is reported and carries no gate. Bonn reports
 54.5 success with 0.222 step match on its setup, so step match and success can separate. The
 "solves games" gate is on the verifiable return, the game's own checker.
 
+Reported beside the gates, with no threshold: the curve of step match against the share of steps Sys1 keeps as a confidence threshold on Sys1's top pick rises. This shows whether a threshold could hand hard on-menu steps to Gemma, which the off-menu fallback label cannot.
+
 ## Rule for moving on
 
 All gates pass on 3 seeds: an agent review checks the results and the code path behind them,
@@ -41,4 +43,5 @@ passed, what failed, and the options. Reaching Gemma is not a goal in itself.
 
 ## Changes to this file
 
-None yet.
+- 2026-11-03, before any result: gates moved from `valid_seen` to held-out rooms, from a review finding that `valid_seen` shares rooms with train.
+- 2026-11-03, before any result: added a row below for confidence threshold, reported and not gated, from a review finding on fallback labels.

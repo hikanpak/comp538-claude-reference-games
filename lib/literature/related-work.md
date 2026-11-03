@@ -32,7 +32,7 @@ ALFWorld, among the work we read. Bonn's raw responses are at Zenodo
 | TWOSOME, arXiv 2401.14151 | PPO with LoRA on frozen LLaMA-7B, valid actions scored by token likelihood with word normalization, 1e5 to 5e5 steps, 3 seeds, VirtualHome and Overcooked | Reports better sample efficiency than plain PPO and SayCan |
 | GLAM, arXiv 2302.02662 | PPO on Flan-T5 780M over valid actions, 1.5M steps, 4 seeds, BabyAI-Text | Read at setup level only |
 | decider, `github.com/Mapika/decider`, `docs/RL.md` | v10 is v8 continued for 384 optimizer steps on outcome rewards, PPO clip 0.2 on the served softmax, KL to v8 on 8 supervised rows per step, peak LR 1e-6, cosine over 576 steps, 96 transitions per iteration, temperature 1.30. Training code kept in a separate repo | Vendor report |
-| Kev, decider-2b, Clef cards | Supervised cross entropy with a fitted temperature, as the cards describe. Kev fit read by the reviewer only: T 2.41, 30k to 40k rows | Vendor reports |
+| Kev, decider-2b, Clef cards | Supervised cross entropy with a fitted temperature, as the cards describe. Kev-0.8B card: T 2.35, LoRA rank 16, reports When2Call accuracy below chance (0.167, 0.133) on tool-call routing, a different task | Vendor reports |
 | RelayLLM, arXiv 2601.06051 | Qwen3-0.6B and 1.7B call Qwen3-8B. Supervised warm-up then GRPO | 42.50 to 49.52 with 1.07% of tokens, teacher alone 54.12 |
 
 ## Axis: a small model hands steps to a large one, or to a controller
