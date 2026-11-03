@@ -20,6 +20,7 @@ scaffold requires. `paper/` is Halil's: no agent drafts report prose.
   that was not measured. Test games run once, after every choice is frozen on dev.
 - Prose in reports follows plain exact terms, with epistemic labels Proven,
   Heuristic, Empirical or Open. Mathematics goes in compiled files, not chat.
+- Append what you do to `lib/work-log.md`, as Halil asked: "note down everything you do".
 - Compute limits are in `CONTEXT.md`. Log AI work in `lib/llm-use-log.md`, because
   the course requires disclosure with each deliverable.
 
