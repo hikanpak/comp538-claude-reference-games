@@ -1,0 +1,52 @@
+# Sys1 trained alone by PPO with its own sampled pick at every step (plan label A4). Written before any result of this job exists.
+# Claude wrote this file. The gates it points to are Claude's drafts for Halil to accept or rewrite (lib/sys1-acceptance.md). The fallback rule below is Claude's choice, not Halil's.
+topic: arm-rl-model-in-control
+claim: >
+  Starting from the classification arm's weights, PPO with Sys1's sampled pick running at every step, on R3 or on R4, gives a Sys1 that passes the gates of lib/sys1-acceptance.md
+  when it plays alone on the dev games of held-out rooms.
+falsified_by: >
+  Any gate of lib/sys1-acceptance.md failing on the mean of 3 seeds, on at least 140 dev games of held-out rooms, with no Gemma, or a gate with no measurement. That file is the only
+  source of the thresholds, lab/jobs/eval-sys1-alone.py reads them at evaluation, and they are not copied here. Under its rule, 60 of the 70 CU of Sys1's budget spent with gates still
+  failing stops the work. This arm also tests whether RL adds to classification, so it is also judged against arm-classification on the same games, paired by game.
+axis: {name: seed and reward, seeds: [0, 1, 2], rewards: [R3, R4]}
+baselines:
+  - {name: arm-classification, source: lab/jobs/arm-classification.yaml, tuning_budget: none, note: this arm starts from its weights}
+  - {name: arm-rl-scheduled, source: lab/jobs/arm-rl-scheduled.yaml, tuning_budget: none}
+controls:
+  held_constant:
+    - the training game list lab/results/sys1-training-set/train.txt and the dev list dev_heldout_rooms.txt, recorded by SHA-256 in each result, and refused if they share a game
+    - the menu file, the export rows and the classification checkpoint, the first two recorded by SHA-256
+    - ALFWorld 0.4.2 with the 50-step limit, the handcoded expert with tracking always, k 10, trace window 5
+    - no LLM. With no LLM a sampled fallback runs the teacher's command as a stand-in and pays by R2's rule (Claude's choice, FALLBACK_RULE in lab/src/train/ppo.py), and the steps are counted
+    - hand-over numbers 2, 0 and 3, so no LLM rounds exist and every step is Sys1's decision
+    - temperature 1 in training, refit on dev rows of held-out rooms after, by train.refit_temperature's fit
+    - valid_unseen is never opened
+  hyperparameters_from_decider_docs_RL_md_read_as_data: [clip 0.2, peak learning rate 1e-6 with 16 warm-up steps and a cosine, 96 transitions per iteration, minibatch 8, one pass, AdamW betas 0.9 and 0.95, weight decay 0.01, gradient norm 1.0, actor coefficient 0.1, KL coefficient 0.7 on 8 supervised rows per step with its guard at 0.01 and 0.05 nats]
+  hyperparameters_claude_chose: [value head on a detached hidden state with learning rate 1e-3, value coefficient 0.5, gamma 0.99, lambda 0.95, entropy coefficient 0, 4 games per collection, a KL pool of 256 rows, advantages normalized per iteration, dropout off in PPO steps]
+  seeds: [0, 1, 2]
+metrics:
+  primary: the gates of lib/sys1-acceptance.md, measured by lab/jobs/eval-sys1-alone.py and not by this job
+  error_bars: mean of 3 seeds, worst seed beside it, game-level bootstrap intervals from eval-sys1-alone.py
+  this_job_writes:
+    - the learning curve for Figure 1 of the plan, a dev point at the start, every tenth of the step budget and at the end, Sys1 alone with fallback masked at temperature 1
+    - per-iteration PPO terms, the first ratio's distance from 1, the KL guard count
+    - teacher_stand_in_steps, its share of steps, and games_won_with_stand_in, so the report can say how often the stand-in ran and how many wins it touched
+    - seed, git commit, environment, hardware, config, games played, steps, steps per second, peak memory
+  caveat: >
+    A win reached through stand-in steps still pays beta, which makes fallback look better than it will with Gemma (Heuristic). R4 with the stand-in pays R2's rule at fallback steps, so
+    it is not purely verifiable. FALLBACK=masked with REWARD=R4 is the purely verifiable form, and it needs no teacher.
+run: |
+  # The parent session starts these, because each spends compute units. No agent has run them, and no VM has run the job's install steps.
+  # First the speed test, which sets STEP_BUDGET (review finding 7). The budget goes in lib/execution-plan.md.
+  lab/jobs/arm-rl-model-in-control.sh 0 speedtest
+  STEP_BUDGET=<from the speed test> lab/jobs/arm-rl-model-in-control.sh 0 full
+  # After a VM dies, the same line resumes from the state tar the Mac last pulled.
+  # Then read the gates on the refit checkpoint, with lab/jobs/eval-sys1-alone.py.
+compute:
+  cluster: colab
+  gpu: L4
+  cu_per_hour: 1.54     # Empirical, measured in Halil's earlier Colab work, recorded in lab/jobs/colab_job.sh
+  est_gpu_hours: Open until the speed test measures commands per second on an L4
+  est_cu: Open, inside about 30 CU for the two RL arms, 1 seed each (Heuristic, stage 7 of lib/execution-plan.md)
+  charged_to: sys1
+  limit: each VM run under 8 hours, the job stops training at MAX_SECONDS, 27000 s

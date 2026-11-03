@@ -1,0 +1,51 @@
+# Sys1 trained alone with a fading teacher (plan label A3, DAgger-style mixing). Written before any result of this job exists.
+# Claude wrote this file. The gates it points to are Claude's drafts for Halil to accept or rewrite (lib/sys1-acceptance.md). The schedule and the fallback rule below are Claude's choices, not Halil's.
+topic: arm-rl-scheduled
+claim: >
+  Starting from the classification arm's weights, training on the teacher's labels at the states reached while the teacher's share of the commands falls from 1 to 0 closes the exposure gap and
+  gives a Sys1 that passes the gates of lib/sys1-acceptance.md when it plays alone on the dev games of held-out rooms. The cross entropy form and the PPO form are measured apart.
+falsified_by: >
+  Any gate of lib/sys1-acceptance.md failing on the mean of 3 seeds, on at least 140 dev games of held-out rooms, with no Gemma, or a gate with no measurement. Its exposure gap gate reads the claim
+  of this arm. That file is the only source of the thresholds, lab/jobs/eval-sys1-alone.py reads them at evaluation, and they are not copied here. Under its rule, 60 of the 70 CU of Sys1's budget spent
+  with gates still failing stops the work.
+axis: {name: seed and objective, seeds: [0, 1, 2], objectives: [ce, ppo]}
+baselines:
+  - {name: arm-classification, source: lab/jobs/arm-classification.yaml, tuning_budget: none, note: this arm starts from its weights}
+  - {name: arm-rl-model-in-control, source: lab/jobs/arm-rl-model-in-control.yaml, tuning_budget: none}
+  - {name: BUTLER's DAgger on this task, source: arXiv 2010.03768, tuning_budget: published, note: the precedent the plan names, on a different setup, at 50K episodes of text generation}
+controls:
+  held_constant:
+    - the training game list lab/results/sys1-training-set/train.txt and the dev list dev_heldout_rooms.txt, recorded by SHA-256 in each result, and refused if they share a game
+    - the menu file, the export rows and the classification checkpoint, the first two recorded by SHA-256
+    - ALFWorld 0.4.2 with the 50-step limit, the handcoded expert with tracking always, k 10, trace window 5
+    - labels flagged random, inadmissible or error stay out of the buffer and are counted
+    - no LLM. With no LLM a sampled fallback runs the teacher's command as a stand-in and is learned by R2's rule (Claude's choice, FALLBACK_RULE in lab/src/train/ppo.py), and the steps are counted
+    - hand-over numbers 2, 0 and 3, so no LLM rounds exist
+    - temperature 1 in training, refit on dev rows of held-out rooms after, by train.refit_temperature's fit
+    - valid_unseen is never opened
+  hyperparameters_claude_chose: [schedule linear in commands run reaching 0 at 0.8 of the step budget, 2 rows trained per new state, half of each batch from the core set, batch 8, learning rate 2e-5 with 16 warm-up steps and a cosine, 4 games per collection, R3 from a teacher's probability of 0.5 in the PPO form]
+  seeds: [0, 1, 2]
+metrics:
+  primary: the gates of lib/sys1-acceptance.md, measured by lab/jobs/eval-sys1-alone.py and not by this job
+  error_bars: mean of 3 seeds, worst seed beside it, game-level bootstrap intervals from eval-sys1-alone.py
+  this_job_writes:
+    - the learning curve for Figure 1 of the plan, a dev point at the start, every tenth of the step budget and at the end, Sys1 alone with fallback masked at temperature 1
+    - the teacher's probability at each iteration, buffer rows, and the count of each flag
+    - teacher_stand_in_steps, its share of steps, and games_won_with_stand_in, so the report can say how often the stand-in ran
+    - seed, git commit, environment, hardware, config, games played, steps, steps per second, peak memory
+run: |
+  # The parent session starts these, because each spends compute units. No agent has run them, and no VM has run the job's install steps.
+  # First the speed test, which sets STEP_BUDGET (review finding 7). The budget goes in lib/execution-plan.md.
+  lab/jobs/arm-rl-scheduled.sh 0 speedtest
+  STEP_BUDGET=<from the speed test> lab/jobs/arm-rl-scheduled.sh 0 full
+  OBJECTIVE=ppo STEP_BUDGET=<from the speed test> lab/jobs/arm-rl-scheduled.sh 0 full
+  # After a VM dies, the same line resumes from the state tar the Mac last pulled.
+  # Then read the gates on the refit checkpoint, with lab/jobs/eval-sys1-alone.py.
+compute:
+  cluster: colab
+  gpu: L4
+  cu_per_hour: 1.54     # Empirical, measured in Halil's earlier Colab work, recorded in lab/jobs/colab_job.sh
+  est_gpu_hours: Open until the speed test measures commands per second on an L4
+  est_cu: Open, inside about 30 CU for the two RL arms, 1 seed each (Heuristic, stage 7 of lib/execution-plan.md)
+  charged_to: sys1
+  limit: each VM run under 8 hours, the job stops training at MAX_SECONDS, 27000 s

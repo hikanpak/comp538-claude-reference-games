@@ -1,0 +1,471 @@
+{
+ "topic": "arm-rl-scheduled",
+ "mode": "smoke",
+ "seed": 0,
+ "git_commit": "76b2295b8104681685b4b136db3f58f2da1587b7",
+ "git_dirty": "1",
+ "environment": {
+  "python": "3.12.13",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "packages": {
+   "alfworld": "0.4.2",
+   "textworld": "1.7.0",
+   "fast-downward-textworld": "20.6.4",
+   "kev": "0.1.0",
+   "torch": "2.8.0",
+   "transformers": "5.22.1",
+   "peft": "0.21.2",
+   "numpy": "2.5.4",
+   "flash-linear-attention": null,
+   "triton": null
+  },
+  "alfworld_data": "/Users/a90/.cache/alfworld",
+  "torch_cuda": null,
+  "torch_threads": 6,
+  "deterministic_algorithms": false
+ },
+ "hardware": {
+  "device": "cpu",
+  "machine": "arm64",
+  "cpus": 10,
+  "memory_bytes": 25769803776
+ },
+ "precision": "float32 weights",
+ "config": {
+  "seed": 0,
+  "topic": "arm-rl-scheduled",
+  "mode": "smoke",
+  "stem": "seed0-ce",
+  "objective": "ce",
+  "step_budget": 20,
+  "train_games": "/tmp/scratch/real-tw2/train_games.txt",
+  "dev_games": "/tmp/scratch/real-tw2/dev_games.txt",
+  "menu": "/tmp/scratch/real-tw2/menu.json",
+  "init_from": "jaredpalmer/kev-0.8b@bf75a6a8848ea6960ff2ed108d9ed44c2941174f",
+  "train_jsonl": "/tmp/scratch/real-tw2/train.jsonl.gz",
+  "dev_jsonl": "/tmp/scratch/real-tw2/dev.jsonl.gz",
+  "out_dir": "/tmp/scratch/real/out-a3",
+  "resume": "",
+  "device": "cpu",
+  "dtype": "fp32",
+  "k": 10,
+  "trace_window": 2,
+  "max_steps": 10,
+  "fallbacks_before_handover": 2,
+  "llm_rounds": 0,
+  "menu_run": 3,
+  "fallback": "stand_in",
+  "tracking": "always",
+  "reward": "R2",
+  "games_per_collect": 2,
+  "batch_games": 2,
+  "num_workers": 2,
+  "lr": 2e-05,
+  "lr_warmup": 16,
+  "lr_total_updates": 5,
+  "beta1": 0.9,
+  "beta2": 0.999,
+  "weight_decay": 0.01,
+  "max_grad_norm": 1.0,
+  "micro_batch": 1,
+  "clip": 0.2,
+  "transitions_per_iter": 96,
+  "minibatch": 8,
+  "ppo_epochs": 1,
+  "gamma": 0.99,
+  "lam": 0.95,
+  "actor_coef": 0.1,
+  "vf_coef": 0.5,
+  "entropy_coef": 0.0,
+  "value_lr": 0.001,
+  "value_detach": true,
+  "normalize_advantages": true,
+  "kl": true,
+  "kl_coef": 0.7,
+  "kl_rows": 8,
+  "kl_pool_rows": 256,
+  "kl_guard": true,
+  "kl_guard_mean": 0.01,
+  "kl_guard_row": 0.05,
+  "schedule_fraction": 0.8,
+  "teacher_prob_fixed": 0.5,
+  "batch": 2,
+  "core_share": 0.5,
+  "train_rows_per_new_row": 0.5,
+  "r3_below_teacher_prob": 0.5,
+  "dev_every_steps": 2,
+  "dev_games_limit": 0,
+  "eval_batch": 2,
+  "checkpoint_every_min": 10.0,
+  "max_seconds": 26999.999862909317,
+  "stop_after_iterations": 0,
+  "speed_dev_games": 4,
+  "max_gb": 8.0,
+  "min_free_pct": 20,
+  "torch_threads": 6,
+  "git_commit": "",
+  "git_dirty": ""
+ },
+ "inputs": {
+  "train_games": "e82ec7370fb7421fba04fa4a7aa7b1eaf7018d48b8852417afb0e2bed0d41150",
+  "dev_games": "c4ba8a379d71dba4e3b1996deb69a7b2a184a5d4e420f14eef02ff1a9fb0cec1",
+  "menu": "d4702cae1a56a52e8cde40b168b76543b25434453b12d560338a2418e6f09d26",
+  "train_jsonl": "3104c0b0bc0ca345ac4091d5f2a57552224e660605313d8340223331e503c7dd",
+  "dev_jsonl": "e00462b9a8a6d03a600fbcd167fc5e870f038346641d7643a816118a93acbf68"
+ },
+ "menu_module_file": "/Users/a90/Documents/COURSES/FALL2026/Comp538/project/lab/src/menu.py",
+ "fallback_rule": "Claude's choice, not Halil's. With no LLM at this stage the fallback option stays in the option list and pays by R2's rule under every reward setting: 1 when the teacher's command is off the menu, minus 0.1 when it is on the menu. When Sys1's sampled pick is fallback the teacher's command runs as a stand-in for the LLM, and the step is counted in teacher_stand_in_steps.",
+ "games_played": 4,
+ "steps": 32,
+ "steps_per_second": 0.0908,
+ "updates": 7,
+ "iterations_run": 2,
+ "wall_seconds": 352.5,
+ "seconds": {
+  "dev": 124.83,
+  "collect": 131.14,
+  "sys1_inference": 125.91,
+  "update": 96.04,
+  "checkpoint": 0.38
+ },
+ "sys1_inference_rows_per_second": 0.254,
+ "counts": {
+  "games_won": 2,
+  "sys1_questions": 32,
+  "sys1_run_steps": 9,
+  "sampled_steps": 15,
+  "sampled_fallback_picks": 6,
+  "steps_with_label_random": 2,
+  "steps_with_label_inadmissible": 2,
+  "steps_with_label_error": 0,
+  "teacher_run_steps": 17,
+  "teacher_stand_in_steps": 6,
+  "teacher_stand_in_steps_with_flagged_label": 1,
+  "llm_run_steps": 6,
+  "games_won_with_stand_in": 2,
+  "ce_rows_trained": 14,
+  "checkpoints_written": 1
+ },
+ "teacher_stand_in_share_of_steps": 0.1875,
+ "peak_memory": {
+  "ru_maxrss_bytes": 8100839424,
+  "largest_child_ru_maxrss_bytes": 262242304,
+  "mac_physical_footprint_peak_bytes": 7376052336,
+  "mac_lowest_system_free_pct": 44
+ },
+ "learning_curve": [
+  {
+   "label": "start",
+   "env_steps": 0,
+   "games_played": 0,
+   "updates": 0,
+   "wall_seconds": 41.2,
+   "dev_seconds": 41.2,
+   "temperature": 1.0,
+   "n_games": 1,
+   "success": 0.0,
+   "mean_steps": 10.0,
+   "repeat_rate": 0.9,
+   "step_match": 0.1,
+   "ece": 0.599512999940635,
+   "brier": 1.3870114253490717,
+   "nll": 0.3660924062396367,
+   "auroc": 0.8888888888888888,
+   "fallback_when_off_menu": 1.0,
+   "fallback_when_on_menu": 0.0,
+   "teacher_on_menu_share": 0.1,
+   "success_by_task_type": {
+    "look_at_obj_in_light": {
+     "n": 1,
+     "success": 0.0
+    }
+   }
+  },
+  {
+   "label": "cadence",
+   "env_steps": 17,
+   "games_played": 2,
+   "updates": 4,
+   "wall_seconds": 205.4,
+   "dev_seconds": 41.6,
+   "temperature": 1.0,
+   "n_games": 1,
+   "success": 0.0,
+   "mean_steps": 10.0,
+   "repeat_rate": 0.9,
+   "step_match": 0.1,
+   "ece": 0.6553648980136801,
+   "brier": 1.3765722948896209,
+   "nll": 0.23130438091621208,
+   "auroc": 0.8888888888888888,
+   "fallback_when_off_menu": 1.0,
+   "fallback_when_on_menu": 0.0,
+   "teacher_on_menu_share": 0.1,
+   "success_by_task_type": {
+    "look_at_obj_in_light": {
+     "n": 1,
+     "success": 0.0
+    }
+   }
+  },
+  {
+   "label": "cadence",
+   "env_steps": 32,
+   "games_played": 4,
+   "updates": 7,
+   "wall_seconds": 352.0,
+   "dev_seconds": 42.0,
+   "temperature": 1.0,
+   "n_games": 1,
+   "success": 0.0,
+   "mean_steps": 10.0,
+   "repeat_rate": 0.9,
+   "step_match": 0.1,
+   "ece": 0.5992964140982134,
+   "brier": 1.301971671907081,
+   "nll": 0.21290924374209746,
+   "auroc": 1.0,
+   "fallback_when_off_menu": 1.0,
+   "fallback_when_on_menu": 0.0,
+   "teacher_on_menu_share": 0.1,
+   "success_by_task_type": {
+    "look_at_obj_in_light": {
+     "n": 1,
+     "success": 0.0
+    }
+   }
+  }
+ ],
+ "iterations": [
+  {
+   "iteration": 0,
+   "env_steps": 17,
+   "games_played": 2,
+   "updates": 0,
+   "reward": "R2",
+   "teacher_prob": 0.5,
+   "new_steps": 17,
+   "games": 2,
+   "train_success": 0.5,
+   "mean_game_steps": 8.5,
+   "teacher_stand_in_steps": 2,
+   "teacher_run_steps": 9,
+   "sys1_run_steps": 6,
+   "wall_seconds": 110.4,
+   "new_rows": 14,
+   "buffer_rows": 14,
+   "ce_updates": 4,
+   "ce_loss": 1.9403782212175429,
+   "ce_batch_step_match": 0.375,
+   "grad_norm": 52.43235683441162
+  },
+  {
+   "iteration": 1,
+   "env_steps": 32,
+   "games_played": 4,
+   "updates": 4,
+   "reward": "R2",
+   "teacher_prob": 0.5,
+   "new_steps": 15,
+   "games": 2,
+   "train_success": 0.5,
+   "mean_game_steps": 7.5,
+   "teacher_stand_in_steps": 4,
+   "teacher_run_steps": 8,
+   "sys1_run_steps": 3,
+   "wall_seconds": 267.4,
+   "new_rows": 10,
+   "buffer_rows": 24,
+   "ce_updates": 3,
+   "ce_loss": 1.4679005456467469,
+   "ce_batch_step_match": 0.6666666666666666,
+   "grad_norm": 44.851837158203125
+  }
+ ],
+ "aggregates": {
+  "n_games": 1,
+  "n_steps": 10,
+  "success": 0.0,
+  "mean_steps": 10.0,
+  "repeat_rate": 0.9,
+  "episodes_with_loop": 1.0,
+  "llm_calls": 0,
+  "gemma_calls": 0,
+  "qwen_calls": 0,
+  "tokens_in": 0,
+  "tokens_out": 0,
+  "sys1_share_of_steps": 1.0,
+  "n_decisions_with_label": 10,
+  "step_match": 0.1,
+  "step_match_excl_inadmissible": 0.1,
+  "label_random_share": 0.0,
+  "label_inadmissible_share": 0.0,
+  "label_error_share": 0.0,
+  "ece": 0.5992964140982134,
+  "brier": 1.301971671907081,
+  "nll": 0.21290924374209746,
+  "nll_excluded": 9,
+  "auroc": 1.0,
+  "mean_confidence": 0.660942311252548,
+  "seconds_sys1": 39.580619459738955,
+  "seconds_llm": 0.0,
+  "seconds_env": 0.2745387479662895,
+  "fallback_when_off_menu": 1.0,
+  "fallback_when_on_menu": 0.0,
+  "n_off_menu": 9,
+  "n_on_menu": 1,
+  "teacher_on_menu_share": 0.1
+ },
+ "per_game": [
+  {
+   "uid": "valid_seen/look_at_obj_in_light-AlarmClock-None-DeskLamp-323/trial_T20190909_044715_250790",
+   "task_type": "look_at_obj_in_light",
+   "won": false,
+   "steps": 10,
+   "return": -8.0,
+   "llm_calls": 0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "seconds_agent": 39.580619459738955,
+   "seconds_env": 0.2745387479662895
+  }
+ ],
+ "provenance_of_weights": {
+  "init_from": "jaredpalmer/kev-0.8b@bf75a6a8848ea6960ff2ed108d9ed44c2941174f",
+  "resolved": "/Users/a90/.cache/huggingface/hub/models--jaredpalmer--kev-0.8b/snapshots/bf75a6a8848ea6960ff2ed108d9ed44c2941174f",
+  "weights_sha256": "9b908623acb162118575f4e7a94524f9c139c335be4bfb74d6cfceca01e1885a",
+  "head_sha256": "f400bd12802b2b105ae45d6b03774a158a3db4fccff42413734ddca2e5c920b6",
+  "tensors": 372
+ },
+ "deterministic_algorithms": false,
+ "scope": "A path check on a few games. It says nothing about Sys1's quality, and no number here may be cited for it.",
+ "schedule": {
+  "form": "linear in commands run, from 1 to 0",
+  "schedule_steps": 16.0,
+  "fixed": 0.5
+ },
+ "buffer": {
+  "rows": 24,
+  "counts": {
+   "steps_seen": 32,
+   "rows": 24,
+   "rows_label_fallback": 4,
+   "rows_label_initial": 2,
+   "dropped_label_inadmissible": 2,
+   "dropped_label_random": 2,
+   "duplicates": 4
+  }
+ },
+ "core_rows": 11,
+ "completed": true,
+ "stopped_because": null,
+ "temperature": 0.4558612442791084,
+ "temperature_fit": {
+  "temperature": 0.4558612442791084,
+  "method": "min micro mean NLL over a 121-point log grid 0.25..4",
+  "n": 5,
+  "at_grid_edge": false,
+  "games": 1,
+  "raw": {
+   "n": 5,
+   "nll": 0.7021037486581989,
+   "acc": 0.8,
+   "ece": 0.23199366331100463,
+   "brier": 0.37526593158625887,
+   "mean_conf": 0.5680063366889954,
+   "confident_error_rate": 0.0,
+   "coverage_at_0_9": 0.0,
+   "accuracy_at_0_9": null,
+   "coverage_at_5pct_error": 0.4,
+   "coverage_at_1pct_error": 0.4,
+   "aurc": 0.15666666666666665,
+   "error_rate_at_0_9": null,
+   "confidence_bias": -0.23199366331100468,
+   "top_bins": {
+    "0.9": {
+     "n": 0,
+     "errors": 0,
+     "error_rate": null
+    },
+    "0.95": {
+     "n": 0,
+     "errors": 0,
+     "error_rate": null
+    },
+    "0.99": {
+     "n": 0,
+     "errors": 0,
+     "error_rate": null
+    }
+   },
+   "selective": {
+    "0.5": {
+     "coverage": 0.6,
+     "accuracy": 0.6666666666666666,
+     "confidence_cutoff": 0.47853294014930725
+    },
+    "0.8": {
+     "coverage": 0.8,
+     "accuracy": 0.75,
+     "confidence_cutoff": 0.46191492676734924
+    }
+   }
+  },
+  "fitted": {
+   "n": 5,
+   "nll": 0.5226852706559317,
+   "acc": 0.8,
+   "ece": 0.32566409012320263,
+   "brier": 0.3558520070174836,
+   "mean_conf": 0.7634600700394933,
+   "confident_error_rate": 0.0,
+   "coverage_at_0_9": 0.4,
+   "accuracy_at_0_9": 1.0,
+   "coverage_at_5pct_error": 0.4,
+   "coverage_at_1pct_error": 0.4,
+   "aurc": 0.15666666666666665,
+   "error_rate_at_0_9": 0.0,
+   "confidence_bias": -0.0365399299605067,
+   "top_bins": {
+    "0.9": {
+     "n": 2,
+     "errors": 0,
+     "error_rate": 0.0
+    },
+    "0.95": {
+     "n": 2,
+     "errors": 0,
+     "error_rate": 0.0
+    },
+    "0.99": {
+     "n": 0,
+     "errors": 0,
+     "error_rate": null
+    }
+   },
+   "selective": {
+    "0.5": {
+     "coverage": 0.6,
+     "accuracy": 0.6666666666666666,
+     "confidence_cutoff": 0.7228104004067399
+    },
+    "0.8": {
+     "coverage": 0.8,
+     "accuracy": 0.75,
+     "confidence_cutoff": 0.6060609873251254
+    }
+   }
+  }
+ },
+ "dev_rows_per_game": {
+  "valid_seen/look_at_obj_in_light-AlarmClock-None-DeskLamp-323/trial_T20190909_044715_250790": {
+   "rows": 5,
+   "step_match": 0.8,
+   "nll": 0.5226852706559317
+  }
+ },
+ "dev_rows_score_seconds": 19.32,
+ "teacher_state_step_match": 0.8,
+ "checkpoint_tar_bytes": 65464320,
+ "sys1_load_seconds": 3.7
+}
