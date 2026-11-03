@@ -1,0 +1,293 @@
+{
+  "topic": "arm-classification",
+  "mode": "smoke",
+  "seed": 0,
+  "git_commit": "665ba62e557dc9dfd2b895ad89fc636742613c6a",
+  "git_dirty": "1",
+  "environment": {
+    "python": "3.12.13",
+    "torch_cuda": null,
+    "packages": {
+      "kev": "0.1.0",
+      "torch": "2.8.0",
+      "transformers": "5.22.1",
+      "peft": "0.21.2",
+      "flash-linear-attention": null,
+      "fla-core": null,
+      "triton": null,
+      "causal-conv1d": null,
+      "numpy": "2.5.4"
+    },
+    "deterministic_algorithms": false,
+    "kev_source": "git+https://github.com/jaredpalmer/kev@2074cc44256200bb37540103fa4572901faa10f3"
+  },
+  "hardware": {
+    "machine": "arm64",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "cpus": 10,
+    "nvidia_smi": "unavailable: [Errno 2] No such file or directory: 'nvidia-smi'"
+  },
+  "precision": {
+    "training": "fp32",
+    "temperature_refit": "float32 weights"
+  },
+  "config": {
+    "init_from": "jaredpalmer/kev-0.8b@bf75a6a8848ea6960ff2ed108d9ed44c2941174f",
+    "base": "Qwen/Qwen3.5-0.8B-Base",
+    "base_revision": "dc7cdfe2ee4154fa7e30f5b51ca41bfa40174e68",
+    "epochs": 1,
+    "lr": 2e-05,
+    "batch": 1,
+    "accum": 1,
+    "max_state": 384,
+    "device": "cpu",
+    "augmentation": "off",
+    "partial_every_min": "0.001",
+    "kev_train_args": [
+      "--data",
+      "/tmp/scratch/smoke/seed0-train.jsonl",
+      "--base",
+      "Qwen/Qwen3.5-0.8B-Base",
+      "--base_revision",
+      "dc7cdfe2ee4154fa7e30f5b51ca41bfa40174e68",
+      "--init_from",
+      "jaredpalmer/kev-0.8b@bf75a6a8848ea6960ff2ed108d9ed44c2941174f",
+      "--epochs",
+      "1",
+      "--lr",
+      "2e-5",
+      "--batch",
+      "1",
+      "--accum",
+      "1",
+      "--dtype",
+      "fp32",
+      "--device",
+      "cpu",
+      "--max_state",
+      "384",
+      "--seed",
+      "0",
+      "--out",
+      "/tmp/scratch/smoke/out/seed0-smoke",
+      "--p_none",
+      "0",
+      "--p_none_distract",
+      "0",
+      "--p_distract",
+      "0",
+      "--p_none_pair",
+      "0"
+    ]
+  },
+  "rows": {
+    "train_in_file": 8,
+    "train_used": 6,
+    "dev_in_file": 12,
+    "dev_used": 6
+  },
+  "train_speed": {
+    "train_rows_per_second": 0.343,
+    "train_rows_per_second_after_first_tenth": 0.351,
+    "optimizer_steps": 6,
+    "steps_left_out_as_warmup": 1,
+    "wall_seconds": 17.5
+  },
+  "infer_rows_per_second": 0.503,
+  "peak_memory": {
+    "device_bytes": 0,
+    "rss_bytes": 6033080320,
+    "ru_maxrss_bytes": 6033080320
+  },
+  "grad_norm": [
+    {
+      "epoch": 0,
+      "steps": 6,
+      "mean": 51.730138333333336,
+      "max": 176.805359,
+      "clipped_steps": 3
+    }
+  ],
+  "stage_seconds": {
+    "prepare_seconds": 0.0,
+    "install_seconds": 0.0,
+    "train_stage_seconds": 23.8,
+    "refit_stage_seconds": 17.1
+  },
+  "scope": "Measured with device cpu on unavailable: [Errno 2] No such file or directory: 'nvidia-smi'.",
+  "temperature": 4.0,
+  "temperature_fit": {
+    "temperature": 4.0,
+    "method": "min micro mean NLL over a 121-point log grid 0.25..4",
+    "n": 6,
+    "at_grid_edge": true,
+    "games": 5,
+    "raw": {
+      "n": 6,
+      "nll": 3.6418226800927056,
+      "acc": 0.6666666666666666,
+      "ece": 0.3332511385281881,
+      "brier": 0.6666014319569222,
+      "mean_conf": 0.9999178051948547,
+      "confident_error_rate": 0.3333333333333333,
+      "coverage_at_0_9": 1.0,
+      "accuracy_at_0_9": 0.6666666666666666,
+      "coverage_at_5pct_error": 0.16666666666666666,
+      "coverage_at_1pct_error": 0.16666666666666666,
+      "aurc": 0.30277777777777776,
+      "error_rate_at_0_9": 0.3333333333333333,
+      "confidence_bias": 0.3332511385281881,
+      "top_bins": {
+        "0.9": {
+          "n": 6,
+          "errors": 2,
+          "error_rate": 0.3333333333333333
+        },
+        "0.95": {
+          "n": 6,
+          "errors": 2,
+          "error_rate": 0.3333333333333333
+        },
+        "0.99": {
+          "n": 6,
+          "errors": 2,
+          "error_rate": 0.3333333333333333
+        }
+      },
+      "selective": {
+        "0.5": {
+          "coverage": 0.5,
+          "accuracy": 0.6666666666666666,
+          "confidence_cutoff": 0.9999247789382935
+        },
+        "0.8": {
+          "coverage": 0.8333333333333334,
+          "accuracy": 0.6,
+          "confidence_cutoff": 0.9998812675476074
+        }
+      }
+    },
+    "fitted": {
+      "n": 6,
+      "nll": 1.0864198431294383,
+      "acc": 0.6666666666666666,
+      "ece": 0.17215877205133645,
+      "brier": 0.5582343030014242,
+      "mean_conf": 0.8388254387180031,
+      "confident_error_rate": 0.0,
+      "coverage_at_0_9": 0.0,
+      "accuracy_at_0_9": null,
+      "coverage_at_5pct_error": 0.16666666666666666,
+      "coverage_at_1pct_error": 0.16666666666666666,
+      "aurc": 0.30277777777777776,
+      "error_rate_at_0_9": null,
+      "confidence_bias": 0.17215877205133645,
+      "top_bins": {
+        "0.9": {
+          "n": 0,
+          "errors": 0,
+          "error_rate": null
+        },
+        "0.95": {
+          "n": 0,
+          "errors": 0,
+          "error_rate": null
+        },
+        "0.99": {
+          "n": 0,
+          "errors": 0,
+          "error_rate": null
+        }
+      },
+      "selective": {
+        "0.5": {
+          "coverage": 0.5,
+          "accuracy": 0.6666666666666666,
+          "confidence_cutoff": 0.8346521195248251
+        },
+        "0.8": {
+          "coverage": 0.8333333333333334,
+          "accuracy": 0.6,
+          "confidence_cutoff": 0.8241884138727081
+        }
+      }
+    },
+    "cross_validation": {
+      "raw": {
+        "n": 6,
+        "ece": 0.3332511385281881,
+        "brier": 0.6666014319569222,
+        "nll": 3.6418226800927056,
+        "confident_error_rate": 0.3333333333333333,
+        "coverage_at_5pct_error": 0.16666666666666666
+      },
+      "out_of_fold": {
+        "n": 6,
+        "ece": 0.17215877205133645,
+        "brier": 0.5582343030014242,
+        "nll": 1.0864198431294383,
+        "confident_error_rate": 0.0,
+        "coverage_at_5pct_error": 0.16666666666666666
+      },
+      "ece_ci95": {
+        "raw": [
+          8.064627647400013e-05,
+          0.6665671358505885
+        ],
+        "out_of_fold": [
+          0.006113397147265712,
+          0.4968501009221019
+        ],
+        "delta": [
+          -0.1763540167210988,
+          0.16446653314904064
+        ]
+      },
+      "separated": false,
+      "temperatures": [
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "folds": 5,
+      "seed": 0,
+      "samples": 200,
+      "groups": 5,
+      "unit": "source-stratified (source, group); sibling questions and variants stay together"
+    }
+  },
+  "per_game": {
+    "pick_and_place_simple-book/room-0/trial_0": {
+      "rows": 2,
+      "step_match": 0.5,
+      "nll": 1.556221368111693
+    },
+    "pick_and_place_simple-book/room-2/trial_1": {
+      "rows": 1,
+      "step_match": 1.0,
+      "nll": 0.1886273580874398
+    },
+    "pick_and_place_simple-book/room-1/trial_0": {
+      "rows": 1,
+      "step_match": 0.0,
+      "nll": 2.8835367768924516
+    },
+    "pick_and_place_simple-book/room-1/trial_1": {
+      "rows": 1,
+      "step_match": 1.0,
+      "nll": 0.19730485775506393
+    },
+    "pick_and_place_simple-book/room-0/trial_1": {
+      "rows": 1,
+      "step_match": 1.0,
+      "nll": 0.13660732981828902
+    }
+  },
+  "aggregates": {
+    "teacher_state_step_match": 0.6666666666666666
+  },
+  "checkpoint_tar_bytes": 45465600,
+  "total_seconds": 41.5
+}

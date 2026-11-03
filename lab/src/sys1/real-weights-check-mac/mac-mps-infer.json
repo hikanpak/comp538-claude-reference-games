@@ -1,0 +1,44 @@
+{
+  "load_seconds": 4.9,
+  "load_peak_footprint_gb": 4.93,
+  "temperature_read_from_checkpoint": 2.3510958125672174,
+  "head_temperature_attribute": 1.0,
+  "max_abs_logit_difference_batched_vs_single": 0.0,
+  "infer_batch": 8,
+  "infer_runs": 4,
+  "run_seconds": [
+    4.52,
+    4.48,
+    4.48,
+    4.5
+  ],
+  "mean_tokens_per_row": 385.9,
+  "infer_rows_per_second_after_first_run": 1.781,
+  "infer_stage_peak_footprint_gb": 5.49,
+  "precision": "float32 weights",
+  "stage": "infer",
+  "device": "mps",
+  "seed": 0,
+  "threads": 6,
+  "wall_seconds": 39.6,
+  "checkpoint": "jaredpalmer/kev-0.8b",
+  "git_commit": "665ba62e557dc9dfd2b895ad89fc636742613c6a",
+  "git_dirty_note": "written before the parent session commits lab/src/sys1",
+  "environment": {
+    "python": "3.12.13",
+    "torch": "2.8.0",
+    "transformers": "5.22.1",
+    "peft": "0.21.2",
+    "kev": "0.1.0"
+  },
+  "hardware": {
+    "machine": "arm64",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "memory_gb": 24,
+    "cpu": "Apple M4"
+  },
+  "scope": "Mac measurement on invented ALFWorld-shaped text. Not an L4 number.",
+  "peak_footprint_gb": 5.56,
+  "peak_rss_gb": 4.72,
+  "lowest_system_free_pct_seen": 29
+}

@@ -1,0 +1,71 @@
+{
+  "load_seconds": 4.5,
+  "load_peak_footprint_gb": 3.34,
+  "warm_start_tensors": 372,
+  "resolved": "/Users/a90/.cache/huggingface/hub/models--jaredpalmer--kev-0.8b/snapshots/bf75a6a8848ea6960ff2ed108d9ed44c2941174f",
+  "trainable_parameters_millions": 11.35,
+  "trainable_tensors": {
+    "lora": 372,
+    "head": 4
+  },
+  "nonzero_grad_tensors": {
+    "lora": 372,
+    "head": 4
+  },
+  "zero_grad_lora_tensors": [],
+  "zero_grad_lora_tensor_count": 0,
+  "grad_norm": {
+    "lora": 153.676468,
+    "head": 10.691012
+  },
+  "first_step_loss": 2.3005,
+  "option_counts_first_batch": [
+    4
+  ],
+  "option_counts_second_batch": [
+    8
+  ],
+  "logit_shapes_first_batch": [
+    4
+  ],
+  "train_batch": 1,
+  "train_steps": 3,
+  "step_seconds": [
+    4.75,
+    5.1,
+    5.92
+  ],
+  "tokens_per_batch": [
+    349,
+    382,
+    407
+  ],
+  "train_rows_per_second_after_first_step": 0.182,
+  "train_stage_peak_footprint_gb": 6.76,
+  "precision": "float32 weights",
+  "stage": "train",
+  "device": "cpu",
+  "seed": 0,
+  "threads": 6,
+  "wall_seconds": 25.2,
+  "checkpoint": "jaredpalmer/kev-0.8b",
+  "git_commit": "665ba62e557dc9dfd2b895ad89fc636742613c6a",
+  "git_dirty_note": "written before the parent session commits lab/src/sys1",
+  "environment": {
+    "python": "3.12.13",
+    "torch": "2.8.0",
+    "transformers": "5.22.1",
+    "peft": "0.21.2",
+    "kev": "0.1.0"
+  },
+  "hardware": {
+    "machine": "arm64",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "memory_gb": 24,
+    "cpu": "Apple M4"
+  },
+  "scope": "Mac measurement on invented ALFWorld-shaped text. Not an L4 number.",
+  "peak_footprint_gb": 6.76,
+  "peak_rss_gb": 8.05,
+  "lowest_system_free_pct_seen": 49
+}

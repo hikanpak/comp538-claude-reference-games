@@ -27,6 +27,19 @@ One JSON object per line, gzip shards, as `alf-data` writes them:
 `alf-data`'s first shards have no `split` because they cover training and dev files only, and
 `sys1-dataset` adds it. `menu.fit` and every training loader assert `split == "train"`.
 
+Added 2026-11-04 by the build: `obs` matches the harness's `GameView` form, which is `first_obs` without the
+welcome text and task, and later observations stripped. `command` is optional and gives the command that actually
+ran, for recovery and loop-breaking rows. `family`, `label_source`, `tracking`, `menu_rank`, `acceptable` and
+`control_state` are written by the training set.
+
+## Departures the build made, recorded by the agents
+
+`HarnessConfig.match` added, because R4 pays only beta. `ControlState` and `HarnessConfig` are frozen with defaults.
+`render_prompt` has `window=5`. `run_episodes` has keyword-only `batch_size`, `num_workers`, `tracking`,
+`allow_test_games`, `keep_prompts`, `timing`. `teacher` takes None or `"expert"`. An LLM's history opens with
+`("", first_obs)`. Labels carry `label_inadmissible`, `label_error`, `label_initial`. With no LLM and fallback open,
+the step runs Sys1's top menu command and control stays still. Those last two are Claude's choices, for Halil to rewrite.
+
 ## Menu
 
 `menu.fit(records) -> MenuModel`, `MenuModel.save(path)`, `MenuModel.load(path)`,

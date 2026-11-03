@@ -1,0 +1,31 @@
+claim: >
+  Sys1 alone, with no LLM and fallback masked, solves the dev games of held-out rooms at the success of Qwen 27B in Bonn's table, without
+  looping, holds up on its own states, and gives honest and well-ranked confidence. With fallback open, it falls back where the teacher's
+  command is off the menu and rarely elsewhere.
+falsified_by: >
+  Any gate of lib/sys1-acceptance.md failing on the mean of 3 seeds on the dev games of held-out rooms, or a gate with no measurement. That file
+  is the only source of the thresholds, and this job reads them from it at run time. Claude drafted them while Halil was away, so they stand
+  until Halil accepts or rewrites them, and they move only by a dated line in that file's changes section.
+axis: {name: seed, values: [0, 1, 2]}
+controls:
+  held_constant:
+    - the game list, recorded by SHA-256 in each result
+    - the menu file, recorded by SHA-256 in each result
+    - ALFWorld 0.4.2 with the 50-step limit
+    - the handcoded expert as teacher, seeded per game from SHA-256 of alfworld-expert/{uid}, with tracking foreign
+    - hand-over numbers 2, 10 and 3, trace window 5, and k 10 unless a run says otherwise
+    - no LLM, in all three plays
+  test_games: refused by the job, because lib/sys1-acceptance.md does not use them
+metrics:
+  primary: own_masked.success_pct
+  gates: [own_masked.success_pct, own_masked.repeat_rate, exposure_gap, own_masked.ece, own_masked.auroc, own_unmasked.fallback_when_off_menu, own_unmasked.fallback_when_on_menu, seeds_agree_points]
+  reported_with_no_gate: [teacher_states.step_match, own_masked.coverage_curve, label_random_share, label_inadmissible_share, label_error_share, brier, nll]
+  error_bars: percentile bootstrap resampling games, paired across rows, on each game's mean over seeds, 10000 resamples, in the --aggregate verdict
+run: >
+  nice -n 10 python lab/jobs/eval-sys1-alone.py --sys1 {checkpoint} --menu {menu} --games {games} --seed {seed} --run {arm}-seed{seed}
+  --device {device} --batch-size 8 --workers {workers};
+  python lab/jobs/eval-sys1-alone.py --aggregate lab/results/eval-sys1-alone/{arm}-seed*.json --out lab/results/sys1-acceptance/verdict.json
+compute:
+  where: Colab L4 for a Kev checkpoint, this Mac for stub runs and for a Kev checkpoint if light
+  limits_on_this_mac: under 8 GB, at most 4 worker processes, nice -n 10
+  est_gpu_hours: Open, set from the first run's timing block

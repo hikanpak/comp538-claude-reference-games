@@ -1,0 +1,990 @@
+{
+ "topic": "eval-sys1-alone",
+ "run": "b8w0",
+ "config": {
+  "k": 10,
+  "fallbacks_before_handover": 2,
+  "llm_rounds": 10,
+  "menu_run": 3,
+  "trace_window": 5,
+  "w": 1.0,
+  "c": 0.1,
+  "beta": 0.0,
+  "max_steps": 50,
+  "match": 1.0,
+  "reward": "R2",
+  "batch_size": 8,
+  "workers": 0,
+  "tracking": "foreign",
+  "expert_only": true,
+  "sys1": null,
+  "menu": null,
+  "games": "/tmp/scratch/lists/train60.txt",
+  "n_games": 60,
+  "games_sha256": "47bcf789066bac1c124cbf3ff3c219915c62bf95abd584d36c472d2defa6f107",
+  "menu_sha256": null,
+  "argv": [
+   "translate.py",
+   "domain",
+   "task"
+  ]
+ },
+ "seed": 0,
+ "deterministic_algorithms": false,
+ "git_commit": "665ba62e557dc9dfd2b895ad89fc636742613c6a",
+ "git_dirty": true,
+ "environment": {
+  "python": "3.12.13",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "packages": {
+   "alfworld": "0.4.2",
+   "textworld": "1.7.0",
+   "kev": "0.1.0",
+   "torch": "2.8.0",
+   "transformers": "5.22.1",
+   "numpy": "2.5.4",
+   "fast-downward-textworld": "20.6.4"
+  },
+  "alfworld_data": "/Users/a90/.cache/alfworld"
+ },
+ "hardware": {
+  "device": "cpu",
+  "machine": "arm64",
+  "processor": "arm",
+  "cpu_count": 10
+ },
+ "precision": "no model",
+ "sys1_temperature": null,
+ "peak_memory_bytes": {
+  "self": 416333824,
+  "largest_child": 5652480
+ },
+ "acceptance_file_sha256": "a813a45808627a1fde8eb4fa6d36e504385064cac154c75fe7db7a7739505570",
+ "aggregates": {
+  "expert": {
+   "n_games": 60,
+   "n_steps": 1511,
+   "success": 0.7333333333333333,
+   "mean_steps": 25.183333333333334,
+   "repeat_rate": 0.05162144275314361,
+   "episodes_with_loop": 0.08333333333333333,
+   "llm_calls": 0,
+   "gemma_calls": 0,
+   "qwen_calls": 0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "sys1_share_of_steps": 0.0,
+   "n_decisions_with_label": 0,
+   "step_match": null,
+   "step_match_excl_inadmissible": null,
+   "label_random_share": 0.16479152878888154,
+   "label_inadmissible_share": 0.17207147584381205,
+   "label_error_share": 0.0,
+   "ece": null,
+   "brier": null,
+   "nll": null,
+   "nll_excluded": 0,
+   "auroc": null,
+   "mean_confidence": null,
+   "coverage_curve": [
+    {
+     "threshold": 0.0,
+     "kept_share": null,
+     "step_match": null,
+     "n_kept": 0
+    },
+    {
+     "threshold": 0.05,
+     "kept_share": null,
+     "step_match": null,
+     "n_kept": 0
+    },
+    {
+     "threshold": 0.1,
+     "kept_share": null,
+     "step_match": null,
+     "n_kept": 0
+    },
+    {
+     "threshold": 0.15,
+     "kept_share": null,
+     "step_match": null,
+     "n_kept": 0
+    },
+    {
+     "threshold": 0.2,
+     "kept_share": null,
+     "step_match": null,
+     "n_kept": 0
+    },
+    {
+     "threshold": 0.25,
+     "kept_share": null,
+     "step_match": null,
+     "n_kept": 0
+    },
+    {
+     "threshold": 0.3,
+     "kept_share": null,
+     "step_match": null,
+     "n_kept": 0
+    },
+    {
+     "threshold": 0.35,
+     "kept_share": null,
+     "step_match": null,
+     "n_kept": 0
+    },
+    {
+     "threshold": 0.4,
+     "kept_share": null,
+     "step_match": null,
+     "n_kept": 0
+    },
+    {
+     "threshold": 0.45,
+     "kept_share": null,
+     "step_match": null,
+     "n_kept": 0
+    },
+    {
+     "threshold": 0.5,
+     "kept_share": null,
+     "step_match": null,
+     "n_kept": 0
+    },
+    {
+     "threshold": 0.55,
+     "kept_share": null,
+     "step_match": null,
+     "n_kept": 0
+    },
+    {
+     "threshold": 0.6,
+     "kept_share": null,
+     "step_match": null,
+     "n_kept": 0
+    },
+    {
+     "threshold": 0.65,
+     "kept_share": null,
+     "step_match": null,
+     "n_kept": 0
+    },
+    {
+     "threshold": 0.7,
+     "kept_share": null,
+     "step_match": null,
+     "n_kept": 0
+    },
+    {
+     "threshold": 0.75,
+     "kept_share": null,
+     "step_match": null,
+     "n_kept": 0
+    },
+    {
+     "threshold": 0.8,
+     "kept_share": null,
+     "step_match": null,
+     "n_kept": 0
+    },
+    {
+     "threshold": 0.85,
+     "kept_share": null,
+     "step_match": null,
+     "n_kept": 0
+    },
+    {
+     "threshold": 0.9,
+     "kept_share": null,
+     "step_match": null,
+     "n_kept": 0
+    },
+    {
+     "threshold": 0.95,
+     "kept_share": null,
+     "step_match": null,
+     "n_kept": 0
+    },
+    {
+     "threshold": 1.0,
+     "kept_share": null,
+     "step_match": null,
+     "n_kept": 0
+    }
+   ],
+   "seconds_sys1": 0.0,
+   "seconds_llm": 0.0,
+   "seconds_env": 39.19539616839029,
+   "fallback_when_off_menu": null,
+   "fallback_when_on_menu": null,
+   "n_off_menu": 0,
+   "n_on_menu": 0,
+   "teacher_on_menu_share": null,
+   "success_pct": 73.33333333333333
+  }
+ },
+ "success_by_task_type": {
+  "expert": {
+   "look_at_obj_in_light": {
+    "n": 6,
+    "success": 1.0
+   },
+   "pick_and_place_simple": {
+    "n": 14,
+    "success": 0.9285714285714286
+   },
+   "pick_clean_then_place_in_recep": {
+    "n": 10,
+    "success": 0.9
+   },
+   "pick_cool_then_place_in_recep": {
+    "n": 6,
+    "success": 1.0
+   },
+   "pick_heat_then_place_in_recep": {
+    "n": 6,
+    "success": 1.0
+   },
+   "pick_two_obj_and_place": {
+    "n": 18,
+    "success": 0.2222222222222222
+   }
+  }
+ },
+ "per_game": {
+  "expert": [
+   {
+    "uid": "train/pick_and_place_simple-SprayBottle-None-GarbageCan-428/trial_T20190909_101548_443245",
+    "task_type": "pick_and_place_simple",
+    "won": true,
+    "steps": 10,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.3476230780943297
+   },
+   {
+    "uid": "train/pick_cool_then_place_in_recep-Tomato-None-CounterTop-7/trial_T20190906_185054_876261",
+    "task_type": "pick_cool_then_place_in_recep",
+    "won": true,
+    "steps": 7,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.25927930197212845
+   },
+   {
+    "uid": "train/pick_heat_then_place_in_recep-Cup-None-Cabinet-18/trial_T20190907_150724_149124",
+    "task_type": "pick_heat_then_place_in_recep",
+    "won": true,
+    "steps": 23,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.7506208489648998
+   },
+   {
+    "uid": "train/pick_two_obj_and_place-TissueBox-None-SideTable-321/trial_T20190908_025939_647835",
+    "task_type": "pick_two_obj_and_place",
+    "won": false,
+    "steps": 50,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 1.3889202502905391
+   },
+   {
+    "uid": "train/pick_clean_then_place_in_recep-Spoon-None-Drawer-24/trial_T20190908_232429_973315",
+    "task_type": "pick_clean_then_place_in_recep",
+    "won": true,
+    "steps": 19,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.638625453109853
+   },
+   {
+    "uid": "train/pick_clean_then_place_in_recep-Kettle-None-DiningTable-18/trial_T20190908_085241_025765",
+    "task_type": "pick_clean_then_place_in_recep",
+    "won": true,
+    "steps": 7,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.25927930197212845
+   },
+   {
+    "uid": "train/pick_cool_then_place_in_recep-WineBottle-None-CounterTop-16/trial_T20190907_165538_792657",
+    "task_type": "pick_cool_then_place_in_recep",
+    "won": true,
+    "steps": 7,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.25927930197212845
+   },
+   {
+    "uid": "train/pick_cool_then_place_in_recep-Pot-None-CounterTop-17/trial_T20190908_235355_463197",
+    "task_type": "pick_cool_then_place_in_recep",
+    "won": true,
+    "steps": 8,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.2905776353436522
+   },
+   {
+    "uid": "train/pick_two_obj_and_place-CellPhone-None-Drawer-318/trial_T20190908_104510_132397",
+    "task_type": "pick_two_obj_and_place",
+    "won": false,
+    "steps": 50,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 1.3017474536027294
+   },
+   {
+    "uid": "train/pick_clean_then_place_in_recep-Kettle-None-StoveBurner-30/trial_T20190906_200422_424090",
+    "task_type": "pick_clean_then_place_in_recep",
+    "won": true,
+    "steps": 10,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.3191782606591005
+   },
+   {
+    "uid": "train/pick_two_obj_and_place-SprayBottle-None-Toilet-405/trial_T20190907_151208_870860",
+    "task_type": "pick_two_obj_and_place",
+    "won": false,
+    "steps": 50,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 1.3017474536027294
+   },
+   {
+    "uid": "train/pick_two_obj_and_place-KeyChain-None-Desk-320/trial_T20190907_222045_998896",
+    "task_type": "pick_two_obj_and_place",
+    "won": true,
+    "steps": 45,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 1.1707948335970286
+   },
+   {
+    "uid": "train/pick_two_obj_and_place-Lettuce-None-Fridge-1/trial_T20190918_213438_348886",
+    "task_type": "pick_two_obj_and_place",
+    "won": false,
+    "steps": 50,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 1.2882567868509796
+   },
+   {
+    "uid": "train/pick_cool_then_place_in_recep-Egg-None-CounterTop-19/trial_T20190909_005123_562800",
+    "task_type": "pick_cool_then_place_in_recep",
+    "won": true,
+    "steps": 15,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.40654557797824964
+   },
+   {
+    "uid": "train/pick_clean_then_place_in_recep-Fork-None-Drawer-11/trial_T20190907_145818_110719",
+    "task_type": "pick_clean_then_place_in_recep",
+    "won": true,
+    "steps": 24,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.601898859575158
+   },
+   {
+    "uid": "train/pick_clean_then_place_in_recep-SoapBar-None-Toilet-408/trial_T20190908_122359_761879",
+    "task_type": "pick_clean_then_place_in_recep",
+    "won": true,
+    "steps": 7,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.1813110520306509
+   },
+   {
+    "uid": "train/pick_two_obj_and_place-SoapBottle-None-Cabinet-414/trial_T20190908_044652_179681",
+    "task_type": "pick_two_obj_and_place",
+    "won": false,
+    "steps": 50,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 1.1618428547517397
+   },
+   {
+    "uid": "train/pick_two_obj_and_place-CellPhone-None-Desk-312/trial_T20190908_122308_202330",
+    "task_type": "pick_two_obj_and_place",
+    "won": false,
+    "steps": 50,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 1.160652000515256
+   },
+   {
+    "uid": "train/pick_clean_then_place_in_recep-SoapBar-None-Toilet-429/trial_T20190906_222344_438646",
+    "task_type": "pick_clean_then_place_in_recep",
+    "won": true,
+    "steps": 7,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.14839593760552816
+   },
+   {
+    "uid": "train/pick_and_place_simple-ToiletPaper-None-ToiletPaperHanger-427/trial_T20190908_121616_357729",
+    "task_type": "pick_and_place_simple",
+    "won": true,
+    "steps": 6,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.14830495315254666
+   },
+   {
+    "uid": "train/pick_two_obj_and_place-Candle-None-CounterTop-406/trial_T20190908_045902_729862",
+    "task_type": "pick_two_obj_and_place",
+    "won": false,
+    "steps": 50,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 1.2488243699481245
+   },
+   {
+    "uid": "train/pick_clean_then_place_in_recep-Kettle-None-Cabinet-18/trial_T20190907_170128_507111",
+    "task_type": "pick_clean_then_place_in_recep",
+    "won": true,
+    "steps": 15,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.34607621913892217
+   },
+   {
+    "uid": "train/pick_and_place_simple-RemoteControl-None-Dresser-311/trial_T20190907_154756_629170",
+    "task_type": "pick_and_place_simple",
+    "won": true,
+    "steps": 13,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.2905117034097202
+   },
+   {
+    "uid": "train/look_at_obj_in_light-CreditCard-None-DeskLamp-324/trial_T20190910_025955_546151",
+    "task_type": "look_at_obj_in_light",
+    "won": true,
+    "steps": 15,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.3306291356275324
+   },
+   {
+    "uid": "train/look_at_obj_in_light-Pen-None-DeskLamp-323/trial_T20190908_125547_889154",
+    "task_type": "look_at_obj_in_light",
+    "won": true,
+    "steps": 5,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.1186152292357292
+   },
+   {
+    "uid": "train/pick_two_obj_and_place-SoapBottle-None-CounterTop-407/trial_T20190908_055536_681478",
+    "task_type": "pick_two_obj_and_place",
+    "won": true,
+    "steps": 29,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.7056932290433906
+   },
+   {
+    "uid": "train/pick_two_obj_and_place-RemoteControl-None-ArmChair-217/trial_T20190909_120033_039874",
+    "task_type": "pick_two_obj_and_place",
+    "won": false,
+    "steps": 50,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 1.264503307233099
+   },
+   {
+    "uid": "train/pick_clean_then_place_in_recep-Cup-None-Microwave-1/trial_T20190909_150955_575706",
+    "task_type": "pick_clean_then_place_in_recep",
+    "won": false,
+    "steps": 50,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 1.334917781263357
+   },
+   {
+    "uid": "train/pick_two_obj_and_place-SprayBottle-None-Toilet-405/trial_T20190907_151132_176889",
+    "task_type": "pick_two_obj_and_place",
+    "won": false,
+    "steps": 50,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 1.3432359322323464
+   },
+   {
+    "uid": "train/pick_heat_then_place_in_recep-Tomato-None-GarbageCan-16/trial_T20190906_171745_518642",
+    "task_type": "pick_heat_then_place_in_recep",
+    "won": true,
+    "steps": 14,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.36895653628744185
+   },
+   {
+    "uid": "train/pick_heat_then_place_in_recep-Plate-None-DiningTable-28/trial_T20190908_001313_828023",
+    "task_type": "pick_heat_then_place_in_recep",
+    "won": true,
+    "steps": 20,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.5439698644913733
+   },
+   {
+    "uid": "train/pick_and_place_simple-KeyChain-None-ArmChair-214/trial_T20190909_061144_774666",
+    "task_type": "pick_and_place_simple",
+    "won": true,
+    "steps": 7,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.19591795286396518
+   },
+   {
+    "uid": "train/pick_heat_then_place_in_recep-Apple-None-GarbageCan-2/trial_T20190908_203856_118388",
+    "task_type": "pick_heat_then_place_in_recep",
+    "won": true,
+    "steps": 16,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.43003022923949175
+   },
+   {
+    "uid": "train/look_at_obj_in_light-Newspaper-None-DeskLamp-225/trial_T20190909_085334_452202",
+    "task_type": "look_at_obj_in_light",
+    "won": true,
+    "steps": 7,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.18866085950867273
+   },
+   {
+    "uid": "train/pick_two_obj_and_place-Potato-None-Fridge-25/trial_T20190908_225310_446083",
+    "task_type": "pick_two_obj_and_place",
+    "won": false,
+    "steps": 50,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 1.4237180574564263
+   },
+   {
+    "uid": "train/pick_and_place_simple-CreditCard-None-Shelf-307/trial_T20190908_141017_721379",
+    "task_type": "pick_and_place_simple",
+    "won": true,
+    "steps": 5,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.13339498449931853
+   },
+   {
+    "uid": "train/pick_clean_then_place_in_recep-Knife-None-DiningTable-26/trial_T20190908_133633_799335",
+    "task_type": "pick_clean_then_place_in_recep",
+    "won": true,
+    "steps": 10,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.25081939055235125
+   },
+   {
+    "uid": "train/pick_and_place_simple-KeyChain-None-Sofa-229/trial_T20190908_123422_029531",
+    "task_type": "pick_and_place_simple",
+    "won": true,
+    "steps": 7,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.17324868220021017
+   },
+   {
+    "uid": "train/pick_clean_then_place_in_recep-Cloth-None-Drawer-410/trial_T20190908_122824_123331",
+    "task_type": "pick_clean_then_place_in_recep",
+    "won": true,
+    "steps": 29,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.8698050885868724
+   },
+   {
+    "uid": "train/pick_and_place_simple-Box-None-ArmChair-217/trial_T20190907_170704_319038",
+    "task_type": "pick_and_place_simple",
+    "won": true,
+    "steps": 5,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.12035064570955001
+   },
+   {
+    "uid": "train/pick_cool_then_place_in_recep-Bowl-None-DiningTable-23/trial_T20190908_140343_327191",
+    "task_type": "pick_cool_then_place_in_recep",
+    "won": true,
+    "steps": 24,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.7478678751504049
+   },
+   {
+    "uid": "train/pick_two_obj_and_place-SoapBottle-None-Toilet-403/trial_T20190908_060213_777780",
+    "task_type": "pick_two_obj_and_place",
+    "won": false,
+    "steps": 50,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 1.424195083527593
+   },
+   {
+    "uid": "train/pick_and_place_simple-PepperShaker-None-Drawer-13/trial_T20190908_230731_141286",
+    "task_type": "pick_and_place_simple",
+    "won": false,
+    "steps": 50,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 1.422411338542588
+   },
+   {
+    "uid": "train/pick_heat_then_place_in_recep-Egg-None-Fridge-24/trial_T20190909_005512_279849",
+    "task_type": "pick_heat_then_place_in_recep",
+    "won": true,
+    "steps": 16,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.5362321927968878
+   },
+   {
+    "uid": "train/look_at_obj_in_light-CD-None-DeskLamp-328/trial_T20190908_004526_651155",
+    "task_type": "look_at_obj_in_light",
+    "won": true,
+    "steps": 13,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.4164947082463186
+   },
+   {
+    "uid": "train/pick_and_place_simple-Pan-None-CounterTop-8/trial_T20190908_105520_133293",
+    "task_type": "pick_and_place_simple",
+    "won": true,
+    "steps": 7,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.2381892863777466
+   },
+   {
+    "uid": "train/look_at_obj_in_light-Bowl-None-DeskLamp-323/trial_T20190908_024019_183353",
+    "task_type": "look_at_obj_in_light",
+    "won": true,
+    "steps": 48,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 1.1936909059877507
+   },
+   {
+    "uid": "train/look_at_obj_in_light-Pillow-None-DeskLamp-320/trial_T20190906_225859_247598",
+    "task_type": "look_at_obj_in_light",
+    "won": true,
+    "steps": 6,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.15377684897975996
+   },
+   {
+    "uid": "train/pick_and_place_simple-KeyChain-None-Shelf-313/trial_T20190908_071144_458910",
+    "task_type": "pick_and_place_simple",
+    "won": true,
+    "steps": 5,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.12695091136265546
+   },
+   {
+    "uid": "train/pick_and_place_simple-Bread-None-Microwave-15/trial_T20190907_040949_061246",
+    "task_type": "pick_and_place_simple",
+    "won": true,
+    "steps": 12,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.3175888437544927
+   },
+   {
+    "uid": "train/pick_two_obj_and_place-RemoteControl-None-ArmChair-214/trial_T20190909_020949_765614",
+    "task_type": "pick_two_obj_and_place",
+    "won": false,
+    "steps": 50,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 1.1927166376401492
+   },
+   {
+    "uid": "train/pick_and_place_simple-TissueBox-None-Toilet-426/trial_T20190909_043641_389014",
+    "task_type": "pick_and_place_simple",
+    "won": true,
+    "steps": 28,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.7161877393955365
+   },
+   {
+    "uid": "train/pick_two_obj_and_place-Vase-None-CoffeeTable-214/trial_T20190910_173303_364989",
+    "task_type": "pick_two_obj_and_place",
+    "won": true,
+    "steps": 45,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 1.0669532036159322
+   },
+   {
+    "uid": "train/pick_two_obj_and_place-Book-None-Drawer-307/trial_T20190909_111435_540631",
+    "task_type": "pick_two_obj_and_place",
+    "won": false,
+    "steps": 50,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 1.1596228514994782
+   },
+   {
+    "uid": "train/pick_two_obj_and_place-PepperShaker-None-Shelf-20/trial_T20190907_021648_434341",
+    "task_type": "pick_two_obj_and_place",
+    "won": false,
+    "steps": 50,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 1.1289722872144055
+   },
+   {
+    "uid": "train/pick_heat_then_place_in_recep-Mug-None-CoffeeMachine-3/trial_T20190906_233939_167170",
+    "task_type": "pick_heat_then_place_in_recep",
+    "won": true,
+    "steps": 20,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.4317591245926451
+   },
+   {
+    "uid": "train/pick_two_obj_and_place-Pen-None-GarbageCan-321/trial_T20190907_201828_429337",
+    "task_type": "pick_two_obj_and_place",
+    "won": true,
+    "steps": 50,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.9068089786861535
+   },
+   {
+    "uid": "train/pick_and_place_simple-SoapBar-None-Cart-401/trial_T20190907_054853_603987",
+    "task_type": "pick_and_place_simple",
+    "won": true,
+    "steps": 11,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.23370471349335276
+   },
+   {
+    "uid": "train/pick_and_place_simple-Book-None-Desk-314/trial_T20190908_111952_629798",
+    "task_type": "pick_and_place_simple",
+    "won": true,
+    "steps": 22,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.4479214179274138
+   },
+   {
+    "uid": "train/pick_cool_then_place_in_recep-Lettuce-None-DiningTable-18/trial_T20190909_122703_212954",
+    "task_type": "pick_cool_then_place_in_recep",
+    "won": true,
+    "steps": 12,
+    "return": 0.0,
+    "llm_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "seconds_agent": 0.0,
+    "seconds_env": 0.26659082542977386
+   }
+  ]
+ },
+ "timing": {
+  "wall_seconds": 78.71052912506275,
+  "batch_size": 8,
+  "num_workers": 0,
+  "batched_env_step_seconds_mean": 0.18664474365900138,
+  "batched_env_step_seconds_p95": 0.28516773768933473,
+  "n_batched_env_steps": 210,
+  "game_load_batches": 45,
+  "game_load_seconds_total": 39.503860994940624
+ }
+}

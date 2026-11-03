@@ -1,0 +1,32 @@
+{
+  "max_abs_logit_difference_unmerged_vs_saved_merged": 1.8358230590820312e-05,
+  "temperature_after_roundtrip": 1.7,
+  "question": "Which command should run next?",
+  "precision": "float32 weights",
+  "stage": "roundtrip",
+  "device": "cpu",
+  "seed": 0,
+  "trace_steps": 5,
+  "threads": 6,
+  "wall_seconds": 18.6,
+  "checkpoint": "jaredpalmer/kev-0.8b",
+  "git_commit": "665ba62e557dc9dfd2b895ad89fc636742613c6a",
+  "git_dirty_note": "written before the parent session commits lab/src/sys1",
+  "environment": {
+    "python": "3.12.13",
+    "torch": "2.8.0",
+    "transformers": "5.22.1",
+    "peft": "0.21.2",
+    "kev": "0.1.0"
+  },
+  "hardware": {
+    "machine": "arm64",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "memory_gb": 24,
+    "cpu": "Apple M4"
+  },
+  "scope": "Mac measurement on invented ALFWorld-shaped text. Not an L4 number.",
+  "peak_footprint_gb": 3.78,
+  "peak_rss_gb": 5.31,
+  "lowest_system_free_pct_seen": 59
+}

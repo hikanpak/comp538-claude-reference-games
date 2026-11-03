@@ -1,0 +1,46 @@
+# Sys1 trained alone by supervised fine-tuning on the expert's commands. Written before any result of this job exists.
+# Claude wrote this file. The gates it points to are Claude's drafts for Halil to accept or rewrite (lib/sys1-acceptance.md).
+topic: arm-classification
+claim: >
+  Fine-tuning Kev-0.8B for one epoch on the expert's commands from the training games, with the labels
+  of lab/src/train/export_kev.py, gives a Sys1 that passes the gates of lib/sys1-acceptance.md when it
+  plays alone on the dev games of held-out rooms.
+falsified_by: >
+  Any gate of lib/sys1-acceptance.md failing on the mean of 3 seeds, on at least 140 dev games of
+  held-out rooms, with no Gemma. lib/sys1-acceptance.md is the source and its thresholds are read from
+  there at evaluation (lab/jobs/eval-sys1-alone.py), so they are not copied here. Under the rule of that
+  file, 60 of the 70 CU of Sys1's budget spent with gates still failing stops the work.
+axis: {name: seed, values: [0, 1, 2]}
+baselines:
+  - {name: Kev-0.8B as released, source: jaredpalmer/kev-0.8b, tuning_budget: none}
+  - {name: handcoded expert on the same games, source: lab/src/alf/env.py, tuning_budget: none}
+controls:
+  held_constant:
+    - init_from jaredpalmer/kev-0.8b@bf75a6a8848ea6960ff2ed108d9ed44c2941174f
+    - base Qwen/Qwen3.5-0.8B-Base@dc7cdfe2ee4154fa7e30f5b51ca41bfa40174e68
+    - the export files and their report, whose sha256 of each shard sits in <stem>.report.json
+    - menu size k and trace window, as named in that report
+    - one epoch, learning rate 2e-5, batch 8, bf16 autocast over fp32 weights on the L4
+    - Kev's augmentation off (--p_none 0 --p_none_distract 0 --p_distract 0 --p_none_pair 0), so no labelled option is deleted
+    - temperature refit on dev rows of held-out rooms after training
+  seeds: [0, 1, 2]
+metrics:
+  primary: the gates of lib/sys1-acceptance.md, measured by lab/jobs/eval-sys1-alone.py and not by this job
+  error_bars: mean of 3 seeds, worst seed beside it, game-level bootstrap intervals from eval-sys1-alone.py
+  this_job_writes:
+    - per-game step match on dev rows and the temperature fit with its out-of-fold estimate
+    - train rows per second, inference rows per second, peak GPU and host memory
+run: |
+  # Export first, on the Mac (no GPU). The report it writes holds the MAX_STATE this job reads.
+  python lab/src/train/export_kev.py --records 'SHARDS' --menu MENU --k K --dedupe hard --out lab/data/sys1-kev/train.jsonl.gz
+  python lab/src/train/export_kev.py --records 'SHARDS' --menu MENU --k K --split dev_heldout_rooms --out lab/data/sys1-kev/dev_heldout_rooms.jsonl.gz
+  # The parent session starts these two, because each spends compute units.
+  lab/jobs/arm-classification.sh 0 speedtest   # 200 rows, gives rows per second and the projection for a full run
+  lab/jobs/arm-classification.sh 0 full
+compute:
+  cluster: colab
+  gpu: L4
+  cu_per_hour: 1.54     # Empirical, measured in Halil's earlier Colab work, recorded in lab/jobs/colab_job.sh
+  est_gpu_hours: Open until the speed test measures rows per second on an L4
+  est_cu: about 8 CU for the speed test, 1 seed of classification and Sys1 alone on dev (Heuristic, stage 6 of lib/execution-plan.md)
+  charged_to: sys1
