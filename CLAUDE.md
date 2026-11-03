@@ -4,8 +4,24 @@ Read `CONTEXT.md` first. It holds the claim, the terminology ledger and the
 symbol table, and every term in it is binding. One name for one thing, in
 prose, in code and in figures.
 
-Target venue neurips. The venue is named once, in `paper/.paper-meta.yml`,
-and the skill loads that venue profile and no other.
+This is a course project (COMP538), so the `neurips` venue value is only what the
+scaffold requires. `paper/` is Halil's: no agent drafts report prose.
+
+## Rules for every session on this project
+
+- Say who does what with concrete names: Sys1, Gemma, Qwen 27B. Define a term
+  before using it, and add no new labels. Halil finds coined shorthand unreadable.
+- State earlier results with their scope. One benchmark never becomes a forecast
+  for our setting, and it never justifies redesigning the plan on its own.
+- Only the first table of `plan/choices.tex` is Halil's. Never present anything
+  else as his choice.
+- Every number comes from a result file carrying its seed, git commit, environment
+  and hardware. Report failures and shortfalls plainly, and never fill in a number
+  that was not measured. Test games run once, after every choice is frozen on dev.
+- Prose in reports follows plain exact terms, with epistemic labels Proven,
+  Heuristic, Empirical or Open. Mathematics goes in compiled files, not chat.
+- Compute limits are in `CONTEXT.md`. Log AI work in `lib/llm-use-log.md`, because
+  the course requires disclosure with each deliverable.
 
 ## Layout
 
