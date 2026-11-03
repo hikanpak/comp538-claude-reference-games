@@ -1,0 +1,152 @@
+% One list of what has been chosen in the COMP438/538 project, by whom, and what stays open.
+% Add a row whenever a choice is made. Build: pdflatex choices.tex (run twice).
+\documentclass[10pt]{article}
+\usepackage[a4paper,landscape,margin=1.5cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{array,booktabs,tabularx}
+\usepackage{float}
+\usepackage[font=small,skip=3pt,justification=raggedright,singlelinecheck=false]{caption}
+\usepackage{titlesec}
+\titlespacing*{\section}{0pt}{10pt}{4pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{4pt}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\begin{document}
+
+\begin{center}
+  {\Large Choices so far}\\[3pt]
+  System One Control of LLM Agent Harnesses with Verifiable Rewards. Companion to \texttt{results\_plan.pdf}. Last updated 3 November 2026.
+\end{center}
+
+Halil's choices stand until he changes them. Claude's are proposals until he accepts them, and accepting one moves it to the first table. Later sessions add a row here whenever a choice is made, and do not present anything outside the first table as Halil's.
+
+\section{Chosen by Halil}
+
+\begin{table}[H]
+\footnotesize
+\begin{tabularx}{\linewidth}{@{}c P{4cm} L c@{}}
+\toprule
+\# & Topic & The choice & Date \\
+\midrule
+H1 & Target & Make Gemma-4-E4B match about Qwen3.8-27B in success, with a lightweight trained Sys1 & 3 Nov \\
+H2 & Sys1's job & At each step pick from a menu of frequent actions, or abort, flag danger, or fall back to the LLM. Control returns when the LLM finishes & 1 Nov \\
+H3 & Menu & Built statistically from the most common commands. Its length is a hyperparameter tuned by performance & 1 Nov \\
+H4 & Hand-over rules & After repeated fallbacks the LLM keeps control for a number of rounds, and a run of simple LLM calls returns control. The numbers are hyperparameters & 1 Nov \\
+H5 & What Sys1 sees & The LLM's last tool trace, and the harness control state & 1 Nov \\
+H6 & Reward & Match a strong model's choices as classification. When its choice is off the menu, fallback is the correct pick & 1 Nov \\
+H7 & Teacher forcing & Used to amplify the learning signal in early stages. The rule for whose action runs can be a research path & 1 Nov \\
+H8 & Base model & Any open-weight, already trained System One model, trained further, for example Cloudflare's. Not bound to Jev & 1 Nov \\
+H9 & What counts as success & Faster, cheaper, more accurate or more secure than the LLM alone. Any one is enough. Negative results are acceptable & 1 Nov \\
+H10 & Security & Simpler subtasks, possibly a different task for the guardrail part & 1 Nov \\
+H11 & Tasks & $\tau$-bench was only an example. Stay in line with the comparison papers & 3 Nov \\
+H12 & Compute & Colab L4, about 600 hours a month, or G4. One person & 1 Nov \\
+H13 & Scope cuts & Drop training parts, simplify tasks, and as a last resort a System One tool selector the agent calls & 1 Nov \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Proposed by Claude, waiting for Halil}
+
+\begin{table}[H]
+\footnotesize
+\begin{tabularx}{\linewidth}{@{}c P{5.6cm} L P{2.2cm}@{}}
+\toprule
+\# & Proposal & Why & In the plan \\
+\midrule
+C1 & ALFWorld as the primary task & Bonn reports Gemma and Qwen 27B on these exact 134 games, and ReDAct also reports on ALFWorld & Tasks table \\
+C2 & MiniGrid DoorKey-8x8 as second task & ReDAct's setup, and cheap for RL & Tasks table \\
+C3 & AgentDojo for the guardrail, CyberGym optional & H10. AgentDojo has labelled injections and programmatic checks, and CyberGym needs a Docker host & Q6 \\
+C4 & ScienceWorld as extension & SwiftSage reports on it & Tasks table \\
+C5 & Kev-4B as primary Sys1, decider-2b and Clef-flash as alternatives & Kev has a documented training path and no per-option parameters. H8 names Cloudflare & Models table \\
+C6 & Five training arms A0 to A4 & They walk along H7's research path & Arms table \\
+C7 & Rewards R1 to R4 & R1 is H6. The others add costs or success & Below the arms \\
+C8 & Keep teacher labels only from games the checker marks solved & Makes ``the teacher is right'' a checked statement & Harness table \\
+C9 & At fallback, the LLM reasons and then gives a command & Fallback is for steps that need reasoning & Harness table \\
+C10 & The target line is the stronger thinking-off Qwen 27B row, and thinking on is a ceiling & Bonn's 54.5 has thinking off, Qwen 27B thinks by default, and D6 lets you change this & Q1, Q4 \\
+C11 & Reproduce Bonn's numbers before anything else & Otherwise our rows cannot sit beside theirs & G \\
+C12 & Tune on dev, test once, 3 seeds, paired bootstrap & Standard practice, and Bonn's games make pairing possible & Below the arms \\
+C13 & Tier 1 and Tier 2 ablations, and the cut order & H13 & Q7, Budget \\
+C14 & Draft fail conditions and what each no would mean & So ``no'' is defined before data exists. Thresholds are guesses & Draft section \\
+C15 & Replay scores Gemma's stored one-pass pick during LLM rounds, as a per-step proxy & Otherwise fallback looks like expert play in training and like Gemma at test (agent review) & Harness table \\
+C16 & Row H11: Gemma fine-tuned to pick the expert's command, no Sys1 & Fine-tuning is the usual practice on ALFWorld (ETO, AgentTuning, AgentGym), and Sys1 should have to beat it & Q4 \\
+C17 & Kev-0.8B as an option, and every result states its precision & Gemma bf16 plus Kev-4B does not fit an L4 & Fit table \\
+C18 & \texttt{important\_instructions} as the main AgentDojo attack & The paper's main attack, where \texttt{tool\_knowledge} is only the README's example & Q6 \\
+C19 & The menu scores each admissible command by teacher use with that object and place class & Ranking by kind alone could fill the menu with \texttt{go to} (agent review) & Harness table \\
+C20 & RL arms start from A1's weights & decider, RelayLLM and ETO start RL from supervised weights & Arms table \\
+C21 & The no-hand-over row moves to Tier 1 & The papers read hand over one step or one move, so H4 is what is distinctive & Q7 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Hyperparameters}
+
+\begin{table}[H]
+\footnotesize
+\begin{tabularx}{\linewidth}{@{}P{5.2cm} L P{1.5cm} P{3cm} P{3cm}@{}}
+\toprule
+Name & What it sets & Start & Values tried & Start value from \\
+\midrule
+Menu length $k$ & How many commands Sys1 sees & 10 & 5, 10, 20, all & Claude. Tuning is H3 \\
+Fallbacks before hand-over & How many in a row give the LLM control & 2 & 1, 2 & Halil \\
+LLM rounds after hand-over & How long the LLM keeps control & 10 & 5, 10 & Halil \\
+Menu run that returns control & LLM commands in a row, all on the menu & 3 & 3 & Claude \\
+Trace window & Trace entries Sys1 sees & 5 & 1, 5, 20, full & Claude \\
+Wrong-pick cost $w$ & Reward lost on a wrong pick & 1 & 0, 1 & Claude \\
+Needless-fallback cost $c$ & Reward lost on fallback when the teacher's command was on the menu & 0.1 & 0, 0.1 & Claude \\
+Success bonus $\beta$ & Reward at a successful end & 0 & 0, 1, 5 & Claude \\
+Teacher schedule (A3) & How fast the teacher's chance of acting falls & 1 to 0 & Shape open & Claude \\
+Teacher games & Games stored as training labels & 3,553 with the expert, 500 with a paid LLM & Open & Claude \\
+Handovers per game (Q5) & Steps per game that may go to Qwen 27B & 5 & 1, 2, 5, 10 & ReDAct's target \\
+PPO and optimizer settings & Learning rate, batch, clip and others & Open & Set at the first run. decider used 1e-6 and clip 0.2 & Not chosen \\
+RL training budget & Steps per RL arm & Open & Field range: decider 384 optimizer steps, TWOSOME up to 500k, GLAM 1.5M, on other tasks & Not chosen \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Open decisions}
+
+\begin{table}[H]
+\footnotesize
+\caption{Each decision changes what runs. Claude's suggestion is stated, and the plan works under any option.}
+\begin{tabularx}{\linewidth}{@{}c P{5cm} L P{6.4cm}@{}}
+\toprule
+\# & Decision & Options and what each costs & Claude's suggestion \\
+\midrule
+D1 & Who is the teacher? & (a) Birch through your cloud credits, as you planned, with collection before 5 November. Its provider's commercial and consumer terms restrict using the service to train competing models and restrict automated access outside an API key. Reading them is yours, and Claude gives no legal opinion. (b) ALFWorld's built-in expert and our MiniGrid solver, free at any state. (c) An open strong LLM such as Qwen 27B & (b) for all arms, because A3 and A4 need a label at every state Sys1 reaches. This departs from your strong LLM as the default teacher. Then (a) or (c) as the teacher rows in the Q7 table, which keeps your strong-LLM question in the results \\
+D2 & Where do abort and flag danger get their labels? & An agreement reward never labels them, because the teacher never picks them. (a) Flag danger trained on AgentDojo's labelled injections, abort as a hand rule on repeated commands. (b) Abort and flag danger with a cost in the reward. (c) Your own rule & (a) \\
+D3 & Is ALFWorld acceptable as the primary task? & Your target has published numbers on it and it is free to check, but its commands are not tool calls. The alternative is a tool-calling primary such as $\tau$ retail, which brings a paid user simulator on every turn and has no published Gemma or Qwen 27B numbers that we read & ALFWorld, with AgentDojo as the tool-calling evidence \\
+D4 & Does security rest on AgentDojo alone? & CyberGym measures exploitation capability and needs a Docker host and a large download. Its 10-task subset stays as counts & AgentDojo as the core, CyberGym only if a Docker host is at hand \\
+D5 & What runs together on our GPU? & See the fit table in the plan. (a) L4 with Gemma bf16 and Kev-0.8B, and Qwen 27B in 4-bit, stated as a different setup from Bonn's. (b) L4 with Gemma 8-bit and Kev-4B, which moves Gemma away from Bonn's setup. (c) G4, whose memory we read at setup. (d) No live Qwen 27B: Bonn's number is the target line, and H8, H10, H12 and Q5's Qwen 27B rows drop out & Measure (a) in the first run, then choose \\
+D6 & Which Qwen 27B is the bar? & Bonn's 54.5 has thinking off, and Qwen 27B thinks by default. (a) The stronger thinking-off row. (b) Bonn's published 54.5 only. (c) Thinking on, which raises the bar and the running time & (a), with thinking on reported as a ceiling \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Draft fail conditions, by Claude}
+
+\begin{table}[H]
+\footnotesize
+\caption{When an answer counts as a no, and what that no would mean. Claude's draft, so that a no is defined before any data exists. Halil did not write it and should accept or rewrite it. Thresholds are guesses.}
+\begin{tabularx}{\linewidth}{@{}c L L@{}}
+\toprule
+\# & Counts as a no when & What that no would mean \\
+\midrule
+G & Our success falls outside Bonn's interval, or under 95\% of first-step picks match Bonn's public responses, where the prompt is the same & Our setup differs from Bonn's. Fix it before any other run \\
+Q1 & The menu of length 20 holds under 50\% of teacher commands & Ranking by frequency gives no useful menu, so Sys1 chooses from all admissible commands \\
+Q2 & Trained minus untrained, the interval on step match or ECE includes 0 & The labels do not teach Sys1 at this budget, so inspect the teacher \\
+Q3 & RL minus A1, the interval on dev success includes 0, and the exposure gap does not shrink when Sys1 acts & Plain copying is enough here and control state adds no signal. Still a result about RL \\
+Q4 & Target missed: H7 minus the bar (D6), the interval's low end is below $-10$ points, which is the finest ``about'' 134 games can support. Any gain missed: H7 minus Gemma alone, the interval includes 0. Gemma adds nothing: H7 minus H4 includes 0. Sys1 adds nothing over fine-tuning: H7 minus H11 includes 0 & Gemma + Sys1 does not reach Qwen 27B, does not help at all, does not need Gemma, or is matched by plain fine-tuning. Each is a different result. Q5 and Q6 still stand on their own \\
+Q5 & At 5 handovers per game, Sys1 minus Gemma's own uncertainty is at or below 0 & A threshold with no training chooses the steps as well as trained Sys1 \\
+Q6 & Attack success, Sys1 minus no defence, the interval includes 0, or task success falls further than with \texttt{tool\_filter} & Reading from outside does not stop these attacks at an acceptable cost \\
+Q7 & Removing a part does not move success or cost in the expected direction. One seed cannot settle it & That part is a candidate to leave the story, pending a run with 3 seeds \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\end{document}

@@ -1,0 +1,17 @@
+# Every downstream tool reads this. The venue names the profile the skill loads
+# and no other profile is read. Verify column_width_pt and text_width_pt against
+# the real class file by putting \the\columnwidth in the document and reading
+# the log, because template versions drift.
+venue: neurips
+year: 2026
+template: neurips-2026
+columns: 1
+column_width_pt: 397.5
+text_width_pt: 397.5
+body_pt: 10
+caption_pt: 10
+font_family: Times
+page_limit: 9
+page_limit_includes: nothing
+blind: double
+deadline: FILL

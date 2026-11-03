@@ -1,0 +1,5 @@
+# The report format. Section 0 is the author's reflection, and it is off for
+# agent-written reports because a generated reflection is what the format exists
+# to prevent. Turn it on in a repo where a person writes the reports.
+reflection: false
+page_cap: 5

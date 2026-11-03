@@ -1,0 +1,89 @@
+# Matplotlib style for report figures. Applied on top of the skill's
+# plotstyle.py, which sizes the figure to the report text width. Load it
+# through a figure script rather than on its own, or the figure will not match
+# the page. templates/labreport/plot.py is the script to copy.
+#
+# The colour cycle is the palette in lib/reports/src/style/labreport.cls, in the same order, so a
+# matplotlib figure and a pgfplots axis in one report look like each other.
+# Change a colour here and change it there.
+
+# --- output ---------------------------------------------------------------
+pdf.fonttype:        42
+ps.fonttype:         42
+pdf.compression:     9
+savefig.format:      pdf
+savefig.bbox:        tight
+savefig.pad_inches:  0.015
+savefig.transparent: False
+figure.dpi:          200
+
+# --- text: the report sets 11pt, so a figure at 9pt sits just under it -----
+font.size:           9
+axes.labelsize:      9
+axes.titlesize:      9
+xtick.labelsize:     8
+ytick.labelsize:     8
+legend.fontsize:     8
+figure.titlesize:    9
+text.color:          1C3D5A
+axes.labelcolor:     1C3D5A
+
+# --- colour cycle: lrblue lrteal lramber lrred lrviolet lrgray ------------
+axes.prop_cycle: cycler('color', ['2E6CA4', '147D7B', 'B25900', 'C0392B', '6B4C9A', '6E7B8B'])
+
+# --- axes ------------------------------------------------------------------
+axes.linewidth:      0.7
+axes.edgecolor:      4A5A6A
+axes.facecolor:      white
+axes.labelpad:       3.0
+axes.spines.top:     False
+axes.spines.right:   False
+axes.axisbelow:      True
+axes.titlelocation:  left
+axes.titlepad:       5.0
+
+# --- grid: light and dotted, never competing with the data ----------------
+axes.grid:           True
+grid.color:          B9C4D0
+grid.linestyle:      :
+grid.linewidth:      0.5
+grid.alpha:          0.8
+
+# --- ticks -----------------------------------------------------------------
+xtick.direction:     out
+ytick.direction:     out
+xtick.color:         4A5A6A
+ytick.color:         4A5A6A
+xtick.major.size:    3.0
+ytick.major.size:    3.0
+xtick.major.width:   0.7
+ytick.major.width:   0.7
+xtick.major.pad:     2.5
+ytick.major.pad:     2.5
+
+# --- lines and markers -----------------------------------------------------
+lines.linewidth:     1.5
+lines.markersize:    3.8
+lines.markeredgewidth: 0.0
+lines.solid_capstyle: round
+scatter.marker:      o
+
+# --- legend ----------------------------------------------------------------
+legend.frameon:      True
+legend.framealpha:   0.95
+legend.facecolor:    white
+legend.edgecolor:    B9C4D0
+legend.fancybox:     False
+legend.borderpad:    0.4
+legend.labelspacing: 0.3
+legend.handlelength: 1.6
+
+# --- figure ----------------------------------------------------------------
+figure.facecolor:    white
+figure.frameon:      False
+figure.constrained_layout.use: True
+figure.constrained_layout.h_pad: 0.02
+figure.constrained_layout.w_pad: 0.02
+
+# --- error bars ------------------------------------------------------------
+errorbar.capsize:    2.0

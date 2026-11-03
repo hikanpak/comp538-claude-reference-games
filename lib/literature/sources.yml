@@ -1,0 +1,29 @@
+# The field, tracked. Every sweep updates last_sweep so the next one knows
+# where it started. Venue names use the nine values of .paper-meta.yml.
+project: sys1-harness
+updated: 2026-11-03
+
+venues:
+  primary: [neurips]
+  watch: []
+
+# Research groups worth following, by institution and lead area, never by a
+# single person alone.
+groups: []
+
+# Individual researchers whose output is tracked.
+researchers: []
+
+# The papers the backward sweep starts from, by citation key.
+seeds: []
+
+feeds:
+  arxiv: []
+  eprint_keywords: []
+  dblp_venues: []
+
+# The day each sweep last ran. A null value means it has never run.
+last_sweep:
+  backward: null
+  forward: null
+  venue: null

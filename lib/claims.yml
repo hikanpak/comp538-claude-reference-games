@@ -1,0 +1,39 @@
+# lib/claims.yml
+#
+# One row per claim. A claim is a sentence the paper asserts, written once
+# here and pointed at from everywhere it is used. In a section file the
+# sentence that carries a claim ends its line with a trailing comment,
+# "% claim: <id>", which is why the house writes one sentence per line.
+#
+# Check it with:
+#     python3 ~/.claude/skills/research/scripts/check-claims.py
+#     python3 ~/.claude/skills/research/scripts/check-claims.py --graph
+#
+# The fields.
+#
+#   id        A slug of two to six words, lowercase, hyphenated, naming the
+#             claim in the words a reader would use. Never a letter and number
+#             filing code such as C-3, because a filing code has to be looked
+#             up before a reviewer can argue with it.
+#   kind      One of contribution, novelty, result, comparison, assumption,
+#             limitation. A result or a comparison has to name a macro or a
+#             theorem under evidence, or the checker warns.
+#   text      The claim in one sentence, in the wording the paper uses. When a
+#             claim is withdrawn or narrowed the checker looks for the first
+#             eight words of this text in the sections and errors if the old
+#             wording is still there.
+#   appears   Every place the paper makes the claim. The words abstract,
+#             intro and intro.contributions name those three places. Anything
+#             else is read as a LaTeX label, and the claim has to be carried
+#             somewhere inside the range that label owns.
+#   against   The citation keys of the works this claim positions against.
+#             Every key needs a reading note under lib/literature/notes.
+#   evidence  What makes the claim true. A report stem under lib/reports, a
+#             results directory holding a manifest.yml, a macro from
+#             lib/numbers.csv, a theorem label, or a reading note. A report
+#             named here has to declare the claim in its own \lrclaims.
+#   status    One of pending, supported, narrowed, withdrawn.
+#   approved  Optional. The date of the advisor round that approved the
+#             wording. Once a date is here, the wording is changed only in
+#             answer to a later comment.
+

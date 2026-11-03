@@ -1,0 +1,51 @@
+# Large inputs and anything a clone can fetch again
+lab/data/
+lib/literature/pdfs/
+*.ckpt
+*.pt
+*.npz
+*.h5
+*.parquet
+
+# Build output
+paper/build/
+lib/reports/src/*.draft.pdf
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+*.nav
+*.snm
+*.vrb
+*-diff.tex
+*-diff.pdf
+
+# The session lock, never shared
+paper/.lock
+
+# Environments
+__pycache__/
+.venv/
+*.egg-info/
+.ipynb_checkpoints/
+
+.DS_Store
+
+# course project
+.DS_Store
+*.aux
+*.log
+*.out
+weights/
+lab/data/raw/
+lab/results/**/*.pt
+lab/results/**/*.safetensors

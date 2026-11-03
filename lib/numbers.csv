@@ -1,0 +1,19 @@
+# lib/numbers.csv
+# One row per number that reaches the paper. Generate the macro file with:
+#     python3 ~/.claude/skills/research/scripts/numbers-to-tex.py lib/numbers.csv > paper/results.tex
+# Never edit paper/results.tex by hand. Edit this file and generate again.
+#
+# macro       CamelCase, the name the prose uses as \Macro. Not an all capital
+#             abbreviation and never a filing code such as AB12.
+# value       The number as it should print. No unit here.
+# unit        The unit as LaTeX, or empty for a bare count or a ratio.
+# provenance  M measured, D derived from measured values, A assumed and stated
+#             as an assumption, V verified against a cited source.
+# record      Where the value came from. A results directory, a report stem
+#             under lib/reports, or a note path with an anchor.
+# job_id      The cluster job id when a single job produced the value. Empty
+#             for a derived, assumed or cited value.
+# claims      The claim ids this number supports, separated by a vertical bar.
+#             A row that names no claim is a number nobody asked for.
+#
+macro,value,unit,provenance,record,job_id,claims
