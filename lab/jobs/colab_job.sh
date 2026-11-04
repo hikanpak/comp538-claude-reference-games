@@ -20,7 +20,7 @@
 # of the script and treats a missing token as failure. A script must therefore end by falling off its last line, not by sys.exit.
 #
 # Exit codes: 0 done, 2 usage, 3 no allocation, 4 upload failed, 5 wrong GPU, 6 script did not reach its end, 7 a download failed,
-# 8 the release failed and a VM may still be billing, 129 SIGHUP, 130 SIGINT, 142 wall-clock limit, 143 SIGTERM, others from colab exec.
+# 8 the release failed and a VM may still be billing, 9 the connection to the VM was lost, 129 SIGHUP, 130 SIGINT, 142 wall-clock limit, 143 SIGTERM, others from colab exec.
 # Ledger: one line per VM that may have existed, lab/results/colab-ledger.csv, columns when,job,gpu,wall_s,cu,charged_to.
 set -uo pipefail
 
@@ -58,6 +58,7 @@ retry_sleep=${COLAB_JOB_RETRY_SLEEP:-20}
 upload_sleep=${COLAB_JOB_UPLOAD_SLEEP:-5}
 cmd_limit=${COLAB_JOB_CMD_LIMIT:-1800}
 check_limit=${COLAB_JOB_CHECK_LIMIT:-180}
+watch_sleep=${COLAB_JOB_WATCH_SLEEP:-10}
 stop_limit=${COLAB_JOB_STOP_LIMIT:-120}
 
 mkdir -p "$(dirname "$log")"
@@ -73,6 +74,24 @@ bounded() {
   local limit=$1; shift
   perl -e 'alarm shift; exec @ARGV' "$limit" "$@" >>"$log" 2>&1 &
   child=$!
+  wait "$child"
+  local rc=$?
+  child=""
+  return $rc
+}
+
+# The job's remote command, watched: when the VM's connection drops, the client prints this and then hangs until the alarm with the VM still billing.
+watched() {
+  local limit=$1 from=$2; shift 2
+  perl -e 'alarm shift; exec @ARGV' "$limit" "$@" >>"$log" 2>&1 &
+  child=$!
+  while kill -0 "$child" 2>/dev/null; do
+    if tail -c +"$((from + 1))" "$log" | grep -aq "Connection was lost"; then
+      kill -TERM "$child" 2>/dev/null; wait "$child" 2>/dev/null; child=""
+      return 9
+    fi
+    sleep "$watch_sleep"
+  done
   wait "$child"
   local rc=$?
   child=""
@@ -223,9 +242,11 @@ run_script="$tmp/$(basename "$script")"
 { cat "$script"; printf "\nprint('\\\\n%s', flush=True)\n" "$token"; } >"$run_script"
 stamp "exec $script timeout=${timeout}s"
 offset=$(wc -c <"$log")
-bounded "$timeout" "${C[@]}" exec -s "$name" -f "$run_script" --timeout "$timeout" ${envs[@]+"${envs[@]}"}
+watched "$timeout" "$offset" "${C[@]}" exec -s "$name" -f "$run_script" --timeout "$timeout" ${envs[@]+"${envs[@]}"}
 rc=$?
-if (( rc == 142 )); then
+if (( rc == 9 )); then
+  stamp "connection to the VM was lost, releasing it"
+elif (( rc == 142 )); then
   stamp "killed at wall-clock limit ${timeout}s"
 elif (( rc == 0 )) && ! tail -c +"$((offset + 1))" "$log" | grep -aq "^$token\$"; then
   stamp "the script did not reach its end, read this log"

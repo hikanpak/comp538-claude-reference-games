@@ -5,7 +5,7 @@
 #   lab/jobs/arm-classification.sh SEED [speedtest|full]
 #
 # Inputs, overridable by environment: TRAIN_JSONL and DEV_JSONL (from lab/src/train/export_kev.py, the report beside TRAIN_JSONL),
-# RESULTS_DIR, PACK_DIR, TIMEOUT seconds, and EPOCHS LR BATCH ACCUM SPEED_ROWS PARTIAL_EVERY_MIN EVAL_BATCH INSTALL_FLA, passed through when set.
+# RESULTS_DIR, PACK_DIR, TIMEOUT seconds, and EPOCHS LR BATCH ACCUM SPEED_ROWS PARTIAL_EVERY_MIN EVAL_BATCH INSTALL_FLA WEIGHTS_DTYPE CHECKPOINTING LENGTH_SORT, passed through when set.
 # Outputs: lab/results/arm-classification/seedN.json, and for speedtest .../speedtest/seedN.json, which sits one level down so that
 # check_gates.py trained does not read a speed test as a trained run. Weights and partial weights go under .../weights/, which
 # .gitignore skips.
@@ -44,7 +44,7 @@ COPYFILE_DISABLE=1 tar -czf "$pack" --exclude '__pycache__' -C "$root/lab/src" s
 args=(-c sys1 -g L4 -s "$root/lab/jobs/arm-classification.py"
       -u "$train:/content/train.jsonl.gz" -u "$dev:/content/dev.jsonl.gz" -u "$pack:/content/sys1_code.tar.gz"
       -e "SEED=$seed" -e "MODE=$mode" -e "MAX_STATE=$max_state" -e "GIT_COMMIT=$commit" -e "GIT_DIRTY=$dirty")
-for key in EPOCHS LR BATCH ACCUM SPEED_ROWS PARTIAL_EVERY_MIN EVAL_BATCH INSTALL_FLA; do
+for key in EPOCHS LR BATCH ACCUM SPEED_ROWS PARTIAL_EVERY_MIN EVAL_BATCH INSTALL_FLA WEIGHTS_DTYPE CHECKPOINTING LENGTH_SORT; do
   if [[ -n ${!key:-} ]]; then args+=(-e "$key=${!key}"); fi
 done
 

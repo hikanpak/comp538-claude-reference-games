@@ -74,6 +74,9 @@ elif command == "exec":
             key, value = args[i + 1].split("=", 1)
             env[key] = value
     open(os.path.join(base, "exec.pid"), "w").write(str(os.getpid()))
+    if config.get("exec_lost_connection"):   # the real client prints this and then hangs with the VM still billing
+        print("RuntimeError: Connection was lost.", flush=True)
+        time.sleep(600)
     if config.get("exec_sleep"):
         time.sleep(config["exec_sleep"])
     if config.get("exec_rc") is not None:
@@ -107,7 +110,7 @@ class Harness:
         path = f"{self.bin}:/usr/bin:/bin"
         assert shutil.which("colab", path=path) == str(self.bin / "colab")
         return {"PATH": path, "HOME": str(self.tmp), "TMPDIR": str(self.tmp), "FAKE_DIR": str(self.base), "FAKE_CONFIG": json.dumps(config or {}), "COLAB_LEDGER": str(self.ledger),
-                "COLAB_JOB_RETRY_SLEEP": "0", "COLAB_JOB_UPLOAD_SLEEP": "0", **extra}
+                "COLAB_JOB_RETRY_SLEEP": "0", "COLAB_JOB_UPLOAD_SLEEP": "0", "COLAB_JOB_WATCH_SLEEP": "1", **extra}
 
     def args(self, *more, charged="sys1"):
         return [str(WRAPPER), "-c", charged, "-n", "job1", "-s", str(self.script), "-l", str(self.log), *[str(m) for m in more]]
@@ -294,6 +297,15 @@ def test_download_retries_and_a_lost_download_is_a_failure(h):
     done = h.run("-d", f"/content/out.bin:{h.tmp / 'b.bin'}")
     assert done.returncode == 7
     assert not (h.tmp / "b.bin").exists() and not (h.tmp / "b.bin.part").exists()
+
+
+def test_a_lost_connection_stops_the_hanging_client_and_releases(h):
+    started = time.time()
+    done = h.run(config={"exec_lost_connection": True})
+    assert done.returncode == 9
+    assert time.time() - started < 30
+    assert len(h.called("stop")) == 1
+    assert len(h.ledger_rows()) == 1
 
 
 def test_release_retries_and_a_failed_release_is_loud(h):

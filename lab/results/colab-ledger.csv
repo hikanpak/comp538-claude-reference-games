@@ -3,3 +3,9 @@ when,job,gpu,wall_s,cu,charged_to
 2026-11-04T06:39:31Z,arm-classification-seed0-speedtest,L4(got nothing),188,0.0804,sys1
 2026-11-04T06:42:55Z,arm-classification-seed0-speedtest,L4,279,0.1193,sys1
 2026-11-04T06:48:06Z,arm-classification-seed0-speedtest,L4,294,0.1258,sys1
+2026-11-04T06:54:38Z,arm-classification-seed0-speedtest,L4,184,0.0787,sys1
+2026-11-04T06:58:17Z,arm-classification-seed0-speedtest,L4,137,0.0586,sys1
+2026-11-04T07:00:57Z,arm-classification-seed0-speedtest,L4,295,0.1262,sys1
+2026-11-04T07:10:53Z,arm-classification-seed0-speedtest,L4,718,0.3071,sys1
+2026-11-04T07:23:37Z,arm-classification-seed0-speedtest,L4,719,0.3076,sys1
+2026-11-04T07:38:07Z,arm-classification-seed0-speedtest,L4,440,0.1882,sys1

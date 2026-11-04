@@ -68,12 +68,12 @@ Weights are fetched once, before the run, and the run then uses `HF_HUB_OFFLINE=
 
 ## Fast kernels for Kev
 
-Kev has fast CUDA kernels through `flash-linear-attention`, whose import name is `fla`. They are not in the pins, are not installed here, and have not been built or run in this project. Without them Kev's layers run through the reference PyTorch path, and Kev's runtime warns that this is much slower.
+Kev has fast CUDA kernels through `flash-linear-attention`, whose import name is `fla`. They are not in the pins and are not installed on the Mac. They run on the L4 through `lab/jobs/arm-classification.py`. Without them Kev's layers run through the reference PyTorch path, and Kev's runtime warns that this is much slower.
 
 - `kev/fused_qwen35.py` requires exactly `flash-linear-attention==0.5.2` (`FLA_VERSION`), and raises an error at any other version.
 - `fused_available()` is False without the package. `LoadOptions.fused=None` means off, so `KevSys1.load` runs the reference layers. `kev.serve` turns them on for CUDA, and `KEV_FUSED=0` declines them.
-- `lib/execution-plan.md` rules out source builds of CUDA extensions on a VM and `torch.compile` on L4. Whether the kernels compile at first call on an L4 is Open.
-- Resolving `flash-linear-attention==0.5.2` with the pins on Linux gives `fla-core` 0.5.2 and triton 3.4.0. Adding `triton>=3.7.1`, which `lab/jobs/arm-classification.py` installs as a separate step as Kev's `modal_app.py` does, has no solution in one resolve, because torch 2.8.0 pins triton to exactly 3.4.0 on Linux x86_64. The separate step therefore moves triton off torch's pin if Colab's torch has that pin, and no VM has run it.
+- `lib/execution-plan.md` rules out source builds of CUDA extensions on a VM and `torch.compile` on L4. The kernels compile at first call on an L4, which takes about 2 minutes of the first steps of each process (Empirical, one run).
+- Resolving `flash-linear-attention==0.5.2` with the pins on Linux gives `fla-core` 0.5.2 and triton 3.4.0, because torch 2.8.0 pins triton to exactly 3.4.0 on Linux x86_64. `lab/jobs/arm-classification.py` therefore installs `triton==3.7.1` as a separate step, as Kev's `modal_app.py` does with `triton>=3.7.1`. That range now resolves to 3.9.0, which breaks the import of `fla` 0.5.2, and transformers then runs its slow code with a message saying the package is not installed. The job also installs the prebuilt `causal_conv1d` 1.7.0 wheel for torch 2.8, CUDA 12 and Python 3.12 with `--no-deps`, and it stops before training if either kernel does not import. Measured on an L4 in `lab/results/arm-classification/speedtest/`: 3.186 training rows per second against 1.637.
 
 ## Game lists
 

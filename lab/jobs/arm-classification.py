@@ -11,7 +11,7 @@ late steps of long games).
 Modes: MODE=full trains on every row. MODE=speedtest trains on SPEED_ROWS rows and only measures. MODE=smoke is a Mac check of
 this file on a few rows. DRY_RUN=1 validates the data, prints the kev.train command and stops.
 Optional, with defaults below: TRAIN_JSONL DEV_JSONL CODE_TAR CODE_DIR OUT_DIR EPOCHS LR BATCH ACCUM DTYPE DEVICE INIT_FROM BASE BASE_REVISION SPEED_ROWS
-PARTIAL_EVERY_MIN EVAL_BATCH INSTALL INSTALL_FLA GIT_COMMIT GIT_DIRTY.
+PARTIAL_EVERY_MIN EVAL_BATCH INSTALL INSTALL_FLA GIT_COMMIT GIT_DIRTY WEIGHTS_DTYPE CHECKPOINTING LENGTH_SORT.
 """
 import gzip
 import json
@@ -32,7 +32,11 @@ ENV = os.environ
 KEV_SOURCE = "git+https://github.com/jaredpalmer/kev@2074cc44256200bb37540103fa4572901faa10f3"   # the commit in the Mac environment
 # The Mac's versions (lab/requirements.txt). Kev's bound is kev-0.1.0.dist-info/METADATA, and the kernels' pin is kev/fused_qwen35.py:53.
 PINS = ["torch==2.8.0", "transformers==5.22.1", "peft==0.21.2", "numpy==2.5.4"]
-FLA_PINS = ["flash-linear-attention==0.5.2", "triton>=3.7.1"]
+# Triton 3.9.0 breaks the import of fla 0.5.2 ("key contains names that are not kernel arguments: BT", lib/work-log.md), and transformers then silently runs its slow code.
+FLA_PINS = ["flash-linear-attention==0.5.2", "triton==3.7.1"]
+# The prebuilt wheel for this environment's torch 2.8, CUDA 12 and Python 3.12. Kev's modal_app.py installs the Python 3.13 one, with --no-deps,
+# because resolving its torch requirement would put back torch's triton.
+CAUSAL_CONV1D_WHEEL = "https://github.com/Dao-AILab/causal-conv1d/releases/download/v1.7.0/causal_conv1d-1.7.0%2Bcu12torch2.8cxx11abiTRUE-cp312-cp312-linux_x86_64.whl"
 
 SEED = int(ENV["SEED"])
 MODE = ENV.get("MODE", "full")
@@ -47,8 +51,11 @@ CODE_DIR = Path(ENV.get("CODE_DIR", WORK / "sys1_code"))
 OUT_DIR = Path(ENV.get("OUT_DIR", WORK / "out"))
 EPOCHS = ENV.get("EPOCHS", "1")
 LR = ENV.get("LR", "2e-5")   # the README's start value for --init_from (kev README, Fine-Tune on Your Own Data)
-BATCH = ENV.get("BATCH", "8")
-ACCUM = ENV.get("ACCUM", "1")
+BATCH = ENV.get("BATCH", "1")   # with ACCUM 8, Kev's README default. Batch 8 and batch 4 ran out of memory on the L4 (lab/results/colab-ledger.csv, lib/work-log.md)
+ACCUM = ENV.get("ACCUM", "8")
+WEIGHTS_DTYPE = ENV.get("WEIGHTS_DTYPE", "fp32")
+CHECKPOINTING = ENV.get("CHECKPOINTING", "0")
+LENGTH_SORT = ENV.get("LENGTH_SORT", "0")
 DEVICE = ENV.get("DEVICE", "cuda")
 DTYPE = ENV.get("DTYPE", "bf16" if DEVICE == "cuda" else "fp32")   # bf16 autocast over fp32 weights: the Kev-0.8B card's training precision
 INIT_FROM = ENV.get("INIT_FROM", "jaredpalmer/kev-0.8b@bf75a6a8848ea6960ff2ed108d9ed44c2941174f")   # the Hub revision the Mac check loaded
@@ -97,6 +104,7 @@ def install():
         if INSTALL_FLA:
             for pin in FLA_PINS:   # separate steps, because torch pins an older triton (`lab/ENVIRONMENT.md`)
                 run([uv, "pip", "install", "--python", python, pin])
+            run([uv, "pip", "install", "--python", python, "--no-deps", CAUSAL_CONV1D_WHEEL])
     PY = str(python)
 
 
@@ -131,11 +139,25 @@ def prepare(source, dest, allowed, limit=None):
 
 def kev_train_args(data):
     return ["--data", data, "--base", BASE, "--base_revision", BASE_REVISION, "--init_from", INIT_FROM, "--epochs", EPOCHS, "--lr", LR, "--batch", BATCH, "--accum", ACCUM,
-            "--dtype", DTYPE, "--device", DEVICE, "--max_state", MAX_STATE, "--seed", SEED, "--out", RUN_DIR, *AUGMENTATION_OFF]
+            "--dtype", DTYPE, "--weights_dtype", WEIGHTS_DTYPE, "--checkpointing", CHECKPOINTING, "--length_sort", LENGTH_SORT,
+            "--device", DEVICE, "--max_state", MAX_STATE, "--seed", SEED, "--out", RUN_DIR, *AUGMENTATION_OFF]
 
 
 def child_json(code, env):
     return json.loads(subprocess.run([PY, "-c", code], capture_output=True, text=True, env={**ENV, **env}, check=True).stdout)
+
+
+def kernels(env):
+    """Whether transformers will find the fast kernels. It imports them inside `except Exception` and goes on with the slow path, so the reason is lost unless asked here."""
+    code = ("import importlib, json, traceback\n"
+            "found = {}\n"
+            "for name in ['fla.ops.gated_delta_rule', 'causal_conv1d']:\n"
+            "    try: importlib.import_module(name); found[name] = 'imports'\n"
+            "    except Exception: found[name] = traceback.format_exc()[-1500:]\n"
+            "print(json.dumps(found))\n")
+    found = child_json(code, env)
+    print("KERNELS", json.dumps(found, indent=1), flush=True)
+    return found
 
 
 def environment(env):
@@ -206,6 +228,9 @@ def main():
     stages["install_seconds"] = round(time.time() - t, 1)
     child_env = {"PYTHONPATH": str(CODE_DIR), "PYTHONUNBUFFERED": "1", "TOKENIZERS_PARALLELISM": "false", "HF_HUB_DISABLE_IMPLICIT_TOKEN": "1", "HF_HUB_DISABLE_PROGRESS_BARS": "1"}
 
+    kernel_imports = kernels(child_env)
+    if INSTALL_FLA and set(kernel_imports.values()) != {"imports"}:
+        raise RuntimeError("fast kernels do not import, so training would run the slow code and waste compute units: see KERNELS above")
     t = time.time()
     train_env = {**child_env, "PARTIAL_TAR": "" if MODE == "speedtest" else str(PARTIAL_TAR), "PARTIAL_EVERY_MIN": PARTIAL_EVERY_MIN}
     # kev.train prints this line at the start when rows do not fit (kev/train.py:108). Raise MAX_STATE from the export's report.
@@ -231,8 +256,8 @@ def main():
     speed = speeds(metrics, records_per_step)
     result = {
         "topic": "arm-classification", "mode": MODE, "seed": SEED, "git_commit": ENV.get("GIT_COMMIT", "unknown"), "git_dirty": ENV.get("GIT_DIRTY", "unknown"),
-        "environment": env, "hardware": machine, "precision": {"training": f"{DTYPE} autocast over fp32 weights" if DTYPE == "bf16" else "fp32", "temperature_refit": refit["precision"]},
-        "config": {"init_from": INIT_FROM, "base": BASE, "base_revision": BASE_REVISION, "epochs": int(EPOCHS), "lr": float(LR), "batch": int(BATCH), "accum": int(ACCUM), "max_state": MAX_STATE,
+        "environment": env, "kernel_imports": kernel_imports, "hardware": machine, "precision": {"training": f"{DTYPE} autocast over {WEIGHTS_DTYPE} weights" if DTYPE == "bf16" else WEIGHTS_DTYPE, "temperature_refit": refit["precision"]},
+        "config": {"init_from": INIT_FROM, "base": BASE, "base_revision": BASE_REVISION, "epochs": int(EPOCHS), "lr": float(LR), "batch": int(BATCH), "accum": int(ACCUM), "weights_dtype": WEIGHTS_DTYPE, "checkpointing": int(CHECKPOINTING), "length_sort": int(LENGTH_SORT), "max_state": MAX_STATE,
                    "device": DEVICE, "augmentation": "off", "partial_every_min": PARTIAL_EVERY_MIN, "kev_train_args": [str(x) for x in kev_train_args(train_plain)]},
         "rows": {"train_in_file": train_total, "train_used": train_rows, "dev_in_file": dev_total, "dev_used": dev_rows},
         "train_speed": speed, "infer_rows_per_second": refit["infer_rows_per_second"],

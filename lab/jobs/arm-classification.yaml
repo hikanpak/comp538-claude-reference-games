@@ -20,7 +20,7 @@ controls:
     - base Qwen/Qwen3.5-0.8B-Base@dc7cdfe2ee4154fa7e30f5b51ca41bfa40174e68
     - the export files and their report, whose sha256 of each shard sits in <stem>.report.json
     - menu size k and trace window, as named in that report
-    - one epoch, learning rate 2e-5, batch 8, bf16 autocast over fp32 weights on the L4
+    - one epoch, learning rate 2e-5, batch 1 with accumulation 8, bf16 autocast over fp32 weights on the L4
     - Kev's augmentation off (--p_none 0 --p_none_distract 0 --p_distract 0 --p_none_pair 0), so no labelled option is deleted
     - temperature refit on dev rows of held-out rooms after training
   seeds: [0, 1, 2]
