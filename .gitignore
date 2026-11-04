@@ -35,6 +35,7 @@ paper/.lock
 # Environments
 __pycache__/
 .venv/
+.reference-games-venv/
 *.egg-info/
 .ipynb_checkpoints/
 

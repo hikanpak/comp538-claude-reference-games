@@ -45,7 +45,7 @@ length, reward.
 ## Teacher
 
 The handcoded expert is the only teacher, which is option (b) of decision D1. The training set records its
-label source so a stronger teacher can be added. The reference models' own play is not used as labels. Halil asked for Cypress and Birch as teachers on 2026-11-04. Their provider's usage policy, read that day, lists using outputs to train an AI model without the provider's prior authorization, with no condition on competition, so this stays out unless the provider authorizes it. The provider's consumer and commercial terms tie their own limit to competing products, and an earlier line here overstated them.
+label source so a stronger teacher can be added. The reference models' own play is not used as labels. Halil asked for Cypress and Birch as teachers on 2026-11-04. Their provider's usage policy, read that day, lists using outputs to train an AI model without the provider's prior authorization, with no condition on competition, so this stays out unless the provider authorizes it. The provider's consumer and commercial terms tie their own limit to competing products, and an earlier line here overstated them. On 2026-11-04 Halil accepted this and asked for Birch to run for benchmarking and reproducibility only, through cloud sessions, with no use in training by any means. That is `lab/jobs/reference-games`, and its card is `lab/results/reference-games/CARD.md`.
 
 ## Model choice forced by the budget
 
