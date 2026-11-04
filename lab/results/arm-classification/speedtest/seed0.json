@@ -2,7 +2,7 @@
   "topic": "arm-classification",
   "mode": "speedtest",
   "seed": 0,
-  "git_commit": "80d736b03e66fc44d16901cafb70f750086f19f3",
+  "git_commit": "38ecbf088b187afd9cf4299c5f59f33773b72750",
   "git_dirty": "1",
   "environment": {
     "python": "3.12.3",
@@ -42,11 +42,11 @@
     "base_revision": "dc7cdfe2ee4154fa7e30f5b51ca41bfa40174e68",
     "epochs": 1,
     "lr": 2e-05,
-    "batch": 1,
-    "accum": 8,
+    "batch": 4,
+    "accum": 2,
     "weights_dtype": "fp32",
     "checkpointing": 0,
-    "length_sort": 0,
+    "length_sort": 1,
     "max_state": 844,
     "device": "cuda",
     "augmentation": "off",
@@ -65,9 +65,9 @@
       "--lr",
       "2e-5",
       "--batch",
-      "1",
+      "4",
       "--accum",
-      "8",
+      "2",
       "--dtype",
       "bf16",
       "--weights_dtype",
@@ -75,7 +75,7 @@
       "--checkpointing",
       "0",
       "--length_sort",
-      "0",
+      "1",
       "--device",
       "cuda",
       "--max_state",
@@ -96,47 +96,47 @@
   },
   "rows": {
     "train_in_file": 99820,
-    "train_used": 200,
+    "train_used": 600,
     "dev_in_file": 12133,
-    "dev_used": 200
+    "dev_used": 600
   },
   "train_speed": {
-    "train_rows_per_second": 1.271,
-    "train_rows_per_second_after_first_tenth": 3.186,
-    "optimizer_steps": 25,
-    "steps_left_out_as_warmup": 2,
-    "wall_seconds": 157.3
+    "train_rows_per_second": 3.713,
+    "train_rows_per_second_after_first_tenth": 8.473,
+    "optimizer_steps": 75,
+    "steps_left_out_as_warmup": 7,
+    "wall_seconds": 161.6
   },
-  "infer_rows_per_second": 1.921,
+  "infer_rows_per_second": 4.377,
   "peak_memory": {
-    "device_bytes": 6692907008,
-    "rss_bytes": 5823275008,
-    "ru_maxrss_bytes": 5823275008,
-    "cuda_max_allocated_bytes": 6692907008,
-    "cuda_max_reserved_bytes": 6985613312,
+    "device_bytes": 12620210176,
+    "rss_bytes": 5826330624,
+    "ru_maxrss_bytes": 5826330624,
+    "cuda_max_allocated_bytes": 12620210176,
+    "cuda_max_reserved_bytes": 12916359168,
     "cuda_total_bytes": 23659151360
   },
   "grad_norm": [
     {
       "epoch": 0,
-      "steps": 25,
-      "mean": 22.25323776,
-      "max": 39.449287,
-      "clipped_steps": 25
+      "steps": 75,
+      "mean": 25.81955681333333,
+      "max": 48.569092,
+      "clipped_steps": 75
     }
   ],
   "stage_seconds": {
-    "prepare_seconds": 2.3,
-    "install_seconds": 46.4,
-    "train_stage_seconds": 192.0,
-    "refit_stage_seconds": 117.2
+    "prepare_seconds": 2.2,
+    "install_seconds": 40.2,
+    "train_stage_seconds": 196.5,
+    "refit_stage_seconds": 149.7
   },
   "scope": "Measured with device cuda on NVIDIA L4, 23034 MiB, 580.82.07.",
   "projection": {
-    "train_hours_one_epoch": 8.7,
-    "from_rows_per_second": 3.186,
+    "train_hours_one_epoch": 3.27,
+    "from_rows_per_second": 8.473,
     "train_rows": 99820,
-    "cu_at_1_54_per_hour": 13.4
+    "cu_at_1_54_per_hour": 5.04
   },
-  "total_seconds": 380.5
+  "total_seconds": 410.3
 }

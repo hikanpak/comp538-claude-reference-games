@@ -9,3 +9,5 @@ when,job,gpu,wall_s,cu,charged_to
 2026-11-04T07:10:53Z,arm-classification-seed0-speedtest,L4,718,0.3071,sys1
 2026-11-04T07:23:37Z,arm-classification-seed0-speedtest,L4,719,0.3076,sys1
 2026-11-04T07:38:07Z,arm-classification-seed0-speedtest,L4,440,0.1882,sys1
+2026-11-04T07:46:26Z,arm-classification-seed0-speedtest,L4,1563,0.6686,sys1
+2026-11-04T08:14:40Z,arm-classification-seed0-speedtest,L4,447,0.1912,sys1

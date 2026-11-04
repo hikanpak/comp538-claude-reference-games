@@ -12,7 +12,7 @@
 # -p pulls REMOTE to LOCAL every SECONDS while the script runs, through a temporary name, so a failed pull keeps the last good copy.
 #    The colab CLI transfers single files only, so REMOTE is a file, for example a tar the script replaces atomically.
 # -t bounds the script's wall time, 8 hours at most. colab exec's --timeout does not bound wall time (a compile run once hung
-#    72 min past it), so perl's alarm kills the client at the limit. Upload, download, allocation and release have alarms too.
+#    72 min past it), so this wrapper kills the client at the limit. Upload, download, allocation and release have limits too.
 #
 # Remote paths are absolute under /content, and an upload's parent directory must already exist there. The script runs in the
 # Colab kernel, so it takes arguments from -e, not sys.argv. colab exec exits 0 even when the script raises (the CLI does
@@ -58,7 +58,7 @@ retry_sleep=${COLAB_JOB_RETRY_SLEEP:-20}
 upload_sleep=${COLAB_JOB_UPLOAD_SLEEP:-5}
 cmd_limit=${COLAB_JOB_CMD_LIMIT:-1800}
 check_limit=${COLAB_JOB_CHECK_LIMIT:-180}
-watch_sleep=${COLAB_JOB_WATCH_SLEEP:-10}
+watch_sleep=${COLAB_JOB_WATCH_SLEEP:-2}
 stop_limit=${COLAB_JOB_STOP_LIMIT:-120}
 
 mkdir -p "$(dirname "$log")"
@@ -69,29 +69,28 @@ stamp() { echo "[$(date '+%F %T')] $*" | tee -a "$log"; }
 
 child=""
 pull_pids=()
-# A remote command with a wall-clock alarm. It runs in the background so a signal handler runs at once, not after the child ends.
+# A remote command with a wall-clock limit, polled from here. It runs in the background so a signal handler runs at once, not after the child ends.
+# When the VM's connection drops, the client prints the line below and then hangs with the VM still billing, and it outlived a perl alarm for 25 minutes.
 bounded() {
   local limit=$1; shift
-  perl -e 'alarm shift; exec @ARGV' "$limit" "$@" >>"$log" 2>&1 &
-  child=$!
-  wait "$child"
-  local rc=$?
-  child=""
-  return $rc
-}
-
-# The job's remote command, watched: when the VM's connection drops, the client prints this and then hangs until the alarm with the VM still billing.
-watched() {
-  local limit=$1 from=$2; shift 2
-  perl -e 'alarm shift; exec @ARGV' "$limit" "$@" >>"$log" 2>&1 &
+  local from start reason=""
+  from=$(wc -c <"$log"); start=$(date +%s)
+  "$@" >>"$log" 2>&1 &
   child=$!
   while kill -0 "$child" 2>/dev/null; do
-    if tail -c +"$((from + 1))" "$log" | grep -aq "Connection was lost"; then
-      kill -TERM "$child" 2>/dev/null; wait "$child" 2>/dev/null; child=""
-      return 9
-    fi
-    sleep "$watch_sleep"
+    if tail -c +"$((from + 1))" "$log" | grep -aq "Connection was lost"; then reason=9; break; fi
+    if (( $(date +%s) - start >= limit )); then reason=142; break; fi
+    sleep "$watch_sleep" &
+    wait $!
   done
+  if [[ -n $reason ]]; then
+    kill -TERM "$child" 2>/dev/null
+    sleep 2
+    kill -KILL "$child" 2>/dev/null
+    wait "$child" 2>/dev/null
+    child=""
+    return "$reason"
+  fi
   wait "$child"
   local rc=$?
   child=""
@@ -212,6 +211,10 @@ bounded "$check_limit" "${C[@]}" exec -s "$name" -f "$tmp/gpu_check.py" --timeou
 check_rc=$?
 gpu_line=$(tail -c +"$((offset + 1))" "$log" | grep -a '^COLAB_JOB_GPU_NAME=' | tail -1)
 gpu_name=${gpu_line#COLAB_JOB_GPU_NAME=}
+if (( check_rc == 9 )); then
+  stamp "connection to the VM was lost during the GPU check, releasing it"
+  exit 9
+fi
 if [[ -z $gpu_name ]] || ! grep -Eq "$(gpu_pattern "$got")" <<<"$gpu_name"; then
   stamp "WRONG GPU: asked for $got, nvidia-smi says '${gpu_name:-nothing}' (check rc=$check_rc)"
   ledger_gpu="$got(got ${gpu_name:-nothing})"
@@ -242,7 +245,7 @@ run_script="$tmp/$(basename "$script")"
 { cat "$script"; printf "\nprint('\\\\n%s', flush=True)\n" "$token"; } >"$run_script"
 stamp "exec $script timeout=${timeout}s"
 offset=$(wc -c <"$log")
-watched "$timeout" "$offset" "${C[@]}" exec -s "$name" -f "$run_script" --timeout "$timeout" ${envs[@]+"${envs[@]}"}
+bounded "$timeout" "${C[@]}" exec -s "$name" -f "$run_script" --timeout "$timeout" ${envs[@]+"${envs[@]}"}
 rc=$?
 if (( rc == 9 )); then
   stamp "connection to the VM was lost, releasing it"

@@ -1,0 +1,142 @@
+{
+  "topic": "arm-classification",
+  "mode": "speedtest",
+  "seed": 0,
+  "git_commit": "38ecbf088b187afd9cf4299c5f59f33773b72750",
+  "git_dirty": "1",
+  "environment": {
+    "python": "3.12.3",
+    "torch_cuda": "12.8",
+    "packages": {
+      "kev": "0.1.0",
+      "torch": "2.8.0",
+      "transformers": "5.22.1",
+      "peft": "0.21.2",
+      "flash-linear-attention": "0.5.2",
+      "fla-core": "0.5.2",
+      "triton": "3.7.1",
+      "causal-conv1d": "1.7.0",
+      "numpy": "2.5.4"
+    },
+    "deterministic_algorithms": false,
+    "kev_source": "git+https://github.com/jaredpalmer/kev@2074cc44256200bb37540103fa4572901faa10f3"
+  },
+  "kernel_imports": {
+    "fla.ops.gated_delta_rule": "imports",
+    "causal_conv1d": "imports"
+  },
+  "hardware": {
+    "machine": "x86_64",
+    "platform": "Linux-6.6.159+-x86_64-with-glibc2.39",
+    "cpus": 12,
+    "nvidia_smi": "NVIDIA L4, 23034 MiB, 580.82.07",
+    "memory_total_kb": 55530568
+  },
+  "precision": {
+    "training": "bf16 autocast over fp32 weights",
+    "temperature_refit": "float32 weights"
+  },
+  "config": {
+    "init_from": "jaredpalmer/kev-0.8b@bf75a6a8848ea6960ff2ed108d9ed44c2941174f",
+    "base": "Qwen/Qwen3.5-0.8B-Base",
+    "base_revision": "dc7cdfe2ee4154fa7e30f5b51ca41bfa40174e68",
+    "epochs": 1,
+    "lr": 2e-05,
+    "batch": 4,
+    "accum": 2,
+    "weights_dtype": "fp32",
+    "checkpointing": 0,
+    "length_sort": 1,
+    "max_state": 844,
+    "device": "cuda",
+    "augmentation": "off",
+    "partial_every_min": "10",
+    "kev_train_args": [
+      "--data",
+      "/content/seed0-train.jsonl",
+      "--base",
+      "Qwen/Qwen3.5-0.8B-Base",
+      "--base_revision",
+      "dc7cdfe2ee4154fa7e30f5b51ca41bfa40174e68",
+      "--init_from",
+      "jaredpalmer/kev-0.8b@bf75a6a8848ea6960ff2ed108d9ed44c2941174f",
+      "--epochs",
+      "1",
+      "--lr",
+      "2e-5",
+      "--batch",
+      "4",
+      "--accum",
+      "2",
+      "--dtype",
+      "bf16",
+      "--weights_dtype",
+      "fp32",
+      "--checkpointing",
+      "0",
+      "--length_sort",
+      "1",
+      "--device",
+      "cuda",
+      "--max_state",
+      "844",
+      "--seed",
+      "0",
+      "--out",
+      "/content/out/seed0-speedtest",
+      "--p_none",
+      "0",
+      "--p_none_distract",
+      "0",
+      "--p_distract",
+      "0",
+      "--p_none_pair",
+      "0"
+    ]
+  },
+  "rows": {
+    "train_in_file": 99820,
+    "train_used": 600,
+    "dev_in_file": 12133,
+    "dev_used": 600
+  },
+  "train_speed": {
+    "train_rows_per_second": 3.713,
+    "train_rows_per_second_after_first_tenth": 8.473,
+    "optimizer_steps": 75,
+    "steps_left_out_as_warmup": 7,
+    "wall_seconds": 161.6
+  },
+  "infer_rows_per_second": 4.377,
+  "peak_memory": {
+    "device_bytes": 12620210176,
+    "rss_bytes": 5826330624,
+    "ru_maxrss_bytes": 5826330624,
+    "cuda_max_allocated_bytes": 12620210176,
+    "cuda_max_reserved_bytes": 12916359168,
+    "cuda_total_bytes": 23659151360
+  },
+  "grad_norm": [
+    {
+      "epoch": 0,
+      "steps": 75,
+      "mean": 25.81955681333333,
+      "max": 48.569092,
+      "clipped_steps": 75
+    }
+  ],
+  "stage_seconds": {
+    "prepare_seconds": 2.2,
+    "install_seconds": 40.2,
+    "train_stage_seconds": 196.5,
+    "refit_stage_seconds": 149.7
+  },
+  "scope": "Measured with device cuda on NVIDIA L4, 23034 MiB, 580.82.07.",
+  "projection": {
+    "train_hours_one_epoch": 3.27,
+    "from_rows_per_second": 8.473,
+    "train_rows": 99820,
+    "cu_at_1_54_per_hour": 5.04
+  },
+  "total_seconds": 410.3
+}

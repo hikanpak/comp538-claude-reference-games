@@ -19,7 +19,7 @@ DRIVER = JOBS / "arm-classification.sh"
 FAKE = r'''#!{python}
 """A stand-in for the colab CLI. It logs each call, keeps per-command counters, and behaves as $FAKE_CONFIG says.
 Like the real `colab exec`, it exits 0 when the executed script raises."""
-import json, os, shutil, subprocess, sys, time
+import json, os, shutil, signal, subprocess, sys, time
 
 args = sys.argv[1:]
 base = os.environ["FAKE_DIR"]
@@ -61,6 +61,10 @@ elif command == "download":
     print("downloaded")
 elif command == "exec":
     code = open(option("-f")).read()
+    if "COLAB_JOB_GPU_NAME" in code and config.get("gpu_check_lost_connection"):
+        print("RuntimeError: Connection was lost.", flush=True)
+        signal.signal(signal.SIGALRM, signal.SIG_IGN)   # the real client outlived an alarm
+        time.sleep(600)
     if "COLAB_JOB_GPU_NAME" in code:
         name = config.get("gpu_name", "NVIDIA L4")
         if name is None:
@@ -110,7 +114,7 @@ class Harness:
         path = f"{self.bin}:/usr/bin:/bin"
         assert shutil.which("colab", path=path) == str(self.bin / "colab")
         return {"PATH": path, "HOME": str(self.tmp), "TMPDIR": str(self.tmp), "FAKE_DIR": str(self.base), "FAKE_CONFIG": json.dumps(config or {}), "COLAB_LEDGER": str(self.ledger),
-                "COLAB_JOB_RETRY_SLEEP": "0", "COLAB_JOB_UPLOAD_SLEEP": "0", "COLAB_JOB_WATCH_SLEEP": "1", **extra}
+                "COLAB_JOB_RETRY_SLEEP": "0", "COLAB_JOB_UPLOAD_SLEEP": "0", "COLAB_JOB_WATCH_SLEEP": "0.1", **extra}
 
     def args(self, *more, charged="sys1"):
         return [str(WRAPPER), "-c", charged, "-n", "job1", "-s", str(self.script), "-l", str(self.log), *[str(m) for m in more]]
@@ -306,6 +310,14 @@ def test_a_lost_connection_stops_the_hanging_client_and_releases(h):
     assert time.time() - started < 30
     assert len(h.called("stop")) == 1
     assert len(h.ledger_rows()) == 1
+
+
+def test_a_lost_connection_during_the_gpu_check_is_stopped_and_released(h):
+    started = time.time()
+    done = h.run(config={"gpu_check_lost_connection": True})
+    assert done.returncode != 0
+    assert time.time() - started < 30
+    assert len(h.called("stop")) == 1
 
 
 def test_release_retries_and_a_failed_release_is_loud(h):
