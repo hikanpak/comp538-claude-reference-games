@@ -64,7 +64,7 @@ Weights are fetched once, before the run, and the run then uses `HF_HUB_OFFLINE=
 /content/venv/bin/python lab/jobs/eval-sys1-alone.py --sys1 <checkpoint> --menu <menu file> --games <game list> --seed 0 --run <run> --device cuda --batch-size 8 --workers 4
 ```
 
-`lab/jobs/arm-classification.py` installs differently. It keeps Colab's torch when that is below 2.9, and adds Kev, `transformers==5.22.1` and `peft==0.21.2` through pip into Colab's own Python. So a Sys1 trained by that job and a Sys1 measured in the steps above may run under different torch versions, and each job's result file records its own.
+`lab/jobs/arm-classification.py` installs less: a separate Python 3.12 environment under `/content/venv` with Kev, `torch==2.8.0`, `transformers==5.22.1`, `peft==0.21.2` and `numpy==2.5.4`, and no ALFWorld. Installing into Colab's own Python failed on 2026-11-04, because Kev's bound moved Colab's torch 2.11 to 2.8 and left torchvision, torchaudio and torchao behind.
 
 ## Fast kernels for Kev
 

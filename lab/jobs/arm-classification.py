@@ -27,10 +27,11 @@ import time
 from pathlib import Path
 
 T0 = time.time()
+PY = sys.executable   # install() replaces this with the separate environment
 ENV = os.environ
 KEV_SOURCE = "git+https://github.com/jaredpalmer/kev@2074cc44256200bb37540103fa4572901faa10f3"   # the commit in the Mac environment
-# Colab's torch stays if it is below 2.9. Kev's bound is kev-0.1.0.dist-info/METADATA, and the kernels' pin is kev/fused_qwen35.py:53.
-PINS = ["transformers==5.22.1", "peft==0.21.2"]
+# The Mac's versions (lab/requirements.txt). Kev's bound is kev-0.1.0.dist-info/METADATA, and the kernels' pin is kev/fused_qwen35.py:53.
+PINS = ["torch==2.8.0", "transformers==5.22.1", "peft==0.21.2", "numpy==2.5.4"]
 FLA_PINS = ["flash-linear-attention==0.5.2", "triton>=3.7.1"]
 
 SEED = int(ENV["SEED"])
@@ -84,17 +85,19 @@ def run(cmd, env=None, abort_on=None):
 
 
 def install():
-    if sys.version_info < (3, 12):
-        raise RuntimeError(f"kev needs Python 3.12 or newer, this VM has {platform.python_version()}")
-    pip = [sys.executable, "-m", "pip", "install", "-q"]
-    run([*pip, f"kev @ {KEV_SOURCE}", *PINS])
-    # Kev's bound moves Colab's torch 2.11 down to 2.8 and leaves torchvision and torchaudio built for 2.11 behind, which breaks
-    # transformers' import of Qwen3_5ForCausalLM ("operator torchvision::nms does not exist", then "undefined symbol: torch_library_impl"
-    # from torchaudio). Nothing here uses them or the other extensions built for that torch.
-    run([sys.executable, "-m", "pip", "uninstall", "-y", "-q", "torchvision", "torchaudio", "torchcodec", "torchdata"])
-    if INSTALL_FLA:
-        # Installed apart from the line above: torch pins an older triton, and one resolver call would refuse the pair.
-        run([*pip, *FLA_PINS])
+    """A separate environment with the Mac's versions, so Colab's own packages do not matter. In Colab's Python, Kev's bound moved torch
+    from 2.11 to 2.8 and left torchvision, torchaudio and torchao behind, and each of them broke an import in turn."""
+    global PY
+    python = WORK / "venv" / "bin" / "python"
+    if not python.exists():
+        run(["bash", "-c", "command -v uv >/dev/null || curl -LsSf https://astral.sh/uv/install.sh | sh"])
+        uv = shutil.which("uv") or str(Path.home() / ".local" / "bin" / "uv")
+        run([uv, "venv", "--python", "3.12", WORK / "venv"])
+        run([uv, "pip", "install", "--python", python, f"kev @ {KEV_SOURCE}", *PINS])
+        if INSTALL_FLA:
+            for pin in FLA_PINS:   # separate steps, because torch pins an older triton (`lab/ENVIRONMENT.md`)
+                run([uv, "pip", "install", "--python", python, pin])
+    PY = str(python)
 
 
 def read_lines(path):
@@ -132,7 +135,7 @@ def kev_train_args(data):
 
 
 def child_json(code, env):
-    return json.loads(subprocess.run([sys.executable, "-c", code], capture_output=True, text=True, env={**ENV, **env}, check=True).stdout)
+    return json.loads(subprocess.run([PY, "-c", code], capture_output=True, text=True, env={**ENV, **env}, check=True).stdout)
 
 
 def environment(env):
@@ -206,7 +209,7 @@ def main():
     t = time.time()
     train_env = {**child_env, "PARTIAL_TAR": "" if MODE == "speedtest" else str(PARTIAL_TAR), "PARTIAL_EVERY_MIN": PARTIAL_EVERY_MIN}
     # kev.train prints this line at the start when rows do not fit (kev/train.py:108). Raise MAX_STATE from the export's report.
-    run([sys.executable, "-m", "train.kev_train_runner", *kev_train_args(train_plain)], train_env, abort_on=r"dropped \d+ of \d+ records")
+    run([PY, "-m", "train.kev_train_runner", *kev_train_args(train_plain)], train_env, abort_on=r"dropped \d+ of \d+ records")
     stages["train_stage_seconds"] = round(time.time() - t, 1)
     metrics = json.loads((RUN_DIR / "training_metrics.json").read_text())
     runner = json.loads((RUN_DIR / "runner_metrics.json").read_text())
@@ -215,7 +218,7 @@ def main():
 
     t = time.time()
     refit_json = OUT_DIR / f"{STEM}-{MODE}-refit.json"
-    refit_cmd = [sys.executable, "-m", "train.refit_temperature", "--run", RUN_DIR, "--dev", dev_plain, "--device", DEVICE, "--seed", SEED, "--out", refit_json, "--batch", EVAL_BATCH]
+    refit_cmd = [PY, "-m", "train.refit_temperature", "--run", RUN_DIR, "--dev", dev_plain, "--device", DEVICE, "--seed", SEED, "--out", refit_json, "--batch", EVAL_BATCH]
     if MODE == "speedtest":
         refit_cmd.append("--measure-only")
     run(refit_cmd, child_env)
