@@ -70,4 +70,4 @@ a narrow scope, and the costs above stay estimates.
 | When | Job | GPU | Hours | CU | Charged to |
 | --- | --- | --- | --- | --- | --- |
 | 2026-11-04, expected | `arm-classification-seed0-speedtest`, 200 rows, k 20 | L4 | at most 0.67 | at most 1.03 | sys1 |
-| 2026-11-04, real, 7 tries | `arm-classification-seed0-speedtest`, 200 rows, k 20, 6 failed tries and 1 success | L4 | 0.47 | 0.7169 | sys1 |
+| 2026-11-04, real, 12 tries | `arm-classification-seed0-speedtest`, 200 to 600 rows, k 20, including 7 failed tries and one 25 minute hang | L4 | 1.55 | 2.3796 | sys1 |
