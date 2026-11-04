@@ -32,6 +32,8 @@ Sys1, Gemma + best Sys1, on the test games with choices frozen. Hand-over number
 report prints the reasoning row beside Gemma + Sys1, gives generated tokens per game, and says the bar is
 one-pass and thinking-off (review finding 15).
 
+Stages 1 to 4 ran on 2026-11-03 and 2026-11-04 as local agents on plan usage, not as cloud sessions, because the app refused cloud starts on turns with no message from Halil and the repo was private to them. No credit was spent on them.
+
 ## Not funded unless budget remains
 
 Live Qwen 27B rows. Halil capped Gemma at 30 CU and gave the rest to Sys1, so the target bar is Bonn's
@@ -43,8 +45,7 @@ length, reward.
 ## Teacher
 
 The handcoded expert is the only teacher, which is option (b) of decision D1. The training set records its
-label source so a stronger teacher can be added. The reference models' own play is not used as labels, because their provider's
-terms restrict using its outputs to train other models, and reading those terms is Halil's call, not Claude's.
+label source so a stronger teacher can be added. The reference models' own play is not used as labels. Halil asked for Cypress and Birch as teachers on 2026-11-04. Their provider's usage policy, read that day, lists using outputs to train an AI model without the provider's prior authorization, with no condition on competition, so this stays out unless the provider authorizes it. The provider's consumer and commercial terms tie their own limit to competing products, and an earlier line here overstated them.
 
 ## Model choice forced by the budget
 
@@ -68,3 +69,4 @@ a narrow scope, and the costs above stay estimates.
 
 | When | Job | GPU | Hours | CU | Charged to |
 | --- | --- | --- | --- | --- | --- |
+| 2026-11-04, expected | `arm-classification-seed0-speedtest`, 200 rows, k 20 | L4 | at most 0.67 | at most 1.03 | sys1 |

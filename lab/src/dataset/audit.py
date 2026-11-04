@@ -10,6 +10,7 @@ import argparse
 import gzip
 import hashlib
 import json
+import os
 import random
 from collections import Counter, defaultdict
 from concurrent.futures import ProcessPoolExecutor
@@ -28,6 +29,7 @@ from .splits import as_sets, assert_no_leakage, assert_row_allowed, load_splits
 
 REPLAY_PER_STRATUM = 150  # Rollout family by split.
 REPLAY_GAMES_PER_WORKER = 50
+HASH_SEEDS_TRIED = range(16)
 
 
 def replay_game(job: tuple[str, list[dict]]) -> dict:
@@ -38,6 +40,7 @@ def replay_game(job: tuple[str, list[dict]]) -> dict:
     stack.load(spec.path)
     result = Counter()
     problems = []
+    label_only = []
     for row in rows:
         state = stack.reset()
         teacher = SeededTeacher(spec, row["expert_seed"])
@@ -61,10 +64,63 @@ def replay_game(job: tuple[str, list[dict]]) -> dict:
         result["rows"] += 1
         for name, passed in checks.items():
             result[f"{name}_ok"] += int(passed)
-        if not all(checks.values()) and len(problems) < 3:
-            problems.append({"run_id": row["run_id"], "step": row["step"], "failed": [k for k, v in checks.items() if not v]})
+        failed = [k for k, v in checks.items() if not v]
+        if failed == ["label"]:
+            label_only.append(row)
+        if failed and len(problems) < 3:
+            problems.append({"run_id": row["run_id"], "step": row["step"], "failed": failed})
     stack.close()
-    return {"counts": dict(result), "problems": problems}
+    return {"counts": dict(result), "problems": problems, "label_only": label_only}
+
+
+def replay_all(jobs: list[tuple], workers: int, hash_seed: int) -> dict:
+    """Every job under one string hash order. A fresh pool per chunk keeps workers from growing. `max_tasks_per_child` with `map` hangs on Python 3.12: a worker that exits is replaced only when the
+    pool counts no idle worker, and every task finished before it raises that count, so all workers leave and the queue never drains."""
+    counts, problems, label_only = Counter(), [], []
+    saved = os.environ.get("PYTHONHASHSEED")
+    os.environ["PYTHONHASHSEED"] = str(hash_seed)
+    try:
+        for start in range(0, len(jobs), workers * REPLAY_GAMES_PER_WORKER):
+            with ProcessPoolExecutor(max_workers=workers, mp_context=get_context("spawn")) as executor:
+                for result in executor.map(replay_game, jobs[start:start + workers * REPLAY_GAMES_PER_WORKER]):
+                    counts.update(result["counts"])
+                    problems += result["problems"]
+                    label_only += result["label_only"]
+            print(json.dumps({"hash_seed": hash_seed, "replayed_games": min(start + workers * REPLAY_GAMES_PER_WORKER, len(jobs)), "of": len(jobs)}), flush=True)
+    finally:
+        if saved is None:
+            os.environ.pop("PYTHONHASHSEED", None)
+        else:
+            os.environ["PYTHONHASHSEED"] = saved
+    return {"counts": counts, "problems": problems, "label_only": label_only}
+
+
+def retry_under_hash_seeds(rows: list[dict], workers: int) -> tuple[list[dict], list[dict]]:
+    """The expert's label can depend on Python's string hash order, and a worker of the generator had its own. So a row whose label alone differed on replay is replayed under fixed hash seeds until
+    the stored label returns. The first list holds the rows it returned for, and the second the rows it did not, which are failures."""
+    returned, waiting = [], list(rows)
+    saved = os.environ.get("PYTHONHASHSEED")
+    try:
+        for hash_seed in HASH_SEEDS_TRIED:
+            if not waiting:
+                break
+            os.environ["PYTHONHASHSEED"] = str(hash_seed)
+            with ProcessPoolExecutor(max_workers=workers, mp_context=get_context("spawn")) as executor:
+                results = list(executor.map(replay_game, [(row["game_id"], [row]) for row in waiting]))
+            still = []
+            for row, result in zip(waiting, results):
+                note = {"run_id": row["run_id"], "step": row["step"], "stored_label": row["expert"]}
+                if result["counts"].get("label_ok"):
+                    returned.append({**note, "stored_label_returned_under_hash_seed": hash_seed})
+                else:
+                    still.append(row)
+            waiting = still
+    finally:
+        if saved is None:
+            os.environ.pop("PYTHONHASHSEED", None)
+        else:
+            os.environ["PYTHONHASHSEED"] = saved
+    return returned, [{"run_id": row["run_id"], "step": row["step"], "stored_label": row["expert"]} for row in waiting]
 
 
 def read_jsonl_gz(path):
@@ -116,6 +172,7 @@ def main(argv=None) -> None:
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--replay-per-stratum", type=int, default=REPLAY_PER_STRATUM)
+    ap.add_argument("--other-hash-seeds", type=int, default=2, help="more full replays under other string hash orders, which measure how much labels move")
     a = ap.parse_args(argv)
     pool, directory, export_dir = Path(a.pool).expanduser(), Path(a.dir), Path(a.export_dir)
     manifest = json.loads((directory / "manifest.json").read_text())
@@ -224,19 +281,22 @@ def main(argv=None) -> None:
     for key, rows in reservoirs.items():
         for row in rows:
             by_game[row["game_id"]].append(row)
-    replay = Counter()
-    problems = []
-    # A fresh pool per chunk keeps workers from growing. `max_tasks_per_child` with `map` hangs on Python 3.12: a worker that exits is replaced only when the pool counts no idle worker, and
-    # every task finished before it raises that count, so all workers leave and the queue never drains.
     jobs = sorted(by_game.items())
-    for start in range(0, len(jobs), a.workers * REPLAY_GAMES_PER_WORKER):
-        with ProcessPoolExecutor(max_workers=a.workers, mp_context=get_context("spawn")) as executor:
-            for result in executor.map(replay_game, jobs[start:start + a.workers * REPLAY_GAMES_PER_WORKER]):
-                replay.update(result["counts"])
-                problems += result["problems"]
-        print(json.dumps({"replayed_games": min(start + a.workers * REPLAY_GAMES_PER_WORKER, len(jobs)), "of": len(jobs)}), flush=True)
-    for name in ("first_text", "outputs", "observation", "admissible", "label", "label_source", "not_ended_early"):
+    first = replay_all(jobs, a.workers, a.seed)
+    replay, problems, label_only = first["counts"], first["problems"], first["label_only"]
+    for name in ("first_text", "outputs", "observation", "admissible", "label_source", "not_ended_early"):
         check(replay[f"{name}_ok"] == replay["rows"], f"replay: {name} matched {replay[f'{name}_ok']} of {replay['rows']}")
+    labels_returned, labels_never = retry_under_hash_seeds(label_only, a.workers)
+    check(replay["label_ok"] + len(label_only) == replay["rows"], f"replay: a row failed its label and another check, labels matched {replay['label_ok']} of {replay['rows']}")
+    check(not labels_never, f"replay: {len(labels_never)} stored labels did not return under {len(HASH_SEEDS_TRIED)} hash seeds")
+    # How much the labels move with the hash order, and the game itself must not move at all.
+    spread = {}
+    for offset in range(1, a.other_hash_seeds + 1):
+        other = replay_all(jobs, a.workers, a.seed + offset)
+        counted = other["counts"]
+        spread[str(a.seed + offset)] = {"rows": counted["rows"], "labels_differ": counted["rows"] - counted["label_ok"], "game_checks_matched": {name: counted[f"{name}_ok"] for name in ("first_text", "outputs", "observation", "admissible")}}
+        for name in ("first_text", "outputs", "observation", "admissible"):
+            check(counted[f"{name}_ok"] == counted["rows"], f"replay under hash seed {a.seed + offset}: {name} matched {counted[f'{name}_ok']} of {counted['rows']}")
 
     # The export against the stored rows.
     exports = {}
@@ -279,7 +339,7 @@ def main(argv=None) -> None:
              "counts": {split: dict(sorted(c.items())) for split, c in counts.items()},
              "labels": {"checked": tally["labels_checked"], "not_admissible": tally["labels_not_admissible"], "rows_flagged_in_dev_splits": tally["rows_flagged"]},
              "flagged_labels_in_train_won_runs": manifest["train_pool"]["flagged"], "failed_rollouts": {"train_by_family_and_outcome": manifest["train_pool"]["runs"], "train_by_task": manifest["train_pool"]["runs_by_task"]},
-             "replay": {"rows": replay["rows"], "per_stratum_asked": a.replay_per_stratum, "strata": {f"{s}/{f}": len(v) for (s, f), v in sorted(reservoirs.items())}, "matched": {k_: v for k_, v in sorted(replay.items()) if k_.endswith("_ok")}, "problems_shown": problems[:10]},
+             "replay": {"rows": replay["rows"], "per_stratum_asked": a.replay_per_stratum, "strata": {f"{s}/{f}": len(v) for (s, f), v in sorted(reservoirs.items())}, "matched": {k_: v for k_, v in sorted(replay.items()) if k_.endswith("_ok")}, "labels_that_differed_and_returned_under_another_hash_seed": labels_returned, "labels_that_never_returned": labels_never, "hash_seeds_tried": len(HASH_SEEDS_TRIED), "hash_seed": a.seed, "under_other_hash_seeds": spread, "problems_shown": problems[:10]},
              "label_coverage_at_k": {split: {"all": cov(f"{split}/all").get("", None), "by_family_and_task_type": cov(f"{split}/"), "by_task_type": cov(f"{split}/task/")} for split in counts},
              "expert_seed_disagreement": {split: seed_disagreement(pool, split) for split in ("train", "dev", "dev_heldout_rooms")},
              "duplicates": {"train_pool_rows_before_dedupe": manifest["train_pool"]["rows_candidate"], "train_pool_rows_after_dedupe": manifest["train_pool"]["rows_after_dedupe"], "train_pool_duplicate_rate_by_family": {f: ratio(manifest["train_pool"]["copies_dropped_by_dedupe"].get(f, 0), manifest["train_pool"]["rows_candidate"].get(f, 0)) for f in FAMILIES}, "core_rows_identical_in_text_commands_and_label": duplicates},

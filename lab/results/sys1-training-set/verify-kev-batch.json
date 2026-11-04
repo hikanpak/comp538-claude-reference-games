@@ -1,0 +1,72 @@
+{
+  "topic": "sys1-training-set",
+  "check": "one real batch through kev.train's loader and the model, no training",
+  "export": "lab/data/sys1-kev/train.jsonl.gz",
+  "export_sha256": "bdfa6afa084e0a13da942f59aa363c740bf26a5e4af4a3f5e61f422b182a81f6",
+  "rows_in_file": 99820,
+  "rows_after_kev_filter": 99820,
+  "rows_dropped_by_kev": 0,
+  "max_state": 844,
+  "loader_seconds": 50.0,
+  "batch": 4,
+  "loss_mean_per_row": 2.7678732834756374,
+  "loss_finite": true,
+  "tensors_warm_started": 372,
+  "rows": [
+    {
+      "id": "train/pick_two_obj_and_place-KeyChain-None-Sofa-224/trial_T20190908_015957_043071#loop-break#0#11",
+      "tokens": 576,
+      "options": 21,
+      "label": "None of these commands: the LLM takes this step",
+      "family": "loop-break",
+      "top_pick_of_kev_08b": "None of these commands: the LLM takes this step"
+    },
+    {
+      "id": "train/look_at_obj_in_light-Watch-None-DeskLamp-205/trial_T20190907_001919_953335#expert-path#0#2",
+      "tokens": 335,
+      "options": 17,
+      "label": "go to sidetable 2",
+      "family": "expert-path",
+      "top_pick_of_kev_08b": "examine sidetable 1"
+    },
+    {
+      "id": "train/pick_clean_then_place_in_recep-Cloth-None-CounterTop-408/trial_T20190908_103230_310212#expert-path#0#3",
+      "tokens": 373,
+      "options": 16,
+      "label": "go to sinkbasin 2",
+      "family": "expert-path",
+      "top_pick_of_kev_08b": "go to countertop 1"
+    },
+    {
+      "id": "train/pick_and_place_simple-Pen-None-Desk-310/trial_T20190910_103501_338463#loop-break#1#5",
+      "tokens": 460,
+      "options": 16,
+      "label": "move pen 1 to desk 1",
+      "family": "loop-break",
+      "top_pick_of_kev_08b": "move pen 1 to desk 1"
+    }
+  ],
+  "load_seconds": 3.9,
+  "forward_seconds": 13.9,
+  "peak_footprint_gb": 3.97,
+  "lowest_system_free_pct": 44,
+  "seed": 0,
+  "precision": "fp32 on CPU",
+  "environment": {
+    "python": "3.12.13",
+    "torch": "2.8.0",
+    "transformers": "5.22.1",
+    "peft": "0.21.2",
+    "kev": "0.1.0"
+  },
+  "hardware": {
+    "machine": "arm64",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "cpu": "Apple M4",
+    "cores": 10,
+    "memory_bytes": 25769803776
+  },
+  "git_commit": "f2b201adb3289e98bb961f3ec44552fc38b2d40a",
+  "git_dirty_lab_src": true,
+  "scope": "This shows that the path runs on this Mac. It says nothing about Sys1, and its speed is no L4 number. Kev-0.8B here is as released, before any fine-tuning."
+}

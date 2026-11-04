@@ -244,7 +244,7 @@ def generation_seconds(pool: Path) -> dict:
         sessions = [json.loads(line) for line in path.read_text().splitlines() if line.strip()]
     timing = pool / "timing.jsonl"
     game_seconds = sum(json.loads(line)["seconds"] for line in timing.read_text().splitlines()) if timing.exists() else None
-    return {"wall_seconds": sum(s.get("wall_seconds", 0) for s in sessions), "sessions": len(sessions), "worker_seconds_summed": game_seconds, "workers": sessions[-1]["workers"] if sessions else None}
+    return {"wall_seconds": sum(s.get("wall_seconds", 0) for s in sessions), "sessions": len(sessions), "worker_seconds_summed": game_seconds, "workers": sessions[-1]["workers"] if sessions else None, "python_hash_seed": sessions[-1].get("python_hash_seed") if sessions else None}
 
 
 def main(argv=None) -> None:

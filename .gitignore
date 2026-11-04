@@ -51,3 +51,6 @@ lab/results/**/*.pt
 lab/results/**/*.safetensors
 .unlazy/
 .unlazy-hook-state.json
+
+# Row shards live on branch data-training-set-seed0
+lab/results/sys1-training-set/*.jsonl.gz

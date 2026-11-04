@@ -1,15 +1,18 @@
 """The training set: game counts, splits and their leakage assertions on real files, the label rule, flagged labels, row families, and the text a live run shows."""
 import gzip
 import json
+import os
 import random
+from concurrent.futures import ProcessPoolExecutor
 from dataclasses import asdict
+from multiprocessing import get_context
 import sys, pathlib; sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))  # noqa: E401,E702
 
 import pytest
 from test_harness_standins import ScriptedLLM, ScriptedSys1
 
 from alf.env import MAX_STEPS, TeacherLabel, _make_stack, list_games
-from dataset import build, menu_stats, rows, splits
+from dataset import audit, build, menu_stats, rows, splits
 from dataset.generate import game_file
 from dataset.rollouts import Game, RepeatedCommand, SeededTeacher, label_fields, play_game, undo_of
 from dataset.rows import dedupe_key, family_steps, make_row, render_row, varied_path, varied_row
@@ -542,3 +545,43 @@ def test_menu_statistics_agree_with_a_count_by_hand(tmp_path):
     assert measured["form_curve"]["5"]["expert_rows_on_menu"] == sum(r <= 5 for r in ranks)
     assert measured["form_curve"]["all"]["rows_on_menu"] == len(everything)
     assert measured["inserted_commands_on_menu"]["form"]["all"] == {"recovery/commands": 1, "recovery/on_menu": 1}
+
+
+def hash_in_a_new_process():
+    with ProcessPoolExecutor(max_workers=1, mp_context=get_context("spawn")) as executor:
+        return executor.submit(hash, "keychain 1").result()
+
+
+def test_a_pinned_hash_seed_reaches_workers_so_the_experts_order_repeats(monkeypatch):
+    monkeypatch.setenv("PYTHONHASHSEED", "7")
+    first = hash_in_a_new_process()
+    assert first == hash_in_a_new_process()
+    monkeypatch.setenv("PYTHONHASHSEED", "8")
+    assert first != hash_in_a_new_process()
+
+
+def test_a_label_that_differs_only_under_this_hash_seed_is_told_apart_from_a_wrong_one(monkeypatch):
+    seen = []
+
+    class OnePool:
+        def __init__(self, *args, **kwargs):
+            pass
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *args):
+            return False
+
+        def map(self, fn, jobs):
+            seen.append(os.environ["PYTHONHASHSEED"])
+            for _, rows_ in jobs:
+                row = rows_[0]
+                yield {"counts": {"rows": 1, **({"label_ok": 1} if row["expert"] == "comes back" and seen[-1] == "2" else {})}, "problems": [], "label_only": []}
+
+    monkeypatch.setattr(audit, "ProcessPoolExecutor", OnePool)
+    monkeypatch.delenv("PYTHONHASHSEED", raising=False)
+    returned, never = audit.retry_under_hash_seeds([{"game_id": "g", "run_id": "a", "step": 1, "expert": "comes back"}, {"game_id": "g", "run_id": "b", "step": 2, "expert": "wrong"}], workers=1)
+    assert returned == [{"run_id": "a", "step": 1, "stored_label": "comes back", "stored_label_returned_under_hash_seed": 2}]
+    assert never == [{"run_id": "b", "step": 2, "stored_label": "wrong"}]
+    assert len(seen) == len(audit.HASH_SEEDS_TRIED) and "PYTHONHASHSEED" not in os.environ

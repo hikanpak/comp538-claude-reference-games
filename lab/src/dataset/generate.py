@@ -176,7 +176,8 @@ def main(argv=None) -> None:
                     jobs.append({"uid": uid, "split": split, "path": str(path), "seed": a.seed, "expert_seeds": config["expert_seeds"], "recovery": a.recovery, "loop_break": a.loop_break})
         return jobs
 
-    session = {"started": time.time(), "workers": a.workers, "platform": platform.platform(), "python": sys.version.split()[0], "games_at_start": len(jobs_left())}
+    os.environ.setdefault("PYTHONHASHSEED", str(a.seed))  # The expert's label can depend on Python's string hash order, so workers inherit a fixed one.
+    session = {"started": time.time(), "workers": a.workers, "platform": platform.platform(), "python": sys.version.split()[0], "python_hash_seed": os.environ["PYTHONHASHSEED"], "games_at_start": len(jobs_left())}
     for attempt in range(a.retries):
         jobs = jobs_left()
         if not jobs:
