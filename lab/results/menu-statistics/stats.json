@@ -1,0 +1,5447 @@
+{
+ "topic": "menu-statistics",
+ "seed": 0,
+ "partial_pool": false,
+ "games_in_pool": {
+  "train": 3385,
+  "dev": 140,
+  "dev_heldout_rooms": 168
+ },
+ "pool_config": {
+  "seed": 0,
+  "expert_seeds": [
+   0,
+   1,
+   2
+  ],
+  "recovery": 5,
+  "loop_break": 3,
+  "tracking": "always",
+  "max_steps": 50,
+  "limit_per_split": 0,
+  "splits_seed": 0,
+  "held_out_rooms": [
+   7,
+   207,
+   316,
+   409
+  ]
+ },
+ "git_commit": "f2b201adb3289e98bb961f3ec44552fc38b2d40a",
+ "git_dirty_lab_src": true,
+ "packages": {
+  "python": "3.12.13",
+  "alfworld": "0.4.2",
+  "textworld": "1.7.0",
+  "fast-downward-textworld": "20.6.4",
+  "kev": "0.1.0",
+  "torch": "2.8.0",
+  "transformers": "5.22.1",
+  "peft": "0.21.2",
+  "numpy": "2.5.4"
+ },
+ "hardware": {
+  "machine": "arm64",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "cpu": "Apple M4",
+  "cores": 10,
+  "memory_bytes": 25769803776
+ },
+ "source_sha256": {
+  "lab/src/dataset/__init__.py": "11433453d7067772145977266286cb5863446cb977157c3098948021322c0060",
+  "lab/src/dataset/audit.py": "c6ae7c4822fd5bcb8c05c9e166099f4838f98bef4f7bd38b5e32a9b06d1f90fd",
+  "lab/src/dataset/build.py": "6fc493de2c678cc650f239bf63b3c1b54c222df2d5792decbd44068620a851a5",
+  "lab/src/dataset/card.py": "133128c4aa74c009d989fc95dea8bee855798dce67691d78fdf7191725ff56d3",
+  "lab/src/dataset/generate.py": "307449af52bb87aa7c433a93637167059a0bbe01cf48a359becb76360c2f75eb",
+  "lab/src/dataset/menu_stats.py": "39605752d2917952165ffd11f9f0e27147919cd98add58b2fe8d5c480f77f45b",
+  "lab/src/dataset/provenance.py": "6fb722147d3877cd577806b8ef1cc917c3ea1bd0ae01eda2eb3492d3f66fbbcc",
+  "lab/src/dataset/rollouts.py": "e4ec946d33d5884e8e3ff63031369353cf698e8ae67f26518b72f0ebcf4d523c",
+  "lab/src/dataset/rows.py": "cc3f12b8d415c02d1a77f573c5a87fe6a836bea63223179f731ed3a24e57aa41",
+  "lab/src/dataset/splits.py": "04cee660f01695eb43228fc2576a609d5d82f973c11853552feaf72aba03787f",
+  "lab/src/dataset/verify_batch.py": "3d0f0d9910b03628f78233d40fa252af8eb555fd709b802812473211d2c95ff5",
+  "lab/src/menu.py": "c5550768ea0240e291f98ea769713178792eca2521b54e252c82aedb5aa7beb0",
+  "lab/src/alf/env.py": "869c67fae0ebe4190c211ecc20ec25b58f2fc67df74b1641a0e827ad8ce91c30",
+  "lab/src/harness/prompt.py": "4a46ab7f539d03bf0fd56fe6bf455a53acc74a1296802fd24a59989a83aad9bf",
+  "lab/src/harness/control.py": "f934a0483099afa5dd78993904f2f4ab73d0be8310d842ca6882eda40be6bb73",
+  "lab/src/train/export_kev.py": "aec75d6b167348fd4a93bca3251937ddf9a4ae941e4910889a3303ea0391a5d0"
+ },
+ "menu_records_used": 148422,
+ "menu_records_skipped_flagged": 6193,
+ "splits": {
+  "dev": {
+   "games": 140,
+   "runs": {
+    "expert-path/lost": 20,
+    "expert-path/won": 400,
+    "loop-break/lost": 9,
+    "loop-break/won": 399,
+    "recovery/lost": 21,
+    "recovery/won": 659
+   },
+   "rows_counted": 15383,
+   "admissible_per_step": {
+    "mean": 29.905188738795605,
+    "max": 71,
+    "steps": 15842
+   },
+   "admissible_kind_share": {
+    "go to": 0.8248240662954505,
+    "examine": 0.04734484694717556,
+    "inventory": 0.033439013167059974,
+    "look": 0.033439013167059974,
+    "take": 0.03235618184811655,
+    "open": 0.011586084034464853,
+    "move": 0.008033637426703084,
+    "close": 0.004580397586953677,
+    "cool": 0.0011588194816762988,
+    "clean": 0.0010363941083844494,
+    "heat": 0.0009245226465832767,
+    "slice": 0.0006437886009312771,
+    "use": 0.0006332346894406005
+   },
+   "label_kinds": {
+    "expert-path/clean": 78,
+    "expert-path/close": 782,
+    "expert-path/cool": 70,
+    "expert-path/examine": 1,
+    "expert-path/go to": 3184,
+    "expert-path/heat": 46,
+    "expert-path/look": 400,
+    "expert-path/move": 422,
+    "expert-path/open": 902,
+    "expert-path/take": 461,
+    "expert-path/use": 39,
+    "loop-break/clean": 26,
+    "loop-break/close": 126,
+    "loop-break/cool": 26,
+    "loop-break/examine": 42,
+    "loop-break/go to": 1444,
+    "loop-break/heat": 10,
+    "loop-break/move": 222,
+    "loop-break/open": 253,
+    "loop-break/take": 243,
+    "loop-break/use": 34,
+    "recovery/clean": 110,
+    "recovery/close": 611,
+    "recovery/cool": 100,
+    "recovery/examine": 13,
+    "recovery/go to": 3158,
+    "recovery/heat": 70,
+    "recovery/move": 734,
+    "recovery/open": 1127,
+    "recovery/take": 583,
+    "recovery/use": 66
+   },
+   "flagged_labels_won_runs": {
+    "expert-path/inadmissible": 113,
+    "expert-path/random-draw": 117,
+    "loop-break/inadmissible": 41,
+    "loop-break/random-draw": 24,
+    "recovery/inadmissible": 85,
+    "recovery/random-draw": 79
+   },
+   "inserted_commands_on_menu": {
+    "form": {
+     "5": {
+      "loop-break/commands": 1467,
+      "loop-break/on_menu": 399,
+      "recovery/commands": 1902,
+      "recovery/on_menu": 392
+     },
+     "10": {
+      "loop-break/commands": 1467,
+      "loop-break/on_menu": 730,
+      "recovery/commands": 1902,
+      "recovery/on_menu": 845
+     },
+     "20": {
+      "loop-break/commands": 1467,
+      "loop-break/on_menu": 1066,
+      "recovery/commands": 1902,
+      "recovery/on_menu": 1453
+     },
+     "all": {
+      "loop-break/commands": 1467,
+      "loop-break/on_menu": 1467,
+      "recovery/commands": 1902,
+      "recovery/on_menu": 1902
+     }
+    },
+    "kind": {
+     "5": {
+      "loop-break/commands": 1467,
+      "loop-break/on_menu": 78,
+      "recovery/commands": 1902,
+      "recovery/on_menu": 414
+     },
+     "10": {
+      "loop-break/commands": 1467,
+      "loop-break/on_menu": 230,
+      "recovery/commands": 1902,
+      "recovery/on_menu": 819
+     },
+     "20": {
+      "loop-break/commands": 1467,
+      "loop-break/on_menu": 734,
+      "recovery/commands": 1902,
+      "recovery/on_menu": 1438
+     },
+     "all": {
+      "loop-break/commands": 1467,
+      "loop-break/on_menu": 1467,
+      "recovery/commands": 1902,
+      "recovery/on_menu": 1902
+     }
+    }
+   },
+   "form_curve": {
+    "5": {
+     "expert_rows": 6385,
+     "expert_rows_on_menu": 1823,
+     "expert_runs": 400,
+     "expert_runs/look_at_obj_in_light": 39,
+     "expert_runs/pick_and_place_simple": 105,
+     "expert_runs/pick_clean_then_place_in_recep": 78,
+     "expert_runs/pick_cool_then_place_in_recep": 70,
+     "expert_runs/pick_heat_then_place_in_recep": 46,
+     "expert_runs/pick_two_obj_and_place": 62,
+     "expert_runs_all_on_menu": 0,
+     "expert_runs_all_on_menu/look_at_obj_in_light": 0,
+     "expert_runs_all_on_menu/pick_and_place_simple": 0,
+     "expert_runs_all_on_menu/pick_clean_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_cool_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_heat_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_two_obj_and_place": 0,
+     "menu_slots": 76915,
+     "rows": 15383,
+     "rows_on_menu": 4030
+    },
+    "8": {
+     "expert_rows": 6385,
+     "expert_rows_on_menu": 3208,
+     "expert_runs": 400,
+     "expert_runs/look_at_obj_in_light": 39,
+     "expert_runs/pick_and_place_simple": 105,
+     "expert_runs/pick_clean_then_place_in_recep": 78,
+     "expert_runs/pick_cool_then_place_in_recep": 70,
+     "expert_runs/pick_heat_then_place_in_recep": 46,
+     "expert_runs/pick_two_obj_and_place": 62,
+     "expert_runs_all_on_menu": 0,
+     "expert_runs_all_on_menu/look_at_obj_in_light": 0,
+     "expert_runs_all_on_menu/pick_and_place_simple": 0,
+     "expert_runs_all_on_menu/pick_clean_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_cool_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_heat_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_two_obj_and_place": 0,
+     "menu_slots": 123064,
+     "rows": 15383,
+     "rows_on_menu": 6966
+    },
+    "10": {
+     "expert_rows": 6385,
+     "expert_rows_on_menu": 3697,
+     "expert_runs": 400,
+     "expert_runs/look_at_obj_in_light": 39,
+     "expert_runs/pick_and_place_simple": 105,
+     "expert_runs/pick_clean_then_place_in_recep": 78,
+     "expert_runs/pick_cool_then_place_in_recep": 70,
+     "expert_runs/pick_heat_then_place_in_recep": 46,
+     "expert_runs/pick_two_obj_and_place": 62,
+     "expert_runs_all_on_menu": 31,
+     "expert_runs_all_on_menu/look_at_obj_in_light": 12,
+     "expert_runs_all_on_menu/pick_and_place_simple": 9,
+     "expert_runs_all_on_menu/pick_clean_then_place_in_recep": 4,
+     "expert_runs_all_on_menu/pick_cool_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_heat_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_two_obj_and_place": 6,
+     "menu_slots": 153805,
+     "rows": 15383,
+     "rows_on_menu": 8152
+    },
+    "12": {
+     "expert_rows": 6385,
+     "expert_rows_on_menu": 4107,
+     "expert_runs": 400,
+     "expert_runs/look_at_obj_in_light": 39,
+     "expert_runs/pick_and_place_simple": 105,
+     "expert_runs/pick_clean_then_place_in_recep": 78,
+     "expert_runs/pick_cool_then_place_in_recep": 70,
+     "expert_runs/pick_heat_then_place_in_recep": 46,
+     "expert_runs/pick_two_obj_and_place": 62,
+     "expert_runs_all_on_menu": 67,
+     "expert_runs_all_on_menu/look_at_obj_in_light": 15,
+     "expert_runs_all_on_menu/pick_and_place_simple": 21,
+     "expert_runs_all_on_menu/pick_clean_then_place_in_recep": 16,
+     "expert_runs_all_on_menu/pick_cool_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_heat_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_two_obj_and_place": 15,
+     "menu_slots": 184364,
+     "rows": 15383,
+     "rows_on_menu": 9260
+    },
+    "15": {
+     "expert_rows": 6385,
+     "expert_rows_on_menu": 4864,
+     "expert_runs": 400,
+     "expert_runs/look_at_obj_in_light": 39,
+     "expert_runs/pick_and_place_simple": 105,
+     "expert_runs/pick_clean_then_place_in_recep": 78,
+     "expert_runs/pick_cool_then_place_in_recep": 70,
+     "expert_runs/pick_heat_then_place_in_recep": 46,
+     "expert_runs/pick_two_obj_and_place": 62,
+     "expert_runs_all_on_menu": 114,
+     "expert_runs_all_on_menu/look_at_obj_in_light": 21,
+     "expert_runs_all_on_menu/pick_and_place_simple": 48,
+     "expert_runs_all_on_menu/pick_clean_then_place_in_recep": 17,
+     "expert_runs_all_on_menu/pick_cool_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_heat_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_two_obj_and_place": 28,
+     "menu_slots": 228178,
+     "rows": 15383,
+     "rows_on_menu": 11068
+    },
+    "18": {
+     "expert_rows": 6385,
+     "expert_rows_on_menu": 5294,
+     "expert_runs": 400,
+     "expert_runs/look_at_obj_in_light": 39,
+     "expert_runs/pick_and_place_simple": 105,
+     "expert_runs/pick_clean_then_place_in_recep": 78,
+     "expert_runs/pick_cool_then_place_in_recep": 70,
+     "expert_runs/pick_heat_then_place_in_recep": 46,
+     "expert_runs/pick_two_obj_and_place": 62,
+     "expert_runs_all_on_menu": 152,
+     "expert_runs_all_on_menu/look_at_obj_in_light": 24,
+     "expert_runs_all_on_menu/pick_and_place_simple": 69,
+     "expert_runs_all_on_menu/pick_clean_then_place_in_recep": 24,
+     "expert_runs_all_on_menu/pick_cool_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_heat_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_two_obj_and_place": 35,
+     "menu_slots": 267878,
+     "rows": 15383,
+     "rows_on_menu": 12208
+    },
+    "20": {
+     "expert_rows": 6385,
+     "expert_rows_on_menu": 5450,
+     "expert_runs": 400,
+     "expert_runs/look_at_obj_in_light": 39,
+     "expert_runs/pick_and_place_simple": 105,
+     "expert_runs/pick_clean_then_place_in_recep": 78,
+     "expert_runs/pick_cool_then_place_in_recep": 70,
+     "expert_runs/pick_heat_then_place_in_recep": 46,
+     "expert_runs/pick_two_obj_and_place": 62,
+     "expert_runs_all_on_menu": 175,
+     "expert_runs_all_on_menu/look_at_obj_in_light": 30,
+     "expert_runs_all_on_menu/pick_and_place_simple": 75,
+     "expert_runs_all_on_menu/pick_clean_then_place_in_recep": 24,
+     "expert_runs_all_on_menu/pick_cool_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_heat_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_two_obj_and_place": 46,
+     "menu_slots": 291340,
+     "rows": 15383,
+     "rows_on_menu": 12681
+    },
+    "22": {
+     "expert_rows": 6385,
+     "expert_rows_on_menu": 5603,
+     "expert_runs": 400,
+     "expert_runs/look_at_obj_in_light": 39,
+     "expert_runs/pick_and_place_simple": 105,
+     "expert_runs/pick_clean_then_place_in_recep": 78,
+     "expert_runs/pick_cool_then_place_in_recep": 70,
+     "expert_runs/pick_heat_then_place_in_recep": 46,
+     "expert_runs/pick_two_obj_and_place": 62,
+     "expert_runs_all_on_menu": 203,
+     "expert_runs_all_on_menu/look_at_obj_in_light": 36,
+     "expert_runs_all_on_menu/pick_and_place_simple": 78,
+     "expert_runs_all_on_menu/pick_clean_then_place_in_recep": 24,
+     "expert_runs_all_on_menu/pick_cool_then_place_in_recep": 9,
+     "expert_runs_all_on_menu/pick_heat_then_place_in_recep": 6,
+     "expert_runs_all_on_menu/pick_two_obj_and_place": 50,
+     "menu_slots": 312918,
+     "rows": 15383,
+     "rows_on_menu": 13125
+    },
+    "25": {
+     "expert_rows": 6385,
+     "expert_rows_on_menu": 5787,
+     "expert_runs": 400,
+     "expert_runs/look_at_obj_in_light": 39,
+     "expert_runs/pick_and_place_simple": 105,
+     "expert_runs/pick_clean_then_place_in_recep": 78,
+     "expert_runs/pick_cool_then_place_in_recep": 70,
+     "expert_runs/pick_heat_then_place_in_recep": 46,
+     "expert_runs/pick_two_obj_and_place": 62,
+     "expert_runs_all_on_menu": 218,
+     "expert_runs_all_on_menu/look_at_obj_in_light": 36,
+     "expert_runs_all_on_menu/pick_and_place_simple": 84,
+     "expert_runs_all_on_menu/pick_clean_then_place_in_recep": 30,
+     "expert_runs_all_on_menu/pick_cool_then_place_in_recep": 9,
+     "expert_runs_all_on_menu/pick_heat_then_place_in_recep": 6,
+     "expert_runs_all_on_menu/pick_two_obj_and_place": 53,
+     "menu_slots": 341833,
+     "rows": 15383,
+     "rows_on_menu": 13603
+    },
+    "30": {
+     "expert_rows": 6385,
+     "expert_rows_on_menu": 5938,
+     "expert_runs": 400,
+     "expert_runs/look_at_obj_in_light": 39,
+     "expert_runs/pick_and_place_simple": 105,
+     "expert_runs/pick_clean_then_place_in_recep": 78,
+     "expert_runs/pick_cool_then_place_in_recep": 70,
+     "expert_runs/pick_heat_then_place_in_recep": 46,
+     "expert_runs/pick_two_obj_and_place": 62,
+     "expert_runs_all_on_menu": 254,
+     "expert_runs_all_on_menu/look_at_obj_in_light": 39,
+     "expert_runs_all_on_menu/pick_and_place_simple": 87,
+     "expert_runs_all_on_menu/pick_clean_then_place_in_recep": 42,
+     "expert_runs_all_on_menu/pick_cool_then_place_in_recep": 12,
+     "expert_runs_all_on_menu/pick_heat_then_place_in_recep": 21,
+     "expert_runs_all_on_menu/pick_two_obj_and_place": 53,
+     "menu_slots": 381098,
+     "rows": 15383,
+     "rows_on_menu": 14064
+    },
+    "35": {
+     "expert_rows": 6385,
+     "expert_rows_on_menu": 6080,
+     "expert_runs": 400,
+     "expert_runs/look_at_obj_in_light": 39,
+     "expert_runs/pick_and_place_simple": 105,
+     "expert_runs/pick_clean_then_place_in_recep": 78,
+     "expert_runs/pick_cool_then_place_in_recep": 70,
+     "expert_runs/pick_heat_then_place_in_recep": 46,
+     "expert_runs/pick_two_obj_and_place": 62,
+     "expert_runs_all_on_menu": 297,
+     "expert_runs_all_on_menu/look_at_obj_in_light": 39,
+     "expert_runs_all_on_menu/pick_and_place_simple": 96,
+     "expert_runs_all_on_menu/pick_clean_then_place_in_recep": 45,
+     "expert_runs_all_on_menu/pick_cool_then_place_in_recep": 33,
+     "expert_runs_all_on_menu/pick_heat_then_place_in_recep": 28,
+     "expert_runs_all_on_menu/pick_two_obj_and_place": 56,
+     "menu_slots": 412935,
+     "rows": 15383,
+     "rows_on_menu": 14487
+    },
+    "40": {
+     "expert_rows": 6385,
+     "expert_rows_on_menu": 6236,
+     "expert_runs": 400,
+     "expert_runs/look_at_obj_in_light": 39,
+     "expert_runs/pick_and_place_simple": 105,
+     "expert_runs/pick_clean_then_place_in_recep": 78,
+     "expert_runs/pick_cool_then_place_in_recep": 70,
+     "expert_runs/pick_heat_then_place_in_recep": 46,
+     "expert_runs/pick_two_obj_and_place": 62,
+     "expert_runs_all_on_menu": 336,
+     "expert_runs_all_on_menu/look_at_obj_in_light": 39,
+     "expert_runs_all_on_menu/pick_and_place_simple": 96,
+     "expert_runs_all_on_menu/pick_clean_then_place_in_recep": 48,
+     "expert_runs_all_on_menu/pick_cool_then_place_in_recep": 51,
+     "expert_runs_all_on_menu/pick_heat_then_place_in_recep": 40,
+     "expert_runs_all_on_menu/pick_two_obj_and_place": 62,
+     "menu_slots": 436574,
+     "rows": 15383,
+     "rows_on_menu": 14941
+    },
+    "all": {
+     "expert_rows": 6385,
+     "expert_rows_on_menu": 6385,
+     "expert_runs": 400,
+     "expert_runs/look_at_obj_in_light": 39,
+     "expert_runs/pick_and_place_simple": 105,
+     "expert_runs/pick_clean_then_place_in_recep": 78,
+     "expert_runs/pick_cool_then_place_in_recep": 70,
+     "expert_runs/pick_heat_then_place_in_recep": 46,
+     "expert_runs/pick_two_obj_and_place": 62,
+     "expert_runs_all_on_menu": 400,
+     "expert_runs_all_on_menu/look_at_obj_in_light": 39,
+     "expert_runs_all_on_menu/pick_and_place_simple": 105,
+     "expert_runs_all_on_menu/pick_clean_then_place_in_recep": 78,
+     "expert_runs_all_on_menu/pick_cool_then_place_in_recep": 70,
+     "expert_runs_all_on_menu/pick_heat_then_place_in_recep": 46,
+     "expert_runs_all_on_menu/pick_two_obj_and_place": 62,
+     "menu_slots": 459025,
+     "rows": 15383,
+     "rows_on_menu": 15383
+    }
+   },
+   "rules": {
+    "form": {
+     "5": {
+      "overall": {
+       "steps": 15383,
+       "coverage": 0.261977507638302,
+       "fallback_rate_implied": 0.738022492361698,
+       "mean_menu_length": 5.0,
+       "go_to_slot_share": 0.9134629136059286
+      },
+      "by_task_type": {
+       "look_at_obj_in_light": {
+        "steps": 1206,
+        "coverage": 0.3466003316749585,
+        "fallback_rate_implied": 0.6533996683250415,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9034825870646767
+       },
+       "pick_and_place_simple": {
+        "steps": 3032,
+        "coverage": 0.2605540897097625,
+        "fallback_rate_implied": 0.7394459102902375,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.8641160949868074
+       },
+       "pick_clean_then_place_in_recep": {
+        "steps": 3756,
+        "coverage": 0.2393503727369542,
+        "fallback_rate_implied": 0.7606496272630459,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.933972310969116
+       },
+       "pick_cool_then_place_in_recep": {
+        "steps": 2649,
+        "coverage": 0.21177802944507362,
+        "fallback_rate_implied": 0.7882219705549264,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.928954322385806
+       },
+       "pick_heat_then_place_in_recep": {
+        "steps": 2056,
+        "coverage": 0.20087548638132297,
+        "fallback_rate_implied": 0.7991245136186771,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9437743190661478
+       },
+       "pick_two_obj_and_place": {
+        "steps": 2684,
+        "coverage": 0.35357675111773473,
+        "fallback_rate_implied": 0.6464232488822652,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9064828614008942
+       }
+      },
+      "by_family": {
+       "expert-path": {
+        "steps": 6385,
+        "coverage": 0.285512920908379,
+        "fallback_rate_implied": 0.714487079091621,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9185904463586531
+       },
+       "loop-break": {
+        "steps": 2426,
+        "coverage": 0.29472382522671065,
+        "fallback_rate_implied": 0.7052761747732894,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.8960428689200329
+       },
+       "recovery": {
+        "steps": 6572,
+        "coverage": 0.22702373706634205,
+        "fallback_rate_implied": 0.772976262933658,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9149117468046257
+       }
+      },
+      "by_task_type_and_family": {
+       "look_at_obj_in_light/expert-path": {
+        "steps": 536,
+        "coverage": 0.3582089552238806,
+        "fallback_rate_implied": 0.6417910447761195,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9138059701492537
+       },
+       "look_at_obj_in_light/loop-break": {
+        "steps": 210,
+        "coverage": 0.32857142857142857,
+        "fallback_rate_implied": 0.6714285714285715,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.8961904761904762
+       },
+       "look_at_obj_in_light/recovery": {
+        "steps": 460,
+        "coverage": 0.34130434782608693,
+        "fallback_rate_implied": 0.6586956521739131,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.8947826086956522
+       },
+       "pick_and_place_simple/expert-path": {
+        "steps": 1140,
+        "coverage": 0.3236842105263158,
+        "fallback_rate_implied": 0.6763157894736842,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.8705263157894737
+       },
+       "pick_and_place_simple/loop-break": {
+        "steps": 612,
+        "coverage": 0.2630718954248366,
+        "fallback_rate_implied": 0.7369281045751634,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.8591503267973856
+       },
+       "pick_and_place_simple/recovery": {
+        "steps": 1280,
+        "coverage": 0.203125,
+        "fallback_rate_implied": 0.796875,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.86078125
+       },
+       "pick_clean_then_place_in_recep/expert-path": {
+        "steps": 1699,
+        "coverage": 0.26015303119482047,
+        "fallback_rate_implied": 0.7398469688051795,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9405532666274279
+       },
+       "pick_clean_then_place_in_recep/loop-break": {
+        "steps": 493,
+        "coverage": 0.3225152129817444,
+        "fallback_rate_implied": 0.6774847870182557,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9006085192697769
+       },
+       "pick_clean_then_place_in_recep/recovery": {
+        "steps": 1564,
+        "coverage": 0.19053708439897699,
+        "fallback_rate_implied": 0.809462915601023,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9373401534526854
+       },
+       "pick_cool_then_place_in_recep/expert-path": {
+        "steps": 1004,
+        "coverage": 0.20318725099601595,
+        "fallback_rate_implied": 0.796812749003984,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9286852589641434
+       },
+       "pick_cool_then_place_in_recep/loop-break": {
+        "steps": 437,
+        "coverage": 0.2723112128146453,
+        "fallback_rate_implied": 0.7276887871853547,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9185354691075515
+       },
+       "pick_cool_then_place_in_recep/recovery": {
+        "steps": 1208,
+        "coverage": 0.19701986754966888,
+        "fallback_rate_implied": 0.8029801324503312,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9329470198675497
+       },
+       "pick_heat_then_place_in_recep/expert-path": {
+        "steps": 848,
+        "coverage": 0.1957547169811321,
+        "fallback_rate_implied": 0.8042452830188679,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9429245283018868
+       },
+       "pick_heat_then_place_in_recep/loop-break": {
+        "steps": 289,
+        "coverage": 0.3044982698961938,
+        "fallback_rate_implied": 0.6955017301038062,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9273356401384083
+       },
+       "pick_heat_then_place_in_recep/recovery": {
+        "steps": 919,
+        "coverage": 0.17301414581066377,
+        "fallback_rate_implied": 0.8269858541893362,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9497279651795429
+       },
+       "pick_two_obj_and_place/expert-path": {
+        "steps": 1158,
+        "coverage": 0.38860103626943004,
+        "fallback_rate_implied": 0.6113989637305699,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9093264248704663
+       },
+       "pick_two_obj_and_place/loop-break": {
+        "steps": 385,
+        "coverage": 0.3090909090909091,
+        "fallback_rate_implied": 0.6909090909090909,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.8997402597402597
+       },
+       "pick_two_obj_and_place/recovery": {
+        "steps": 1141,
+        "coverage": 0.33304119193689746,
+        "fallback_rate_implied": 0.6669588080631026,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9058720420683611
+       }
+      },
+      "by_label_kind": {
+       "clean": {
+        "steps": 214,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9130841121495327
+       },
+       "close": {
+        "steps": 1519,
+        "coverage": 0.16984858459512836,
+        "fallback_rate_implied": 0.8301514154048717,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9187623436471363
+       },
+       "cool": {
+        "steps": 196,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.8071428571428572
+       },
+       "examine": {
+        "steps": 56,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9214285714285714
+       },
+       "go to": {
+        "steps": 7786,
+        "coverage": 0.4256357564860005,
+        "fallback_rate_implied": 0.5743642435139995,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9119702029283329
+       },
+       "heat": {
+        "steps": 126,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.8126984126984127
+       },
+       "look": {
+        "steps": 400,
+        "coverage": 0.34,
+        "fallback_rate_implied": 0.6599999999999999,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.932
+       },
+       "move": {
+        "steps": 1378,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9133526850507983
+       },
+       "open": {
+        "steps": 2282,
+        "coverage": 0.13234005258545137,
+        "fallback_rate_implied": 0.8676599474145487,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.926555652936021
+       },
+       "take": {
+        "steps": 1287,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.912975912975913
+       },
+       "use": {
+        "steps": 139,
+        "coverage": 0.14388489208633093,
+        "fallback_rate_implied": 0.8561151079136691,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9151079136690647
+       }
+      },
+      "expert_runs_with_every_label_on_menu": 0.0,
+      "expert_runs": 400
+     },
+     "10": {
+      "overall": {
+       "steps": 15383,
+       "coverage": 0.5299356432425405,
+       "fallback_rate_implied": 0.4700643567574595,
+       "mean_menu_length": 9.998374829357083,
+       "go_to_slot_share": 0.8827931471668672
+      },
+      "by_task_type": {
+       "look_at_obj_in_light": {
+        "steps": 1206,
+        "coverage": 0.6185737976782753,
+        "fallback_rate_implied": 0.38142620232172475,
+        "mean_menu_length": 9.979270315091211,
+        "go_to_slot_share": 0.8857498961362692
+       },
+       "pick_and_place_simple": {
+        "steps": 3032,
+        "coverage": 0.5906992084432717,
+        "fallback_rate_implied": 0.40930079155672827,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8731200527704486
+       },
+       "pick_clean_then_place_in_recep": {
+        "steps": 3756,
+        "coverage": 0.5359424920127795,
+        "fallback_rate_implied": 0.46405750798722045,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8878061767838126
+       },
+       "pick_cool_then_place_in_recep": {
+        "steps": 2649,
+        "coverage": 0.41336353340883353,
+        "fallback_rate_implied": 0.5866364665911665,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8928652321630804
+       },
+       "pick_heat_then_place_in_recep": {
+        "steps": 2056,
+        "coverage": 0.4464980544747082,
+        "fallback_rate_implied": 0.5535019455252919,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8890077821011673
+       },
+       "pick_two_obj_and_place": {
+        "steps": 2684,
+        "coverage": 0.592026825633383,
+        "fallback_rate_implied": 0.40797317436661695,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8706780923994039
+       }
+      },
+      "by_family": {
+       "expert-path": {
+        "steps": 6385,
+        "coverage": 0.5790133124510571,
+        "fallback_rate_implied": 0.42098668754894286,
+        "mean_menu_length": 9.99765074393109,
+        "go_to_slot_share": 0.8834181875146863
+       },
+       "loop-break": {
+        "steps": 2426,
+        "coverage": 0.5523495465787304,
+        "fallback_rate_implied": 0.44765045342126963,
+        "mean_menu_length": 9.998351195383346,
+        "go_to_slot_share": 0.882214709762533
+       },
+       "recovery": {
+        "steps": 6572,
+        "coverage": 0.473980523432745,
+        "fallback_rate_implied": 0.526019476567255,
+        "mean_menu_length": 9.999087035909922,
+        "go_to_slot_share": 0.8823994886934291
+       }
+      },
+      "by_task_type_and_family": {
+       "look_at_obj_in_light/expert-path": {
+        "steps": 536,
+        "coverage": 0.5932835820895522,
+        "fallback_rate_implied": 0.40671641791044777,
+        "mean_menu_length": 9.972014925373134,
+        "go_to_slot_share": 0.9073900841908326
+       },
+       "look_at_obj_in_light/loop-break": {
+        "steps": 210,
+        "coverage": 0.6714285714285714,
+        "fallback_rate_implied": 0.3285714285714286,
+        "mean_menu_length": 9.980952380952381,
+        "go_to_slot_share": 0.8568702290076335
+       },
+       "look_at_obj_in_light/recovery": {
+        "steps": 460,
+        "coverage": 0.6239130434782608,
+        "fallback_rate_implied": 0.3760869565217392,
+        "mean_menu_length": 9.986956521739131,
+        "go_to_slot_share": 0.8737483674357858
+       },
+       "pick_and_place_simple/expert-path": {
+        "steps": 1140,
+        "coverage": 0.6684210526315789,
+        "fallback_rate_implied": 0.3315789473684211,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8670175438596491
+       },
+       "pick_and_place_simple/loop-break": {
+        "steps": 612,
+        "coverage": 0.5588235294117647,
+        "fallback_rate_implied": 0.4411764705882353,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8856209150326797
+       },
+       "pick_and_place_simple/recovery": {
+        "steps": 1280,
+        "coverage": 0.53671875,
+        "fallback_rate_implied": 0.46328125,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.872578125
+       },
+       "pick_clean_then_place_in_recep/expert-path": {
+        "steps": 1699,
+        "coverage": 0.5838728663919953,
+        "fallback_rate_implied": 0.4161271336080047,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.890818128310771
+       },
+       "pick_clean_then_place_in_recep/loop-break": {
+        "steps": 493,
+        "coverage": 0.6064908722109533,
+        "fallback_rate_implied": 0.3935091277890467,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8718052738336713
+       },
+       "pick_clean_then_place_in_recep/recovery": {
+        "steps": 1564,
+        "coverage": 0.4616368286445013,
+        "fallback_rate_implied": 0.5383631713554987,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8895780051150896
+       },
+       "pick_cool_then_place_in_recep/expert-path": {
+        "steps": 1004,
+        "coverage": 0.4750996015936255,
+        "fallback_rate_implied": 0.5249003984063745,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8905378486055777
+       },
+       "pick_cool_then_place_in_recep/loop-break": {
+        "steps": 437,
+        "coverage": 0.4576659038901602,
+        "fallback_rate_implied": 0.5423340961098397,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8931350114416476
+       },
+       "pick_cool_then_place_in_recep/recovery": {
+        "steps": 1208,
+        "coverage": 0.34602649006622516,
+        "fallback_rate_implied": 0.6539735099337749,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8947019867549669
+       },
+       "pick_heat_then_place_in_recep/expert-path": {
+        "steps": 848,
+        "coverage": 0.4834905660377358,
+        "fallback_rate_implied": 0.5165094339622642,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8883254716981132
+       },
+       "pick_heat_then_place_in_recep/loop-break": {
+        "steps": 289,
+        "coverage": 0.5640138408304498,
+        "fallback_rate_implied": 0.4359861591695502,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8930795847750865
+       },
+       "pick_heat_then_place_in_recep/recovery": {
+        "steps": 919,
+        "coverage": 0.3754080522306855,
+        "fallback_rate_implied": 0.6245919477693145,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8883569096844396
+       },
+       "pick_two_obj_and_place/expert-path": {
+        "steps": 1158,
+        "coverage": 0.6373056994818653,
+        "fallback_rate_implied": 0.36269430051813467,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8678756476683938
+       },
+       "pick_two_obj_and_place/loop-break": {
+        "steps": 385,
+        "coverage": 0.5064935064935064,
+        "fallback_rate_implied": 0.49350649350649356,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8833766233766234
+       },
+       "pick_two_obj_and_place/recovery": {
+        "steps": 1141,
+        "coverage": 0.574934268185802,
+        "fallback_rate_implied": 0.42506573181419804,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8692375109553023
+       }
+      },
+      "by_label_kind": {
+       "clean": {
+        "steps": 214,
+        "coverage": 0.1308411214953271,
+        "fallback_rate_implied": 0.8691588785046729,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8976635514018692
+       },
+       "close": {
+        "steps": 1519,
+        "coverage": 0.5286372613561554,
+        "fallback_rate_implied": 0.4713627386438446,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8577353522053983
+       },
+       "cool": {
+        "steps": 196,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.9
+       },
+       "examine": {
+        "steps": 56,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8767857142857143
+       },
+       "go to": {
+        "steps": 7786,
+        "coverage": 0.6895710249165168,
+        "fallback_rate_implied": 0.3104289750834832,
+        "mean_menu_length": 9.997559722578988,
+        "go_to_slot_share": 0.8909443609408924
+       },
+       "heat": {
+        "steps": 126,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8849206349206349
+       },
+       "look": {
+        "steps": 400,
+        "coverage": 0.84,
+        "fallback_rate_implied": 0.16000000000000003,
+        "mean_menu_length": 9.985,
+        "go_to_slot_share": 0.9143715573360041
+       },
+       "move": {
+        "steps": 1378,
+        "coverage": 0.10885341074020319,
+        "fallback_rate_implied": 0.8911465892597968,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8931059506531205
+       },
+       "open": {
+        "steps": 2282,
+        "coverage": 0.5547765118317266,
+        "fallback_rate_implied": 0.4452234881682734,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8559158632778264
+       },
+       "take": {
+        "steps": 1287,
+        "coverage": 0.09013209013209013,
+        "fallback_rate_implied": 0.9098679098679099,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8883449883449883
+       },
+       "use": {
+        "steps": 139,
+        "coverage": 0.60431654676259,
+        "fallback_rate_implied": 0.39568345323741005,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8503597122302158
+       }
+      },
+      "expert_runs_with_every_label_on_menu": 0.0775,
+      "expert_runs": 400
+     },
+     "20": {
+      "overall": {
+       "steps": 15383,
+       "coverage": 0.824351556913476,
+       "fallback_rate_implied": 0.17564844308652405,
+       "mean_menu_length": 18.939088604303453,
+       "go_to_slot_share": 0.8641278231619414
+      },
+      "by_task_type": {
+       "look_at_obj_in_light": {
+        "steps": 1206,
+        "coverage": 0.9154228855721394,
+        "fallback_rate_implied": 0.08457711442786064,
+        "mean_menu_length": 17.20149253731343,
+        "go_to_slot_share": 0.8051578693661123
+       },
+       "pick_and_place_simple": {
+        "steps": 3032,
+        "coverage": 0.8740105540897097,
+        "fallback_rate_implied": 0.12598944591029027,
+        "mean_menu_length": 17.651715039577837,
+        "go_to_slot_share": 0.7973094170403587
+       },
+       "pick_clean_then_place_in_recep": {
+        "steps": 3756,
+        "coverage": 0.8413205537806177,
+        "fallback_rate_implied": 0.15867944621938235,
+        "mean_menu_length": 19.781416400425986,
+        "go_to_slot_share": 0.8941170136879366
+       },
+       "pick_cool_then_place_in_recep": {
+        "steps": 2649,
+        "coverage": 0.7036617591543979,
+        "fallback_rate_implied": 0.2963382408456021,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 0.9283314458286146
+       },
+       "pick_heat_then_place_in_recep": {
+        "steps": 2056,
+        "coverage": 0.7310311284046692,
+        "fallback_rate_implied": 0.2689688715953308,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 0.9240515564202335
+       },
+       "pick_two_obj_and_place": {
+        "steps": 2684,
+        "coverage": 0.8941877794336811,
+        "fallback_rate_implied": 0.10581222056631889,
+        "mean_menu_length": 18.135618479880776,
+        "go_to_slot_share": 0.7964499958911989
+       }
+      },
+      "by_family": {
+       "expert-path": {
+        "steps": 6385,
+        "coverage": 0.8535630383711824,
+        "fallback_rate_implied": 0.14643696162881759,
+        "mean_menu_length": 18.97133907595928,
+        "go_to_slot_share": 0.8726678334379024
+       },
+       "loop-break": {
+        "steps": 2426,
+        "coverage": 0.848722176422094,
+        "fallback_rate_implied": 0.15127782357790598,
+        "mean_menu_length": 18.690849134377576,
+        "go_to_slot_share": 0.8516231474947071
+       },
+       "recovery": {
+        "steps": 6572,
+        "coverage": 0.7869750456482045,
+        "fallback_rate_implied": 0.21302495435179547,
+        "mean_menu_length": 18.999391357273282,
+        "go_to_slot_share": 0.8603840978985136
+       }
+      },
+      "by_task_type_and_family": {
+       "look_at_obj_in_light/expert-path": {
+        "steps": 536,
+        "coverage": 0.8675373134328358,
+        "fallback_rate_implied": 0.1324626865671642,
+        "mean_menu_length": 17.49813432835821,
+        "go_to_slot_share": 0.8469986139247254
+       },
+       "look_at_obj_in_light/loop-break": {
+        "steps": 210,
+        "coverage": 0.9476190476190476,
+        "fallback_rate_implied": 0.05238095238095242,
+        "mean_menu_length": 16.33809523809524,
+        "go_to_slot_share": 0.7557563392596911
+       },
+       "look_at_obj_in_light/recovery": {
+        "steps": 460,
+        "coverage": 0.9565217391304348,
+        "fallback_rate_implied": 0.04347826086956519,
+        "mean_menu_length": 17.25,
+        "go_to_slot_share": 0.7770636420919975
+       },
+       "pick_and_place_simple/expert-path": {
+        "steps": 1140,
+        "coverage": 0.9017543859649123,
+        "fallback_rate_implied": 0.09824561403508769,
+        "mean_menu_length": 17.53157894736842,
+        "go_to_slot_share": 0.8126688682077454
+       },
+       "pick_and_place_simple/loop-break": {
+        "steps": 612,
+        "coverage": 0.8611111111111112,
+        "fallback_rate_implied": 0.13888888888888884,
+        "mean_menu_length": 17.723856209150327,
+        "go_to_slot_share": 0.7992071540518115
+       },
+       "pick_and_place_simple/recovery": {
+        "steps": 1280,
+        "coverage": 0.85546875,
+        "fallback_rate_implied": 0.14453125,
+        "mean_menu_length": 17.72421875,
+        "go_to_slot_share": 0.7828712478511923
+       },
+       "pick_clean_then_place_in_recep/expert-path": {
+        "steps": 1699,
+        "coverage": 0.8834608593290171,
+        "fallback_rate_implied": 0.11653914067098292,
+        "mean_menu_length": 19.80164802825191,
+        "go_to_slot_share": 0.8973932170139405
+       },
+       "pick_clean_then_place_in_recep/loop-break": {
+        "steps": 493,
+        "coverage": 0.922920892494929,
+        "fallback_rate_implied": 0.07707910750507097,
+        "mean_menu_length": 19.669371196754565,
+        "go_to_slot_share": 0.8768691347839538
+       },
+       "pick_clean_then_place_in_recep/recovery": {
+        "steps": 1564,
+        "coverage": 0.7698209718670077,
+        "fallback_rate_implied": 0.2301790281329923,
+        "mean_menu_length": 19.794757033248082,
+        "go_to_slot_share": 0.8959591718078749
+       },
+       "pick_cool_then_place_in_recep/expert-path": {
+        "steps": 1004,
+        "coverage": 0.7440239043824701,
+        "fallback_rate_implied": 0.2559760956175299,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 0.9294322709163346
+       },
+       "pick_cool_then_place_in_recep/loop-break": {
+        "steps": 437,
+        "coverage": 0.7162471395881007,
+        "fallback_rate_implied": 0.2837528604118993,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 0.9320366132723112
+       },
+       "pick_cool_then_place_in_recep/recovery": {
+        "steps": 1208,
+        "coverage": 0.6655629139072847,
+        "fallback_rate_implied": 0.3344370860927153,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 0.9260761589403973
+       },
+       "pick_heat_then_place_in_recep/expert-path": {
+        "steps": 848,
+        "coverage": 0.7747641509433962,
+        "fallback_rate_implied": 0.22523584905660377,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 0.9247641509433963
+       },
+       "pick_heat_then_place_in_recep/loop-break": {
+        "steps": 289,
+        "coverage": 0.7750865051903114,
+        "fallback_rate_implied": 0.22491349480968859,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 0.9294117647058824
+       },
+       "pick_heat_then_place_in_recep/recovery": {
+        "steps": 919,
+        "coverage": 0.676822633297062,
+        "fallback_rate_implied": 0.32317736670293795,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 0.9217083786724701
+       },
+       "pick_two_obj_and_place/expert-path": {
+        "steps": 1158,
+        "coverage": 0.9084628670120898,
+        "fallback_rate_implied": 0.09153713298791022,
+        "mean_menu_length": 18.207253886010363,
+        "go_to_slot_share": 0.8055397457787896
+       },
+       "pick_two_obj_and_place/loop-break": {
+        "steps": 385,
+        "coverage": 0.8857142857142857,
+        "fallback_rate_implied": 0.11428571428571432,
+        "mean_menu_length": 17.789610389610388,
+        "go_to_slot_share": 0.7786538180756315
+       },
+       "pick_two_obj_and_place/recovery": {
+        "steps": 1141,
+        "coverage": 0.8825591586327782,
+        "fallback_rate_implied": 0.11744084136722177,
+        "mean_menu_length": 18.179666958808063,
+        "go_to_slot_share": 0.7930868244709058
+       }
+      },
+      "by_label_kind": {
+       "clean": {
+        "steps": 214,
+        "coverage": 0.38317757009345793,
+        "fallback_rate_implied": 0.6168224299065421,
+        "mean_menu_length": 19.757009345794394,
+        "go_to_slot_share": 0.8836329233680227
+       },
+       "close": {
+        "steps": 1519,
+        "coverage": 0.8637261356155366,
+        "fallback_rate_implied": 0.13627386438446343,
+        "mean_menu_length": 19.331797235023043,
+        "go_to_slot_share": 0.863783415630853
+       },
+       "cool": {
+        "steps": 196,
+        "coverage": 0.05102040816326531,
+        "fallback_rate_implied": 0.9489795918367347,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 0.9040816326530612
+       },
+       "examine": {
+        "steps": 56,
+        "coverage": 0.42857142857142855,
+        "fallback_rate_implied": 0.5714285714285714,
+        "mean_menu_length": 19.232142857142858,
+        "go_to_slot_share": 0.7892293407613742
+       },
+       "go to": {
+        "steps": 7786,
+        "coverage": 0.9425892627793475,
+        "fallback_rate_implied": 0.057410737220652486,
+        "mean_menu_length": 18.768045209350117,
+        "go_to_slot_share": 0.8737408299572977
+       },
+       "heat": {
+        "steps": 126,
+        "coverage": 0.21428571428571427,
+        "fallback_rate_implied": 0.7857142857142857,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 0.8960317460317461
+       },
+       "look": {
+        "steps": 400,
+        "coverage": 0.97,
+        "fallback_rate_implied": 0.030000000000000027,
+        "mean_menu_length": 17.9225,
+        "go_to_slot_share": 0.9235597712372716
+       },
+       "move": {
+        "steps": 1378,
+        "coverage": 0.47677793904209,
+        "fallback_rate_implied": 0.52322206095791,
+        "mean_menu_length": 18.574020319303337,
+        "go_to_slot_share": 0.8415706192615745
+       },
+       "open": {
+        "steps": 2282,
+        "coverage": 0.9062226117440841,
+        "fallback_rate_implied": 0.09377738825591586,
+        "mean_menu_length": 19.319018404907975,
+        "go_to_slot_share": 0.8706845710656445
+       },
+       "take": {
+        "steps": 1287,
+        "coverage": 0.49805749805749805,
+        "fallback_rate_implied": 0.5019425019425019,
+        "mean_menu_length": 19.295260295260295,
+        "go_to_slot_share": 0.8048161720291548
+       },
+       "use": {
+        "steps": 139,
+        "coverage": 0.9568345323741008,
+        "fallback_rate_implied": 0.043165467625899234,
+        "mean_menu_length": 17.402877697841728,
+        "go_to_slot_share": 0.7408019842910294
+       }
+      },
+      "expert_runs_with_every_label_on_menu": 0.4375,
+      "expert_runs": 400
+     },
+     "all": {
+      "overall": {
+       "steps": 15383,
+       "coverage": 1.0,
+       "fallback_rate_implied": 0.0,
+       "mean_menu_length": 29.839758174608335,
+       "go_to_slot_share": 0.8261423669734764
+      },
+      "by_task_type": {
+       "look_at_obj_in_light": {
+        "steps": 1206,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 19.828358208955223,
+        "go_to_slot_share": 0.7493413624388408
+       },
+       "pick_and_place_simple": {
+        "steps": 3032,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 22.227572559366756,
+        "go_to_slot_share": 0.7746683681039855
+       },
+       "pick_clean_then_place_in_recep": {
+        "steps": 3756,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 36.377529286474974,
+        "go_to_slot_share": 0.8557460075823001
+       },
+       "pick_cool_then_place_in_recep": {
+        "steps": 2649,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 38.021895054737634,
+        "go_to_slot_share": 0.8591838760921366
+       },
+       "pick_heat_then_place_in_recep": {
+        "steps": 2056,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 34.70038910505836,
+        "go_to_slot_share": 0.8432524108544517
+       },
+       "pick_two_obj_and_place": {
+        "steps": 2684,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 21.98956780923994,
+        "go_to_slot_share": 0.7704337512707556
+       }
+      },
+      "by_family": {
+       "expert-path": {
+        "steps": 6385,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 30.209083790133125,
+        "go_to_slot_share": 0.8388469813619515
+       },
+       "loop-break": {
+        "steps": 2426,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 28.119950535861502,
+        "go_to_slot_share": 0.8132924844984535
+       },
+       "recovery": {
+        "steps": 6572,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 30.11579427875837,
+        "go_to_slot_share": 0.8181900859433815
+       }
+      },
+      "by_task_type_and_family": {
+       "look_at_obj_in_light/expert-path": {
+        "steps": 536,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 21.14365671641791,
+        "go_to_slot_share": 0.779140562957734
+       },
+       "look_at_obj_in_light/loop-break": {
+        "steps": 210,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 17.65714285714286,
+        "go_to_slot_share": 0.7127831715210357
+       },
+       "look_at_obj_in_light/recovery": {
+        "steps": 460,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 19.286956521739132,
+        "go_to_slot_share": 0.7265554553651938
+       },
+       "pick_and_place_simple/expert-path": {
+        "steps": 1140,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 22.313157894736843,
+        "go_to_slot_share": 0.7937649880095923
+       },
+       "pick_and_place_simple/loop-break": {
+        "steps": 612,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 21.73856209150327,
+        "go_to_slot_share": 0.7713469633193024
+       },
+       "pick_and_place_simple/recovery": {
+        "steps": 1280,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 22.38515625,
+        "go_to_slot_share": 0.7592573203503996
+       },
+       "pick_clean_then_place_in_recep/expert-path": {
+        "steps": 1699,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 37.55444379046498,
+        "go_to_slot_share": 0.8685996395266828
+       },
+       "pick_clean_then_place_in_recep/loop-break": {
+        "steps": 493,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 32.72210953346856,
+        "go_to_slot_share": 0.8388916439375155
+       },
+       "pick_clean_then_place_in_recep/recovery": {
+        "steps": 1564,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 36.25127877237852,
+        "go_to_slot_share": 0.8460765119847611
+       },
+       "pick_cool_then_place_in_recep/expert-path": {
+        "steps": 1004,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 37.97410358565737,
+        "go_to_slot_share": 0.8655248386927556
+       },
+       "pick_cool_then_place_in_recep/loop-break": {
+        "steps": 437,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 37.986270022883296,
+        "go_to_slot_share": 0.8613855421686747
+       },
+       "pick_cool_then_place_in_recep/recovery": {
+        "steps": 1208,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 38.074503311258276,
+        "go_to_slot_share": 0.8531330173500892
+       },
+       "pick_heat_then_place_in_recep/expert-path": {
+        "steps": 848,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 33.77122641509434,
+        "go_to_slot_share": 0.8498847684894196
+       },
+       "pick_heat_then_place_in_recep/loop-break": {
+        "steps": 289,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 35.49480968858131,
+        "go_to_slot_share": 0.8387599922012088
+       },
+       "pick_heat_then_place_in_recep/recovery": {
+        "steps": 919,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 35.30794341675735,
+        "go_to_slot_share": 0.838819033530572
+       },
+       "pick_two_obj_and_place/expert-path": {
+        "steps": 1158,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 22.060449050086355,
+        "go_to_slot_share": 0.783723479213967
+       },
+       "pick_two_obj_and_place/loop-break": {
+        "steps": 385,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 21.34285714285714,
+        "go_to_slot_share": 0.7473530485578679
+       },
+       "pick_two_obj_and_place/recovery": {
+        "steps": 1141,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 22.135845749342682,
+        "go_to_slot_share": 0.7645009304351269
+       }
+      },
+      "by_label_kind": {
+       "clean": {
+        "steps": 214,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 33.88785046728972,
+        "go_to_slot_share": 0.8124655267512411
+       },
+       "close": {
+        "steps": 1519,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 32.70967741935484,
+        "go_to_slot_share": 0.8416052811657208
+       },
+       "cool": {
+        "steps": 196,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 38.12755102040816,
+        "go_to_slot_share": 0.8416967750568713
+       },
+       "examine": {
+        "steps": 56,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 27.214285714285715,
+        "go_to_slot_share": 0.7198162729658792
+       },
+       "go to": {
+        "steps": 7786,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 28.882738248137684,
+        "go_to_slot_share": 0.8342056465419488
+       },
+       "heat": {
+        "steps": 126,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 36.182539682539684,
+        "go_to_slot_share": 0.8335161219565694
+       },
+       "look": {
+        "steps": 400,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 25.91,
+        "go_to_slot_share": 0.9228097259745273
+       },
+       "move": {
+        "steps": 1378,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 27.60812772133527,
+        "go_to_slot_share": 0.7964987908737252
+       },
+       "open": {
+        "steps": 2282,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 32.256792287467135,
+        "go_to_slot_share": 0.860535253362315
+       },
+       "take": {
+        "steps": 1287,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 30.257964257964257,
+        "go_to_slot_share": 0.7103641312721484
+       },
+       "use": {
+        "steps": 139,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 19.35251798561151,
+        "go_to_slot_share": 0.6895910780669146
+       }
+      },
+      "expert_runs_with_every_label_on_menu": 1.0,
+      "expert_runs": 400
+     }
+    },
+    "kind": {
+     "5": {
+      "overall": {
+       "steps": 15383,
+       "coverage": 0.08236364818305922,
+       "fallback_rate_implied": 0.9176363518169408,
+       "mean_menu_length": 5.0,
+       "go_to_slot_share": 1.0
+      },
+      "by_task_type": {
+       "look_at_obj_in_light": {
+        "steps": 1206,
+        "coverage": 0.20149253731343283,
+        "fallback_rate_implied": 0.7985074626865671,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_and_place_simple": {
+        "steps": 3032,
+        "coverage": 0.13885224274406333,
+        "fallback_rate_implied": 0.8611477572559367,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_clean_then_place_in_recep": {
+        "steps": 3756,
+        "coverage": 0.0308839190628328,
+        "fallback_rate_implied": 0.9691160809371672,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_cool_then_place_in_recep": {
+        "steps": 2649,
+        "coverage": 0.0120800302000755,
+        "fallback_rate_implied": 0.9879199697999245,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_heat_then_place_in_recep": {
+        "steps": 2056,
+        "coverage": 0.018968871595330738,
+        "fallback_rate_implied": 0.9810311284046692,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_two_obj_and_place": {
+        "steps": 2684,
+        "coverage": 0.15499254843517138,
+        "fallback_rate_implied": 0.8450074515648286,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       }
+      },
+      "by_family": {
+       "expert-path": {
+        "steps": 6385,
+        "coverage": 0.06985121378230227,
+        "fallback_rate_implied": 0.9301487862176977,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "loop-break": {
+        "steps": 2426,
+        "coverage": 0.1055234954657873,
+        "fallback_rate_implied": 0.8944765045342127,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "recovery": {
+        "steps": 6572,
+        "coverage": 0.08597078514911746,
+        "fallback_rate_implied": 0.9140292148508825,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       }
+      },
+      "by_task_type_and_family": {
+       "look_at_obj_in_light/expert-path": {
+        "steps": 536,
+        "coverage": 0.15485074626865672,
+        "fallback_rate_implied": 0.8451492537313433,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "look_at_obj_in_light/loop-break": {
+        "steps": 210,
+        "coverage": 0.2857142857142857,
+        "fallback_rate_implied": 0.7142857142857143,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "look_at_obj_in_light/recovery": {
+        "steps": 460,
+        "coverage": 0.21739130434782608,
+        "fallback_rate_implied": 0.782608695652174,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_and_place_simple/expert-path": {
+        "steps": 1140,
+        "coverage": 0.11754385964912281,
+        "fallback_rate_implied": 0.8824561403508772,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_and_place_simple/loop-break": {
+        "steps": 612,
+        "coverage": 0.16993464052287582,
+        "fallback_rate_implied": 0.8300653594771241,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_and_place_simple/recovery": {
+        "steps": 1280,
+        "coverage": 0.14296875,
+        "fallback_rate_implied": 0.85703125,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_clean_then_place_in_recep/expert-path": {
+        "steps": 1699,
+        "coverage": 0.024720423778693348,
+        "fallback_rate_implied": 0.9752795762213067,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_clean_then_place_in_recep/loop-break": {
+        "steps": 493,
+        "coverage": 0.04259634888438134,
+        "fallback_rate_implied": 0.9574036511156186,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_clean_then_place_in_recep/recovery": {
+        "steps": 1564,
+        "coverage": 0.03388746803069054,
+        "fallback_rate_implied": 0.9661125319693095,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_cool_then_place_in_recep/expert-path": {
+        "steps": 1004,
+        "coverage": 0.008964143426294821,
+        "fallback_rate_implied": 0.9910358565737052,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_cool_then_place_in_recep/loop-break": {
+        "steps": 437,
+        "coverage": 0.006864988558352402,
+        "fallback_rate_implied": 0.9931350114416476,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_cool_then_place_in_recep/recovery": {
+        "steps": 1208,
+        "coverage": 0.016556291390728478,
+        "fallback_rate_implied": 0.9834437086092715,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_heat_then_place_in_recep/expert-path": {
+        "steps": 848,
+        "coverage": 0.015330188679245283,
+        "fallback_rate_implied": 0.9846698113207547,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_heat_then_place_in_recep/loop-break": {
+        "steps": 289,
+        "coverage": 0.006920415224913495,
+        "fallback_rate_implied": 0.9930795847750865,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_heat_then_place_in_recep/recovery": {
+        "steps": 919,
+        "coverage": 0.026115342763873776,
+        "fallback_rate_implied": 0.9738846572361263,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_two_obj_and_place/expert-path": {
+        "steps": 1158,
+        "coverage": 0.14248704663212436,
+        "fallback_rate_implied": 0.8575129533678756,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_two_obj_and_place/loop-break": {
+        "steps": 385,
+        "coverage": 0.17142857142857143,
+        "fallback_rate_implied": 0.8285714285714285,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_two_obj_and_place/recovery": {
+        "steps": 1141,
+        "coverage": 0.16213847502191062,
+        "fallback_rate_implied": 0.8378615249780894,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       }
+      },
+      "by_label_kind": {
+       "clean": {
+        "steps": 214,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "close": {
+        "steps": 1519,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "cool": {
+        "steps": 196,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "examine": {
+        "steps": 56,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "go to": {
+        "steps": 7786,
+        "coverage": 0.16272797328538402,
+        "fallback_rate_implied": 0.837272026714616,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "heat": {
+        "steps": 126,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "look": {
+        "steps": 400,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "move": {
+        "steps": 1378,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "open": {
+        "steps": 2282,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "take": {
+        "steps": 1287,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "use": {
+        "steps": 139,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       }
+      },
+      "expert_runs_with_every_label_on_menu": 0.0,
+      "expert_runs": 400
+     },
+     "10": {
+      "overall": {
+       "steps": 15383,
+       "coverage": 0.19879087304166937,
+       "fallback_rate_implied": 0.8012091269583306,
+       "mean_menu_length": 9.998374829357083,
+       "go_to_slot_share": 0.9864243685185787
+      },
+      "by_task_type": {
+       "look_at_obj_in_light": {
+        "steps": 1206,
+        "coverage": 0.4577114427860697,
+        "fallback_rate_implied": 0.5422885572139303,
+        "mean_menu_length": 9.979270315091211,
+        "go_to_slot_share": 0.9284586622351475
+       },
+       "pick_and_place_simple": {
+        "steps": 3032,
+        "coverage": 0.3644459102902375,
+        "fallback_rate_implied": 0.6355540897097625,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.9690303430079156
+       },
+       "pick_clean_then_place_in_recep": {
+        "steps": 3756,
+        "coverage": 0.09664536741214058,
+        "fallback_rate_implied": 0.9033546325878594,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_cool_then_place_in_recep": {
+        "steps": 2649,
+        "coverage": 0.023027557568893922,
+        "fallback_rate_implied": 0.976972442431106,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_heat_then_place_in_recep": {
+        "steps": 2056,
+        "coverage": 0.05252918287937743,
+        "fallback_rate_implied": 0.9474708171206225,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_two_obj_and_place": {
+        "steps": 2684,
+        "coverage": 0.3237704918032787,
+        "fallback_rate_implied": 0.6762295081967213,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.9892697466467958
+       }
+      },
+      "by_family": {
+       "expert-path": {
+        "steps": 6385,
+        "coverage": 0.1826155050900548,
+        "fallback_rate_implied": 0.8173844949099451,
+        "mean_menu_length": 9.99765074393109,
+        "go_to_slot_share": 0.9881413017936869
+       },
+       "loop-break": {
+        "steps": 2426,
+        "coverage": 0.23577906018136852,
+        "fallback_rate_implied": 0.7642209398186315,
+        "mean_menu_length": 9.998351195383346,
+        "go_to_slot_share": 0.981447889182058
+       },
+       "recovery": {
+        "steps": 6572,
+        "coverage": 0.20085209981740718,
+        "fallback_rate_implied": 0.7991479001825929,
+        "mean_menu_length": 9.999087035909922,
+        "go_to_slot_share": 0.9865934199713912
+       }
+      },
+      "by_task_type_and_family": {
+       "look_at_obj_in_light/expert-path": {
+        "steps": 536,
+        "coverage": 0.43097014925373134,
+        "fallback_rate_implied": 0.5690298507462687,
+        "mean_menu_length": 9.972014925373134,
+        "go_to_slot_share": 0.9421889616463985
+       },
+       "look_at_obj_in_light/loop-break": {
+        "steps": 210,
+        "coverage": 0.5142857142857142,
+        "fallback_rate_implied": 0.48571428571428577,
+        "mean_menu_length": 9.980952380952381,
+        "go_to_slot_share": 0.9002862595419847
+       },
+       "look_at_obj_in_light/recovery": {
+        "steps": 460,
+        "coverage": 0.46304347826086956,
+        "fallback_rate_implied": 0.5369565217391304,
+        "mean_menu_length": 9.986956521739131,
+        "go_to_slot_share": 0.9253373966042664
+       },
+       "pick_and_place_simple/expert-path": {
+        "steps": 1140,
+        "coverage": 0.35,
+        "fallback_rate_implied": 0.65,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.9676315789473684
+       },
+       "pick_and_place_simple/loop-break": {
+        "steps": 612,
+        "coverage": 0.38562091503267976,
+        "fallback_rate_implied": 0.6143790849673203,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.972875816993464
+       },
+       "pick_and_place_simple/recovery": {
+        "steps": 1280,
+        "coverage": 0.3671875,
+        "fallback_rate_implied": 0.6328125,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.9684375
+       },
+       "pick_clean_then_place_in_recep/expert-path": {
+        "steps": 1699,
+        "coverage": 0.07769276044732196,
+        "fallback_rate_implied": 0.922307239552678,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_clean_then_place_in_recep/loop-break": {
+        "steps": 493,
+        "coverage": 0.1359026369168357,
+        "fallback_rate_implied": 0.8640973630831643,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_clean_then_place_in_recep/recovery": {
+        "steps": 1564,
+        "coverage": 0.10485933503836317,
+        "fallback_rate_implied": 0.8951406649616368,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_cool_then_place_in_recep/expert-path": {
+        "steps": 1004,
+        "coverage": 0.014940239043824702,
+        "fallback_rate_implied": 0.9850597609561753,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_cool_then_place_in_recep/loop-break": {
+        "steps": 437,
+        "coverage": 0.016018306636155607,
+        "fallback_rate_implied": 0.9839816933638444,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_cool_then_place_in_recep/recovery": {
+        "steps": 1208,
+        "coverage": 0.03228476821192053,
+        "fallback_rate_implied": 0.9677152317880795,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_heat_then_place_in_recep/expert-path": {
+        "steps": 848,
+        "coverage": 0.04834905660377359,
+        "fallback_rate_implied": 0.9516509433962264,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_heat_then_place_in_recep/loop-break": {
+        "steps": 289,
+        "coverage": 0.03460207612456748,
+        "fallback_rate_implied": 0.9653979238754326,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_heat_then_place_in_recep/recovery": {
+        "steps": 919,
+        "coverage": 0.062023939064200215,
+        "fallback_rate_implied": 0.9379760609357998,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_two_obj_and_place/expert-path": {
+        "steps": 1158,
+        "coverage": 0.3005181347150259,
+        "fallback_rate_implied": 0.6994818652849741,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.9931778929188255
+       },
+       "pick_two_obj_and_place/loop-break": {
+        "steps": 385,
+        "coverage": 0.37402597402597404,
+        "fallback_rate_implied": 0.625974025974026,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.9805194805194806
+       },
+       "pick_two_obj_and_place/recovery": {
+        "steps": 1141,
+        "coverage": 0.33041191936897457,
+        "fallback_rate_implied": 0.6695880806310255,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.9882559158632779
+       }
+      },
+      "by_label_kind": {
+       "clean": {
+        "steps": 214,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 1.0
+       },
+       "close": {
+        "steps": 1519,
+        "coverage": 0.04805793285055958,
+        "fallback_rate_implied": 0.9519420671494404,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.9899934167215273
+       },
+       "cool": {
+        "steps": 196,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 1.0
+       },
+       "examine": {
+        "steps": 56,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.975
+       },
+       "go to": {
+        "steps": 7786,
+        "coverage": 0.3398407397893655,
+        "fallback_rate_implied": 0.6601592602106345,
+        "mean_menu_length": 9.997559722578988,
+        "go_to_slot_share": 0.9860099433460515
+       },
+       "heat": {
+        "steps": 126,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 1.0
+       },
+       "look": {
+        "steps": 400,
+        "coverage": 0.0625,
+        "fallback_rate_implied": 0.9375,
+        "mean_menu_length": 9.985,
+        "go_to_slot_share": 0.9922383575363044
+       },
+       "move": {
+        "steps": 1378,
+        "coverage": 0.0965166908563135,
+        "fallback_rate_implied": 0.9034833091436865,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.983744557329463
+       },
+       "open": {
+        "steps": 2282,
+        "coverage": 0.03943908851884312,
+        "fallback_rate_implied": 0.9605609114811569,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.9917616126205083
+       },
+       "take": {
+        "steps": 1287,
+        "coverage": 0.039627039627039624,
+        "fallback_rate_implied": 0.9603729603729604,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.9790209790209791
+       },
+       "use": {
+        "steps": 139,
+        "coverage": 0.28776978417266186,
+        "fallback_rate_implied": 0.7122302158273381,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.9136690647482014
+       }
+      },
+      "expert_runs_with_every_label_on_menu": 0.03,
+      "expert_runs": 400
+     },
+     "20": {
+      "overall": {
+       "steps": 15383,
+       "coverage": 0.5095234999674966,
+       "fallback_rate_implied": 0.4904765000325034,
+       "mean_menu_length": 18.939088604303453,
+       "go_to_slot_share": 0.9116839431591954
+      },
+      "by_task_type": {
+       "look_at_obj_in_light": {
+        "steps": 1206,
+        "coverage": 0.8814262023217247,
+        "fallback_rate_implied": 0.11857379767827525,
+        "mean_menu_length": 17.20149253731343,
+        "go_to_slot_share": 0.8159556519643287
+       },
+       "pick_and_place_simple": {
+        "steps": 3032,
+        "coverage": 0.7767150395778364,
+        "fallback_rate_implied": 0.22328496042216361,
+        "mean_menu_length": 17.651715039577837,
+        "go_to_slot_share": 0.8185724962630793
+       },
+       "pick_clean_then_place_in_recep": {
+        "steps": 3756,
+        "coverage": 0.3109691160809372,
+        "fallback_rate_implied": 0.6890308839190629,
+        "mean_menu_length": 19.781416400425986,
+        "go_to_slot_share": 0.9641179558271309
+       },
+       "pick_cool_then_place_in_recep": {
+        "steps": 2649,
+        "coverage": 0.17629294073235183,
+        "fallback_rate_implied": 0.8237070592676482,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 0.9943374858437146
+       },
+       "pick_heat_then_place_in_recep": {
+        "steps": 2056,
+        "coverage": 0.3093385214007782,
+        "fallback_rate_implied": 0.6906614785992218,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 0.9923394941634242
+       },
+       "pick_two_obj_and_place": {
+        "steps": 2684,
+        "coverage": 0.8006706408345753,
+        "fallback_rate_implied": 0.1993293591654247,
+        "mean_menu_length": 18.135618479880776,
+        "go_to_slot_share": 0.8167269290820939
+       }
+      },
+      "by_family": {
+       "expert-path": {
+        "steps": 6385,
+        "coverage": 0.4836335160532498,
+        "fallback_rate_implied": 0.5163664839467502,
+        "mean_menu_length": 18.97133907595928,
+        "go_to_slot_share": 0.9226381137932174
+       },
+       "loop-break": {
+        "steps": 2426,
+        "coverage": 0.5717230008244023,
+        "fallback_rate_implied": 0.4282769991755977,
+        "mean_menu_length": 18.690849134377576,
+        "go_to_slot_share": 0.8919812985179958
+       },
+       "recovery": {
+        "steps": 6572,
+        "coverage": 0.5117163724893488,
+        "fallback_rate_implied": 0.48828362751065124,
+        "mean_menu_length": 18.999391357273282,
+        "go_to_slot_share": 0.9082121348026653
+       }
+      },
+      "by_task_type_and_family": {
+       "look_at_obj_in_light/expert-path": {
+        "steps": 536,
+        "coverage": 0.8190298507462687,
+        "fallback_rate_implied": 0.18097014925373134,
+        "mean_menu_length": 17.49813432835821,
+        "go_to_slot_share": 0.8587269431709137
+       },
+       "look_at_obj_in_light/loop-break": {
+        "steps": 210,
+        "coverage": 0.9380952380952381,
+        "fallback_rate_implied": 0.06190476190476191,
+        "mean_menu_length": 16.33809523809524,
+        "go_to_slot_share": 0.7618770037889828
+       },
+       "look_at_obj_in_light/recovery": {
+        "steps": 460,
+        "coverage": 0.9282608695652174,
+        "fallback_rate_implied": 0.07173913043478264,
+        "mean_menu_length": 17.25,
+        "go_to_slot_share": 0.7887838689350977
+       },
+       "pick_and_place_simple/expert-path": {
+        "steps": 1140,
+        "coverage": 0.7578947368421053,
+        "fallback_rate_implied": 0.2421052631578947,
+        "mean_menu_length": 17.53157894736842,
+        "go_to_slot_share": 0.8365856099269489
+       },
+       "pick_and_place_simple/loop-break": {
+        "steps": 612,
+        "coverage": 0.8055555555555556,
+        "fallback_rate_implied": 0.19444444444444442,
+        "mean_menu_length": 17.723856209150327,
+        "go_to_slot_share": 0.81570941274085
+       },
+       "pick_and_place_simple/recovery": {
+        "steps": 1280,
+        "coverage": 0.7796875,
+        "fallback_rate_implied": 0.22031250000000002,
+        "mean_menu_length": 17.72421875,
+        "go_to_slot_share": 0.8040728170317804
+       },
+       "pick_clean_then_place_in_recep/expert-path": {
+        "steps": 1699,
+        "coverage": 0.2625073572689818,
+        "fallback_rate_implied": 0.7374926427310182,
+        "mean_menu_length": 19.80164802825191,
+        "go_to_slot_share": 0.9728918348542045
+       },
+       "pick_clean_then_place_in_recep/loop-break": {
+        "steps": 493,
+        "coverage": 0.4543610547667343,
+        "fallback_rate_implied": 0.5456389452332657,
+        "mean_menu_length": 19.669371196754565,
+        "go_to_slot_share": 0.9404970609466845
+       },
+       "pick_clean_then_place_in_recep/recovery": {
+        "steps": 1564,
+        "coverage": 0.31841432225063937,
+        "fallback_rate_implied": 0.6815856777493606,
+        "mean_menu_length": 19.794757033248082,
+        "go_to_slot_share": 0.9619819761620207
+       },
+       "pick_cool_then_place_in_recep/expert-path": {
+        "steps": 1004,
+        "coverage": 0.15836653386454183,
+        "fallback_rate_implied": 0.8416334661354582,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 0.9959661354581674
+       },
+       "pick_cool_then_place_in_recep/loop-break": {
+        "steps": 437,
+        "coverage": 0.15331807780320367,
+        "fallback_rate_implied": 0.8466819221967963,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 0.9938215102974829
+       },
+       "pick_cool_then_place_in_recep/recovery": {
+        "steps": 1208,
+        "coverage": 0.19950331125827814,
+        "fallback_rate_implied": 0.8004966887417219,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 0.9931705298013245
+       },
+       "pick_heat_then_place_in_recep/expert-path": {
+        "steps": 848,
+        "coverage": 0.2971698113207547,
+        "fallback_rate_implied": 0.7028301886792453,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 0.9936320754716981
+       },
+       "pick_heat_then_place_in_recep/loop-break": {
+        "steps": 289,
+        "coverage": 0.2975778546712803,
+        "fallback_rate_implied": 0.7024221453287197,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 0.9916955017301038
+       },
+       "pick_heat_then_place_in_recep/recovery": {
+        "steps": 919,
+        "coverage": 0.32426550598476606,
+        "fallback_rate_implied": 0.6757344940152339,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 0.9913492927094668
+       },
+       "pick_two_obj_and_place/expert-path": {
+        "steps": 1158,
+        "coverage": 0.8013816925734024,
+        "fallback_rate_implied": 0.19861830742659758,
+        "mean_menu_length": 18.207253886010363,
+        "go_to_slot_share": 0.8255074938341871
+       },
+       "pick_two_obj_and_place/loop-break": {
+        "steps": 385,
+        "coverage": 0.8311688311688312,
+        "fallback_rate_implied": 0.16883116883116878,
+        "mean_menu_length": 17.789610389610388,
+        "go_to_slot_share": 0.7951525770185428
+       },
+       "pick_two_obj_and_place/recovery": {
+        "steps": 1141,
+        "coverage": 0.78965819456617,
+        "fallback_rate_implied": 0.21034180543382996,
+        "mean_menu_length": 18.179666958808063,
+        "go_to_slot_share": 0.8149255170418936
+       }
+      },
+      "by_label_kind": {
+       "clean": {
+        "steps": 214,
+        "coverage": 0.29439252336448596,
+        "fallback_rate_implied": 0.705607476635514,
+        "mean_menu_length": 19.757009345794394,
+        "go_to_slot_share": 0.9278618732261117
+       },
+       "close": {
+        "steps": 1519,
+        "coverage": 0.3008558262014483,
+        "fallback_rate_implied": 0.6991441737985518,
+        "mean_menu_length": 19.331797235023043,
+        "go_to_slot_share": 0.933253873659118
+       },
+       "cool": {
+        "steps": 196,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 0.9923469387755102
+       },
+       "examine": {
+        "steps": 56,
+        "coverage": 0.39285714285714285,
+        "fallback_rate_implied": 0.6071428571428572,
+        "mean_menu_length": 19.232142857142858,
+        "go_to_slot_share": 0.8142989786443825
+       },
+       "go to": {
+        "steps": 7786,
+        "coverage": 0.6539943488312355,
+        "fallback_rate_implied": 0.34600565116876447,
+        "mean_menu_length": 18.768045209350117,
+        "go_to_slot_share": 0.9145133034052337
+       },
+       "heat": {
+        "steps": 126,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 0.9924603174603175
+       },
+       "look": {
+        "steps": 400,
+        "coverage": 0.425,
+        "fallback_rate_implied": 0.575,
+        "mean_menu_length": 17.9225,
+        "go_to_slot_share": 0.9539684753801088
+       },
+       "move": {
+        "steps": 1378,
+        "coverage": 0.47387518142235124,
+        "fallback_rate_implied": 0.5261248185776488,
+        "mean_menu_length": 18.574020319303337,
+        "go_to_slot_share": 0.8756788435241258
+       },
+       "open": {
+        "steps": 2282,
+        "coverage": 0.2900964066608238,
+        "fallback_rate_implied": 0.7099035933391762,
+        "mean_menu_length": 19.319018404907975,
+        "go_to_slot_share": 0.9426348500657805
+       },
+       "take": {
+        "steps": 1287,
+        "coverage": 0.46231546231546233,
+        "fallback_rate_implied": 0.5376845376845376,
+        "mean_menu_length": 19.295260295260295,
+        "go_to_slot_share": 0.8359441066323038
+       },
+       "use": {
+        "steps": 139,
+        "coverage": 0.8920863309352518,
+        "fallback_rate_implied": 0.1079136690647482,
+        "mean_menu_length": 17.402877697841728,
+        "go_to_slot_share": 0.7482430756510955
+       }
+      },
+      "expert_runs_with_every_label_on_menu": 0.3975,
+      "expert_runs": 400
+     },
+     "all": {
+      "overall": {
+       "steps": 15383,
+       "coverage": 1.0,
+       "fallback_rate_implied": 0.0,
+       "mean_menu_length": 29.839758174608335,
+       "go_to_slot_share": 0.8261423669734764
+      },
+      "by_task_type": {
+       "look_at_obj_in_light": {
+        "steps": 1206,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 19.828358208955223,
+        "go_to_slot_share": 0.7493413624388408
+       },
+       "pick_and_place_simple": {
+        "steps": 3032,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 22.227572559366756,
+        "go_to_slot_share": 0.7746683681039855
+       },
+       "pick_clean_then_place_in_recep": {
+        "steps": 3756,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 36.377529286474974,
+        "go_to_slot_share": 0.8557460075823001
+       },
+       "pick_cool_then_place_in_recep": {
+        "steps": 2649,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 38.021895054737634,
+        "go_to_slot_share": 0.8591838760921366
+       },
+       "pick_heat_then_place_in_recep": {
+        "steps": 2056,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 34.70038910505836,
+        "go_to_slot_share": 0.8432524108544517
+       },
+       "pick_two_obj_and_place": {
+        "steps": 2684,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 21.98956780923994,
+        "go_to_slot_share": 0.7704337512707556
+       }
+      },
+      "by_family": {
+       "expert-path": {
+        "steps": 6385,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 30.209083790133125,
+        "go_to_slot_share": 0.8388469813619515
+       },
+       "loop-break": {
+        "steps": 2426,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 28.119950535861502,
+        "go_to_slot_share": 0.8132924844984535
+       },
+       "recovery": {
+        "steps": 6572,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 30.11579427875837,
+        "go_to_slot_share": 0.8181900859433815
+       }
+      },
+      "by_task_type_and_family": {
+       "look_at_obj_in_light/expert-path": {
+        "steps": 536,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 21.14365671641791,
+        "go_to_slot_share": 0.779140562957734
+       },
+       "look_at_obj_in_light/loop-break": {
+        "steps": 210,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 17.65714285714286,
+        "go_to_slot_share": 0.7127831715210357
+       },
+       "look_at_obj_in_light/recovery": {
+        "steps": 460,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 19.286956521739132,
+        "go_to_slot_share": 0.7265554553651938
+       },
+       "pick_and_place_simple/expert-path": {
+        "steps": 1140,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 22.313157894736843,
+        "go_to_slot_share": 0.7937649880095923
+       },
+       "pick_and_place_simple/loop-break": {
+        "steps": 612,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 21.73856209150327,
+        "go_to_slot_share": 0.7713469633193024
+       },
+       "pick_and_place_simple/recovery": {
+        "steps": 1280,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 22.38515625,
+        "go_to_slot_share": 0.7592573203503996
+       },
+       "pick_clean_then_place_in_recep/expert-path": {
+        "steps": 1699,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 37.55444379046498,
+        "go_to_slot_share": 0.8685996395266828
+       },
+       "pick_clean_then_place_in_recep/loop-break": {
+        "steps": 493,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 32.72210953346856,
+        "go_to_slot_share": 0.8388916439375155
+       },
+       "pick_clean_then_place_in_recep/recovery": {
+        "steps": 1564,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 36.25127877237852,
+        "go_to_slot_share": 0.8460765119847611
+       },
+       "pick_cool_then_place_in_recep/expert-path": {
+        "steps": 1004,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 37.97410358565737,
+        "go_to_slot_share": 0.8655248386927556
+       },
+       "pick_cool_then_place_in_recep/loop-break": {
+        "steps": 437,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 37.986270022883296,
+        "go_to_slot_share": 0.8613855421686747
+       },
+       "pick_cool_then_place_in_recep/recovery": {
+        "steps": 1208,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 38.074503311258276,
+        "go_to_slot_share": 0.8531330173500892
+       },
+       "pick_heat_then_place_in_recep/expert-path": {
+        "steps": 848,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 33.77122641509434,
+        "go_to_slot_share": 0.8498847684894196
+       },
+       "pick_heat_then_place_in_recep/loop-break": {
+        "steps": 289,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 35.49480968858131,
+        "go_to_slot_share": 0.8387599922012088
+       },
+       "pick_heat_then_place_in_recep/recovery": {
+        "steps": 919,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 35.30794341675735,
+        "go_to_slot_share": 0.838819033530572
+       },
+       "pick_two_obj_and_place/expert-path": {
+        "steps": 1158,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 22.060449050086355,
+        "go_to_slot_share": 0.783723479213967
+       },
+       "pick_two_obj_and_place/loop-break": {
+        "steps": 385,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 21.34285714285714,
+        "go_to_slot_share": 0.7473530485578679
+       },
+       "pick_two_obj_and_place/recovery": {
+        "steps": 1141,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 22.135845749342682,
+        "go_to_slot_share": 0.7645009304351269
+       }
+      },
+      "by_label_kind": {
+       "clean": {
+        "steps": 214,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 33.88785046728972,
+        "go_to_slot_share": 0.8124655267512411
+       },
+       "close": {
+        "steps": 1519,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 32.70967741935484,
+        "go_to_slot_share": 0.8416052811657208
+       },
+       "cool": {
+        "steps": 196,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 38.12755102040816,
+        "go_to_slot_share": 0.8416967750568713
+       },
+       "examine": {
+        "steps": 56,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 27.214285714285715,
+        "go_to_slot_share": 0.7198162729658792
+       },
+       "go to": {
+        "steps": 7786,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 28.882738248137684,
+        "go_to_slot_share": 0.8342056465419488
+       },
+       "heat": {
+        "steps": 126,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 36.182539682539684,
+        "go_to_slot_share": 0.8335161219565694
+       },
+       "look": {
+        "steps": 400,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 25.91,
+        "go_to_slot_share": 0.9228097259745273
+       },
+       "move": {
+        "steps": 1378,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 27.60812772133527,
+        "go_to_slot_share": 0.7964987908737252
+       },
+       "open": {
+        "steps": 2282,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 32.256792287467135,
+        "go_to_slot_share": 0.860535253362315
+       },
+       "take": {
+        "steps": 1287,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 30.257964257964257,
+        "go_to_slot_share": 0.7103641312721484
+       },
+       "use": {
+        "steps": 139,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 19.35251798561151,
+        "go_to_slot_share": 0.6895910780669146
+       }
+      },
+      "expert_runs_with_every_label_on_menu": 1.0,
+      "expert_runs": 400
+     }
+    }
+   }
+  },
+  "dev_heldout_rooms": {
+   "games": 168,
+   "runs": {
+    "expert-path/lost": 6,
+    "expert-path/won": 498,
+    "loop-break/lost": 3,
+    "loop-break/won": 495,
+    "recovery/lost": 18,
+    "recovery/won": 812
+   },
+   "rows_counted": 21387,
+   "admissible_per_step": {
+    "mean": 28.229322789756793,
+    "max": 55,
+    "steps": 21751
+   },
+   "admissible_kind_share": {
+    "go to": 0.8179900849489264,
+    "examine": 0.04874954398582448,
+    "take": 0.03642087502605795,
+    "inventory": 0.03542415832812174,
+    "look": 0.03542415832812174,
+    "open": 0.010928053992078383,
+    "move": 0.006952587554721701,
+    "close": 0.00444125234521576,
+    "cool": 0.0014348160308526163,
+    "use": 0.0008843417761100688,
+    "heat": 0.000804539295392954,
+    "clean": 0.0005407025224098395,
+    "slice": 4.885866166353971e-06
+   },
+   "label_kinds": {
+    "expert-path/clean": 51,
+    "expert-path/close": 993,
+    "expert-path/cool": 111,
+    "expert-path/go to": 5127,
+    "expert-path/heat": 78,
+    "expert-path/look": 498,
+    "expert-path/move": 556,
+    "expert-path/open": 1128,
+    "expert-path/take": 606,
+    "expert-path/use": 45,
+    "loop-break/clean": 15,
+    "loop-break/close": 144,
+    "loop-break/cool": 33,
+    "loop-break/examine": 24,
+    "loop-break/go to": 2053,
+    "loop-break/heat": 19,
+    "loop-break/move": 230,
+    "loop-break/open": 311,
+    "loop-break/take": 229,
+    "loop-break/use": 23,
+    "recovery/clean": 74,
+    "recovery/close": 898,
+    "recovery/cool": 161,
+    "recovery/examine": 14,
+    "recovery/go to": 4522,
+    "recovery/heat": 113,
+    "recovery/move": 968,
+    "recovery/open": 1474,
+    "recovery/take": 813,
+    "recovery/use": 76
+   },
+   "flagged_labels_won_runs": {
+    "expert-path/inadmissible": 86,
+    "expert-path/random-draw": 90,
+    "loop-break/inadmissible": 44,
+    "loop-break/random-draw": 23,
+    "recovery/inadmissible": 63,
+    "recovery/random-draw": 58
+   },
+   "inserted_commands_on_menu": {
+    "form": {
+     "5": {
+      "loop-break/commands": 1843,
+      "loop-break/on_menu": 560,
+      "recovery/commands": 2374,
+      "recovery/on_menu": 596
+     },
+     "10": {
+      "loop-break/commands": 1843,
+      "loop-break/on_menu": 1096,
+      "recovery/commands": 2374,
+      "recovery/on_menu": 1169
+     },
+     "20": {
+      "loop-break/commands": 1843,
+      "loop-break/on_menu": 1479,
+      "recovery/commands": 2374,
+      "recovery/on_menu": 1872
+     },
+     "all": {
+      "loop-break/commands": 1843,
+      "loop-break/on_menu": 1843,
+      "recovery/commands": 2374,
+      "recovery/on_menu": 2374
+     }
+    },
+    "kind": {
+     "5": {
+      "loop-break/commands": 1843,
+      "loop-break/on_menu": 178,
+      "recovery/commands": 2374,
+      "recovery/on_menu": 575
+     },
+     "10": {
+      "loop-break/commands": 1843,
+      "loop-break/on_menu": 450,
+      "recovery/commands": 2374,
+      "recovery/on_menu": 1136
+     },
+     "20": {
+      "loop-break/commands": 1843,
+      "loop-break/on_menu": 1000,
+      "recovery/commands": 2374,
+      "recovery/on_menu": 1838
+     },
+     "all": {
+      "loop-break/commands": 1843,
+      "loop-break/on_menu": 1843,
+      "recovery/commands": 2374,
+      "recovery/on_menu": 2374
+     }
+    }
+   },
+   "form_curve": {
+    "5": {
+     "expert_rows": 9193,
+     "expert_rows_on_menu": 2609,
+     "expert_runs": 498,
+     "expert_runs/look_at_obj_in_light": 45,
+     "expert_runs/pick_and_place_simple": 105,
+     "expert_runs/pick_clean_then_place_in_recep": 51,
+     "expert_runs/pick_cool_then_place_in_recep": 111,
+     "expert_runs/pick_heat_then_place_in_recep": 78,
+     "expert_runs/pick_two_obj_and_place": 108,
+     "expert_runs_all_on_menu": 0,
+     "expert_runs_all_on_menu/look_at_obj_in_light": 0,
+     "expert_runs_all_on_menu/pick_and_place_simple": 0,
+     "expert_runs_all_on_menu/pick_clean_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_cool_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_heat_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_two_obj_and_place": 0,
+     "menu_slots": 106935,
+     "rows": 21387,
+     "rows_on_menu": 5618
+    },
+    "8": {
+     "expert_rows": 9193,
+     "expert_rows_on_menu": 4519,
+     "expert_runs": 498,
+     "expert_runs/look_at_obj_in_light": 45,
+     "expert_runs/pick_and_place_simple": 105,
+     "expert_runs/pick_clean_then_place_in_recep": 51,
+     "expert_runs/pick_cool_then_place_in_recep": 111,
+     "expert_runs/pick_heat_then_place_in_recep": 78,
+     "expert_runs/pick_two_obj_and_place": 108,
+     "expert_runs_all_on_menu": 24,
+     "expert_runs_all_on_menu/look_at_obj_in_light": 16,
+     "expert_runs_all_on_menu/pick_and_place_simple": 6,
+     "expert_runs_all_on_menu/pick_clean_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_cool_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_heat_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_two_obj_and_place": 2,
+     "menu_slots": 171096,
+     "rows": 21387,
+     "rows_on_menu": 9769
+    },
+    "10": {
+     "expert_rows": 9193,
+     "expert_rows_on_menu": 5061,
+     "expert_runs": 498,
+     "expert_runs/look_at_obj_in_light": 45,
+     "expert_runs/pick_and_place_simple": 105,
+     "expert_runs/pick_clean_then_place_in_recep": 51,
+     "expert_runs/pick_cool_then_place_in_recep": 111,
+     "expert_runs/pick_heat_then_place_in_recep": 78,
+     "expert_runs/pick_two_obj_and_place": 108,
+     "expert_runs_all_on_menu": 65,
+     "expert_runs_all_on_menu/look_at_obj_in_light": 33,
+     "expert_runs_all_on_menu/pick_and_place_simple": 18,
+     "expert_runs_all_on_menu/pick_clean_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_cool_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_heat_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_two_obj_and_place": 14,
+     "menu_slots": 213512,
+     "rows": 21387,
+     "rows_on_menu": 11062
+    },
+    "12": {
+     "expert_rows": 9193,
+     "expert_rows_on_menu": 5552,
+     "expert_runs": 498,
+     "expert_runs/look_at_obj_in_light": 45,
+     "expert_runs/pick_and_place_simple": 105,
+     "expert_runs/pick_clean_then_place_in_recep": 51,
+     "expert_runs/pick_cool_then_place_in_recep": 111,
+     "expert_runs/pick_heat_then_place_in_recep": 78,
+     "expert_runs/pick_two_obj_and_place": 108,
+     "expert_runs_all_on_menu": 106,
+     "expert_runs_all_on_menu/look_at_obj_in_light": 37,
+     "expert_runs_all_on_menu/pick_and_place_simple": 20,
+     "expert_runs_all_on_menu/pick_clean_then_place_in_recep": 21,
+     "expert_runs_all_on_menu/pick_cool_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_heat_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_two_obj_and_place": 28,
+     "menu_slots": 253346,
+     "rows": 21387,
+     "rows_on_menu": 12385
+    },
+    "15": {
+     "expert_rows": 9193,
+     "expert_rows_on_menu": 6667,
+     "expert_runs": 498,
+     "expert_runs/look_at_obj_in_light": 45,
+     "expert_runs/pick_and_place_simple": 105,
+     "expert_runs/pick_clean_then_place_in_recep": 51,
+     "expert_runs/pick_cool_then_place_in_recep": 111,
+     "expert_runs/pick_heat_then_place_in_recep": 78,
+     "expert_runs/pick_two_obj_and_place": 108,
+     "expert_runs_all_on_menu": 176,
+     "expert_runs_all_on_menu/look_at_obj_in_light": 45,
+     "expert_runs_all_on_menu/pick_and_place_simple": 45,
+     "expert_runs_all_on_menu/pick_clean_then_place_in_recep": 21,
+     "expert_runs_all_on_menu/pick_cool_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_heat_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_two_obj_and_place": 65,
+     "menu_slots": 309472,
+     "rows": 21387,
+     "rows_on_menu": 15059
+    },
+    "18": {
+     "expert_rows": 9193,
+     "expert_rows_on_menu": 7794,
+     "expert_runs": 498,
+     "expert_runs/look_at_obj_in_light": 45,
+     "expert_runs/pick_and_place_simple": 105,
+     "expert_runs/pick_clean_then_place_in_recep": 51,
+     "expert_runs/pick_cool_then_place_in_recep": 111,
+     "expert_runs/pick_heat_then_place_in_recep": 78,
+     "expert_runs/pick_two_obj_and_place": 108,
+     "expert_runs_all_on_menu": 251,
+     "expert_runs_all_on_menu/look_at_obj_in_light": 45,
+     "expert_runs_all_on_menu/pick_and_place_simple": 89,
+     "expert_runs_all_on_menu/pick_clean_then_place_in_recep": 21,
+     "expert_runs_all_on_menu/pick_cool_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_heat_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_two_obj_and_place": 96,
+     "menu_slots": 363923,
+     "rows": 21387,
+     "rows_on_menu": 17738
+    },
+    "20": {
+     "expert_rows": 9193,
+     "expert_rows_on_menu": 7845,
+     "expert_runs": 498,
+     "expert_runs/look_at_obj_in_light": 45,
+     "expert_runs/pick_and_place_simple": 105,
+     "expert_runs/pick_clean_then_place_in_recep": 51,
+     "expert_runs/pick_cool_then_place_in_recep": 111,
+     "expert_runs/pick_heat_then_place_in_recep": 78,
+     "expert_runs/pick_two_obj_and_place": 108,
+     "expert_runs_all_on_menu": 257,
+     "expert_runs_all_on_menu/look_at_obj_in_light": 45,
+     "expert_runs_all_on_menu/pick_and_place_simple": 92,
+     "expert_runs_all_on_menu/pick_clean_then_place_in_recep": 21,
+     "expert_runs_all_on_menu/pick_cool_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_heat_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_two_obj_and_place": 99,
+     "menu_slots": 393231,
+     "rows": 21387,
+     "rows_on_menu": 17901
+    },
+    "22": {
+     "expert_rows": 9193,
+     "expert_rows_on_menu": 7846,
+     "expert_runs": 498,
+     "expert_runs/look_at_obj_in_light": 45,
+     "expert_runs/pick_and_place_simple": 105,
+     "expert_runs/pick_clean_then_place_in_recep": 51,
+     "expert_runs/pick_cool_then_place_in_recep": 111,
+     "expert_runs/pick_heat_then_place_in_recep": 78,
+     "expert_runs/pick_two_obj_and_place": 108,
+     "expert_runs_all_on_menu": 258,
+     "expert_runs_all_on_menu/look_at_obj_in_light": 45,
+     "expert_runs_all_on_menu/pick_and_place_simple": 93,
+     "expert_runs_all_on_menu/pick_clean_then_place_in_recep": 21,
+     "expert_runs_all_on_menu/pick_cool_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_heat_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_two_obj_and_place": 99,
+     "menu_slots": 418695,
+     "rows": 21387,
+     "rows_on_menu": 17910
+    },
+    "25": {
+     "expert_rows": 9193,
+     "expert_rows_on_menu": 7846,
+     "expert_runs": 498,
+     "expert_runs/look_at_obj_in_light": 45,
+     "expert_runs/pick_and_place_simple": 105,
+     "expert_runs/pick_clean_then_place_in_recep": 51,
+     "expert_runs/pick_cool_then_place_in_recep": 111,
+     "expert_runs/pick_heat_then_place_in_recep": 78,
+     "expert_runs/pick_two_obj_and_place": 108,
+     "expert_runs_all_on_menu": 258,
+     "expert_runs_all_on_menu/look_at_obj_in_light": 45,
+     "expert_runs_all_on_menu/pick_and_place_simple": 93,
+     "expert_runs_all_on_menu/pick_clean_then_place_in_recep": 21,
+     "expert_runs_all_on_menu/pick_cool_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_heat_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_two_obj_and_place": 99,
+     "menu_slots": 455994,
+     "rows": 21387,
+     "rows_on_menu": 17922
+    },
+    "30": {
+     "expert_rows": 9193,
+     "expert_rows_on_menu": 8005,
+     "expert_runs": 498,
+     "expert_runs/look_at_obj_in_light": 45,
+     "expert_runs/pick_and_place_simple": 105,
+     "expert_runs/pick_clean_then_place_in_recep": 51,
+     "expert_runs/pick_cool_then_place_in_recep": 111,
+     "expert_runs/pick_heat_then_place_in_recep": 78,
+     "expert_runs/pick_two_obj_and_place": 108,
+     "expert_runs_all_on_menu": 258,
+     "expert_runs_all_on_menu/look_at_obj_in_light": 45,
+     "expert_runs_all_on_menu/pick_and_place_simple": 93,
+     "expert_runs_all_on_menu/pick_clean_then_place_in_recep": 21,
+     "expert_runs_all_on_menu/pick_cool_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_heat_then_place_in_recep": 0,
+     "expert_runs_all_on_menu/pick_two_obj_and_place": 99,
+     "menu_slots": 517899,
+     "rows": 21387,
+     "rows_on_menu": 18281
+    },
+    "35": {
+     "expert_rows": 9193,
+     "expert_rows_on_menu": 9088,
+     "expert_runs": 498,
+     "expert_runs/look_at_obj_in_light": 45,
+     "expert_runs/pick_and_place_simple": 105,
+     "expert_runs/pick_clean_then_place_in_recep": 51,
+     "expert_runs/pick_cool_then_place_in_recep": 111,
+     "expert_runs/pick_heat_then_place_in_recep": 78,
+     "expert_runs/pick_two_obj_and_place": 108,
+     "expert_runs_all_on_menu": 402,
+     "expert_runs_all_on_menu/look_at_obj_in_light": 45,
+     "expert_runs_all_on_menu/pick_and_place_simple": 96,
+     "expert_runs_all_on_menu/pick_clean_then_place_in_recep": 36,
+     "expert_runs_all_on_menu/pick_cool_then_place_in_recep": 81,
+     "expert_runs_all_on_menu/pick_heat_then_place_in_recep": 45,
+     "expert_runs_all_on_menu/pick_two_obj_and_place": 99,
+     "menu_slots": 579804,
+     "rows": 21387,
+     "rows_on_menu": 21094
+    },
+    "40": {
+     "expert_rows": 9193,
+     "expert_rows_on_menu": 9166,
+     "expert_runs": 498,
+     "expert_runs/look_at_obj_in_light": 45,
+     "expert_runs/pick_and_place_simple": 105,
+     "expert_runs/pick_clean_then_place_in_recep": 51,
+     "expert_runs/pick_cool_then_place_in_recep": 111,
+     "expert_runs/pick_heat_then_place_in_recep": 78,
+     "expert_runs/pick_two_obj_and_place": 108,
+     "expert_runs_all_on_menu": 471,
+     "expert_runs_all_on_menu/look_at_obj_in_light": 45,
+     "expert_runs_all_on_menu/pick_and_place_simple": 102,
+     "expert_runs_all_on_menu/pick_clean_then_place_in_recep": 36,
+     "expert_runs_all_on_menu/pick_cool_then_place_in_recep": 110,
+     "expert_runs_all_on_menu/pick_heat_then_place_in_recep": 72,
+     "expert_runs_all_on_menu/pick_two_obj_and_place": 106,
+     "menu_slots": 601512,
+     "rows": 21387,
+     "rows_on_menu": 21318
+    },
+    "all": {
+     "expert_rows": 9193,
+     "expert_rows_on_menu": 9193,
+     "expert_runs": 498,
+     "expert_runs/look_at_obj_in_light": 45,
+     "expert_runs/pick_and_place_simple": 105,
+     "expert_runs/pick_clean_then_place_in_recep": 51,
+     "expert_runs/pick_cool_then_place_in_recep": 111,
+     "expert_runs/pick_heat_then_place_in_recep": 78,
+     "expert_runs/pick_two_obj_and_place": 108,
+     "expert_runs_all_on_menu": 498,
+     "expert_runs_all_on_menu/look_at_obj_in_light": 45,
+     "expert_runs_all_on_menu/pick_and_place_simple": 105,
+     "expert_runs_all_on_menu/pick_clean_then_place_in_recep": 51,
+     "expert_runs_all_on_menu/pick_cool_then_place_in_recep": 111,
+     "expert_runs_all_on_menu/pick_heat_then_place_in_recep": 78,
+     "expert_runs_all_on_menu/pick_two_obj_and_place": 108,
+     "menu_slots": 606674,
+     "rows": 21387,
+     "rows_on_menu": 21387
+    }
+   },
+   "rules": {
+    "form": {
+     "5": {
+      "overall": {
+       "steps": 21387,
+       "coverage": 0.26268293823350636,
+       "fallback_rate_implied": 0.7373170617664937,
+       "mean_menu_length": 5.0,
+       "go_to_slot_share": 0.9109739561415814
+      },
+      "by_task_type": {
+       "look_at_obj_in_light": {
+        "steps": 1318,
+        "coverage": 0.6995447647951442,
+        "fallback_rate_implied": 0.30045523520485584,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.7157814871016692
+       },
+       "pick_and_place_simple": {
+        "steps": 3263,
+        "coverage": 0.28991725406068036,
+        "fallback_rate_implied": 0.7100827459393196,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.8552865461231995
+       },
+       "pick_clean_then_place_in_recep": {
+        "steps": 2718,
+        "coverage": 0.2913907284768212,
+        "fallback_rate_implied": 0.7086092715231789,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9596762325239147
+       },
+       "pick_cool_then_place_in_recep": {
+        "steps": 5510,
+        "coverage": 0.18148820326678766,
+        "fallback_rate_implied": 0.8185117967332123,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9282758620689655
+       },
+       "pick_heat_then_place_in_recep": {
+        "steps": 4338,
+        "coverage": 0.18418626094974644,
+        "fallback_rate_implied": 0.8158137390502536,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9345320424158599
+       },
+       "pick_two_obj_and_place": {
+        "steps": 4240,
+        "coverage": 0.27334905660377357,
+        "fallback_rate_implied": 0.7266509433962265,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9366981132075471
+       }
+      },
+      "by_family": {
+       "expert-path": {
+        "steps": 9193,
+        "coverage": 0.2838028935059284,
+        "fallback_rate_implied": 0.7161971064940715,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9147177200043511
+       },
+       "loop-break": {
+        "steps": 3081,
+        "coverage": 0.3200259655955858,
+        "fallback_rate_implied": 0.6799740344044142,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.8909444985394352
+       },
+       "recovery": {
+        "steps": 9113,
+        "coverage": 0.22199056293207506,
+        "fallback_rate_implied": 0.7780094370679249,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.913969055195874
+       }
+      },
+      "by_task_type_and_family": {
+       "look_at_obj_in_light/expert-path": {
+        "steps": 504,
+        "coverage": 0.8035714285714286,
+        "fallback_rate_implied": 0.1964285714285714,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.7238095238095238
+       },
+       "look_at_obj_in_light/loop-break": {
+        "steps": 286,
+        "coverage": 0.7062937062937062,
+        "fallback_rate_implied": 0.29370629370629375,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.734965034965035
+       },
+       "look_at_obj_in_light/recovery": {
+        "steps": 528,
+        "coverage": 0.5965909090909091,
+        "fallback_rate_implied": 0.40340909090909094,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.6977272727272728
+       },
+       "pick_and_place_simple/expert-path": {
+        "steps": 1250,
+        "coverage": 0.348,
+        "fallback_rate_implied": 0.652,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.85712
+       },
+       "pick_and_place_simple/loop-break": {
+        "steps": 607,
+        "coverage": 0.2932454695222405,
+        "fallback_rate_implied": 0.7067545304777595,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.8560131795716639
+       },
+       "pick_and_place_simple/recovery": {
+        "steps": 1406,
+        "coverage": 0.23684210526315788,
+        "fallback_rate_implied": 0.7631578947368421,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.8533428165007112
+       },
+       "pick_clean_then_place_in_recep/expert-path": {
+        "steps": 1176,
+        "coverage": 0.28061224489795916,
+        "fallback_rate_implied": 0.7193877551020409,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9612244897959183
+       },
+       "pick_clean_then_place_in_recep/loop-break": {
+        "steps": 332,
+        "coverage": 0.286144578313253,
+        "fallback_rate_implied": 0.713855421686747,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9728915662650602
+       },
+       "pick_clean_then_place_in_recep/recovery": {
+        "steps": 1210,
+        "coverage": 0.30330578512396694,
+        "fallback_rate_implied": 0.6966942148760331,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9545454545454546
+       },
+       "pick_cool_then_place_in_recep/expert-path": {
+        "steps": 2511,
+        "coverage": 0.2019115890083632,
+        "fallback_rate_implied": 0.7980884109916369,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9273596176821983
+       },
+       "pick_cool_then_place_in_recep/loop-break": {
+        "steps": 695,
+        "coverage": 0.2158273381294964,
+        "fallback_rate_implied": 0.7841726618705036,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9044604316546763
+       },
+       "pick_cool_then_place_in_recep/recovery": {
+        "steps": 2304,
+        "coverage": 0.1488715277777778,
+        "fallback_rate_implied": 0.8511284722222222,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9364583333333333
+       },
+       "pick_heat_then_place_in_recep/expert-path": {
+        "steps": 2031,
+        "coverage": 0.19940915805022155,
+        "fallback_rate_implied": 0.8005908419497785,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9314623338257016
+       },
+       "pick_heat_then_place_in_recep/loop-break": {
+        "steps": 509,
+        "coverage": 0.32612966601178783,
+        "fallback_rate_implied": 0.6738703339882122,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.899803536345776
+       },
+       "pick_heat_then_place_in_recep/recovery": {
+        "steps": 1798,
+        "coverage": 0.12680756395995552,
+        "fallback_rate_implied": 0.8731924360400445,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9478309232480534
+       },
+       "pick_two_obj_and_place/expert-path": {
+        "steps": 1721,
+        "coverage": 0.3062173155142359,
+        "fallback_rate_implied": 0.6937826844857641,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9424753050552005
+       },
+       "pick_two_obj_and_place/loop-break": {
+        "steps": 652,
+        "coverage": 0.299079754601227,
+        "fallback_rate_implied": 0.7009202453987731,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9288343558282208
+       },
+       "pick_two_obj_and_place/recovery": {
+        "steps": 1867,
+        "coverage": 0.2340653454740225,
+        "fallback_rate_implied": 0.7659346545259775,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9341189073379753
+       }
+      },
+      "by_label_kind": {
+       "clean": {
+        "steps": 140,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.89
+       },
+       "close": {
+        "steps": 2035,
+        "coverage": 0.12923832923832923,
+        "fallback_rate_implied": 0.8707616707616708,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9253071253071253
+       },
+       "cool": {
+        "steps": 305,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.8
+       },
+       "examine": {
+        "steps": 38,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.8736842105263158
+       },
+       "go to": {
+        "steps": 11702,
+        "coverage": 0.40181165612715775,
+        "fallback_rate_implied": 0.5981883438728423,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9072637156041702
+       },
+       "heat": {
+        "steps": 210,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.8
+       },
+       "look": {
+        "steps": 498,
+        "coverage": 0.29518072289156627,
+        "fallback_rate_implied": 0.7048192771084337,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9409638554216867
+       },
+       "move": {
+        "steps": 1754,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9277080957810718
+       },
+       "open": {
+        "steps": 2913,
+        "coverage": 0.12427051150017164,
+        "fallback_rate_implied": 0.8757294884998283,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9348438036388603
+       },
+       "take": {
+        "steps": 1648,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.9150485436893204
+       },
+       "use": {
+        "steps": 144,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 0.6
+       }
+      },
+      "expert_runs_with_every_label_on_menu": 0.0,
+      "expert_runs": 498
+     },
+     "10": {
+      "overall": {
+       "steps": 21387,
+       "coverage": 0.5172300930471782,
+       "fallback_rate_implied": 0.48276990695282185,
+       "mean_menu_length": 9.98326085940057,
+       "go_to_slot_share": 0.8463177713664806
+      },
+      "by_task_type": {
+       "look_at_obj_in_light": {
+        "steps": 1318,
+        "coverage": 0.9537177541729894,
+        "fallback_rate_implied": 0.04628224582701057,
+        "mean_menu_length": 9.87101669195751,
+        "go_to_slot_share": 0.6163720215219062
+       },
+       "pick_and_place_simple": {
+        "steps": 3263,
+        "coverage": 0.657983450812136,
+        "fallback_rate_implied": 0.34201654918786395,
+        "mean_menu_length": 9.970579221575237,
+        "go_to_slot_share": 0.8287022806909694
+       },
+       "pick_clean_then_place_in_recep": {
+        "steps": 2718,
+        "coverage": 0.6103752759381899,
+        "fallback_rate_implied": 0.38962472406181015,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8534216335540838
+       },
+       "pick_cool_then_place_in_recep": {
+        "steps": 5510,
+        "coverage": 0.3332123411978221,
+        "fallback_rate_implied": 0.6667876588021779,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8950635208711434
+       },
+       "pick_heat_then_place_in_recep": {
+        "steps": 4338,
+        "coverage": 0.37459658828953435,
+        "fallback_rate_implied": 0.6254034117104657,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8945827570308899
+       },
+       "pick_two_obj_and_place": {
+        "steps": 4240,
+        "coverage": 0.5985849056603774,
+        "fallback_rate_implied": 0.40141509433962264,
+        "mean_menu_length": 9.978301886792453,
+        "go_to_slot_share": 0.813037723362012
+       }
+      },
+      "by_family": {
+       "expert-path": {
+        "steps": 9193,
+        "coverage": 0.5505275753290547,
+        "fallback_rate_implied": 0.4494724246709453,
+        "mean_menu_length": 9.974872185358425,
+        "go_to_slot_share": 0.853520758132586
+       },
+       "loop-break": {
+        "steps": 3081,
+        "coverage": 0.5715676728334956,
+        "fallback_rate_implied": 0.42843232716650437,
+        "mean_menu_length": 9.978578383641675,
+        "go_to_slot_share": 0.8324225865209471
+       },
+       "recovery": {
+        "steps": 9113,
+        "coverage": 0.4652693953692527,
+        "fallback_rate_implied": 0.5347306046307473,
+        "mean_menu_length": 9.99330626577417,
+        "go_to_slot_share": 0.843755833488893
+       }
+      },
+      "by_task_type_and_family": {
+       "look_at_obj_in_light/expert-path": {
+        "steps": 504,
+        "coverage": 0.9761904761904762,
+        "fallback_rate_implied": 0.023809523809523836,
+        "mean_menu_length": 9.779761904761905,
+        "go_to_slot_share": 0.6317711503347535
+       },
+       "look_at_obj_in_light/loop-break": {
+        "steps": 286,
+        "coverage": 0.9545454545454546,
+        "fallback_rate_implied": 0.045454545454545414,
+        "mean_menu_length": 9.905594405594405,
+        "go_to_slot_share": 0.6113660430638899
+       },
+       "look_at_obj_in_light/recovery": {
+        "steps": 528,
+        "coverage": 0.9318181818181818,
+        "fallback_rate_implied": 0.06818181818181823,
+        "mean_menu_length": 9.93939393939394,
+        "go_to_slot_share": 0.6046112804878049
+       },
+       "pick_and_place_simple/expert-path": {
+        "steps": 1250,
+        "coverage": 0.7184,
+        "fallback_rate_implied": 0.28159999999999996,
+        "mean_menu_length": 9.9592,
+        "go_to_slot_share": 0.8328379789541328
+       },
+       "pick_and_place_simple/loop-break": {
+        "steps": 607,
+        "coverage": 0.6112026359143328,
+        "fallback_rate_implied": 0.38879736408566723,
+        "mean_menu_length": 9.957166392092256,
+        "go_to_slot_share": 0.8338848444738584
+       },
+       "pick_and_place_simple/recovery": {
+        "steps": 1406,
+        "coverage": 0.6244665718349929,
+        "fallback_rate_implied": 0.3755334281650071,
+        "mean_menu_length": 9.986486486486486,
+        "go_to_slot_share": 0.8228046435439071
+       },
+       "pick_clean_then_place_in_recep/expert-path": {
+        "steps": 1176,
+        "coverage": 0.6428571428571429,
+        "fallback_rate_implied": 0.3571428571428571,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8525510204081632
+       },
+       "pick_clean_then_place_in_recep/loop-break": {
+        "steps": 332,
+        "coverage": 0.6506024096385542,
+        "fallback_rate_implied": 0.3493975903614458,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.855722891566265
+       },
+       "pick_clean_then_place_in_recep/recovery": {
+        "steps": 1210,
+        "coverage": 0.5677685950413223,
+        "fallback_rate_implied": 0.43223140495867773,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8536363636363636
+       },
+       "pick_cool_then_place_in_recep/expert-path": {
+        "steps": 2511,
+        "coverage": 0.3954599761051374,
+        "fallback_rate_implied": 0.6045400238948626,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8941457586618877
+       },
+       "pick_cool_then_place_in_recep/loop-break": {
+        "steps": 695,
+        "coverage": 0.3381294964028777,
+        "fallback_rate_implied": 0.6618705035971223,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8941007194244605
+       },
+       "pick_cool_then_place_in_recep/recovery": {
+        "steps": 2304,
+        "coverage": 0.2638888888888889,
+        "fallback_rate_implied": 0.7361111111111112,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8963541666666667
+       },
+       "pick_heat_then_place_in_recep/expert-path": {
+        "steps": 2031,
+        "coverage": 0.4239290989660266,
+        "fallback_rate_implied": 0.5760709010339734,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.893943870014771
+       },
+       "pick_heat_then_place_in_recep/loop-break": {
+        "steps": 509,
+        "coverage": 0.48526522593320237,
+        "fallback_rate_implied": 0.5147347740667976,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8976424361493124
+       },
+       "pick_heat_then_place_in_recep/recovery": {
+        "steps": 1798,
+        "coverage": 0.2875417130144605,
+        "fallback_rate_implied": 0.7124582869855395,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8944382647385984
+       },
+       "pick_two_obj_and_place/expert-path": {
+        "steps": 1721,
+        "coverage": 0.6165020337013364,
+        "fallback_rate_implied": 0.3834979662986636,
+        "mean_menu_length": 9.95990703079605,
+        "go_to_slot_share": 0.8255644361472493
+       },
+       "pick_two_obj_and_place/loop-break": {
+        "steps": 652,
+        "coverage": 0.6426380368098159,
+        "fallback_rate_implied": 0.3573619631901841,
+        "mean_menu_length": 9.980061349693251,
+        "go_to_slot_share": 0.7985246657445828
+       },
+       "pick_two_obj_and_place/recovery": {
+        "steps": 1867,
+        "coverage": 0.5666845206213176,
+        "fallback_rate_implied": 0.4333154793786824,
+        "mean_menu_length": 9.994643813604714,
+        "go_to_slot_share": 0.8065916398713826
+       }
+      },
+      "by_label_kind": {
+       "clean": {
+        "steps": 140,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.9
+       },
+       "close": {
+        "steps": 2035,
+        "coverage": 0.33366093366093363,
+        "fallback_rate_implied": 0.6663390663390664,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8452088452088452
+       },
+       "cool": {
+        "steps": 305,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.9
+       },
+       "examine": {
+        "steps": 38,
+        "coverage": 0.05263157894736842,
+        "fallback_rate_implied": 0.9473684210526316,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8
+       },
+       "go to": {
+        "steps": 11702,
+        "coverage": 0.672620064946163,
+        "fallback_rate_implied": 0.327379935053837,
+        "mean_menu_length": 9.977867031276705,
+        "go_to_slot_share": 0.8513630407413434
+       },
+       "heat": {
+        "steps": 210,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.9
+       },
+       "look": {
+        "steps": 498,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 9.801204819277109,
+        "go_to_slot_share": 0.8776889981561156
+       },
+       "move": {
+        "steps": 1754,
+        "coverage": 0.1864310148232611,
+        "fallback_rate_implied": 0.8135689851767389,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8370581527936146
+       },
+       "open": {
+        "steps": 2913,
+        "coverage": 0.4390662547202197,
+        "fallback_rate_implied": 0.5609337452797802,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8366632337796086
+       },
+       "take": {
+        "steps": 1648,
+        "coverage": 0.15898058252427186,
+        "fallback_rate_implied": 0.8410194174757282,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8308252427184466
+       },
+       "use": {
+        "steps": 144,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.6
+       }
+      },
+      "expert_runs_with_every_label_on_menu": 0.13052208835341367,
+      "expert_runs": 498
+     },
+     "20": {
+      "overall": {
+       "steps": 21387,
+       "coverage": 0.8370037873474541,
+       "fallback_rate_implied": 0.16299621265254594,
+       "mean_menu_length": 18.386449712442136,
+       "go_to_slot_share": 0.8420317828451979
+      },
+      "by_task_type": {
+       "look_at_obj_in_light": {
+        "steps": 1318,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 11.406676783004553,
+        "go_to_slot_share": 0.5333909804443262
+       },
+       "pick_and_place_simple": {
+        "steps": 3263,
+        "coverage": 0.9178669935642048,
+        "fallback_rate_implied": 0.08213300643579524,
+        "mean_menu_length": 17.44161814281336,
+        "go_to_slot_share": 0.7638283666010683
+       },
+       "pick_clean_then_place_in_recep": {
+        "steps": 2718,
+        "coverage": 0.8969830757910228,
+        "fallback_rate_implied": 0.10301692420897723,
+        "mean_menu_length": 19.450331125827816,
+        "go_to_slot_share": 0.8540271630159271
+       },
+       "pick_cool_then_place_in_recep": {
+        "steps": 5510,
+        "coverage": 0.7288566243194192,
+        "fallback_rate_implied": 0.2711433756805808,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 0.923983666061706
+       },
+       "pick_heat_then_place_in_recep": {
+        "steps": 4338,
+        "coverage": 0.760258183494698,
+        "fallback_rate_implied": 0.23974181650530202,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 0.92139234670355
+       },
+       "pick_two_obj_and_place": {
+        "steps": 4240,
+        "coverage": 0.9047169811320754,
+        "fallback_rate_implied": 0.09528301886792456,
+        "mean_menu_length": 16.853537735849056,
+        "go_to_slot_share": 0.737639765459914
+       }
+      },
+      "by_family": {
+       "expert-path": {
+        "steps": 9193,
+        "coverage": 0.8533666920482976,
+        "fallback_rate_implied": 0.14663330795170237,
+        "mean_menu_length": 18.49200478625041,
+        "go_to_slot_share": 0.855738630681718
+       },
+       "loop-break": {
+        "steps": 3081,
+        "coverage": 0.8630314832846478,
+        "fallback_rate_implied": 0.13696851671535215,
+        "mean_menu_length": 17.844206426484906,
+        "go_to_slot_share": 0.8246753246753247
+       },
+       "recovery": {
+        "steps": 9113,
+        "coverage": 0.81169757489301,
+        "fallback_rate_implied": 0.18830242510699002,
+        "mean_menu_length": 18.46329419510589,
+        "go_to_slot_share": 0.833854364777482
+       }
+      },
+      "by_task_type_and_family": {
+       "look_at_obj_in_light/expert-path": {
+        "steps": 504,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 10.910714285714286,
+        "go_to_slot_share": 0.5662847790507365
+       },
+       "look_at_obj_in_light/loop-break": {
+        "steps": 286,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 11.513986013986013,
+        "go_to_slot_share": 0.5259641664136047
+       },
+       "look_at_obj_in_light/recovery": {
+        "steps": 528,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 11.821969696969697,
+        "go_to_slot_share": 0.5083306632489587
+       },
+       "pick_and_place_simple/expert-path": {
+        "steps": 1250,
+        "coverage": 0.9224,
+        "fallback_rate_implied": 0.0776,
+        "mean_menu_length": 17.4408,
+        "go_to_slot_share": 0.7782670519700932
+       },
+       "pick_and_place_simple/loop-break": {
+        "steps": 607,
+        "coverage": 0.9209225700164745,
+        "fallback_rate_implied": 0.07907742998352552,
+        "mean_menu_length": 17.174629324546952,
+        "go_to_slot_share": 0.765083932853717
+       },
+       "pick_and_place_simple/recovery": {
+        "steps": 1406,
+        "coverage": 0.9125177809388336,
+        "fallback_rate_implied": 0.08748221906116638,
+        "mean_menu_length": 17.55761024182077,
+        "go_to_slot_share": 0.7505468686705015
+       },
+       "pick_clean_then_place_in_recep/expert-path": {
+        "steps": 1176,
+        "coverage": 0.9132653061224489,
+        "fallback_rate_implied": 0.08673469387755106,
+        "mean_menu_length": 19.387755102040817,
+        "go_to_slot_share": 0.8576315789473684
+       },
+       "pick_clean_then_place_in_recep/loop-break": {
+        "steps": 332,
+        "coverage": 0.9367469879518072,
+        "fallback_rate_implied": 0.06325301204819278,
+        "mean_menu_length": 19.403614457831324,
+        "go_to_slot_share": 0.8534616578702267
+       },
+       "pick_clean_then_place_in_recep/recovery": {
+        "steps": 1210,
+        "coverage": 0.8702479338842976,
+        "fallback_rate_implied": 0.12975206611570245,
+        "mean_menu_length": 19.52396694214876,
+        "go_to_slot_share": 0.850702675245513
+       },
+       "pick_cool_then_place_in_recep/expert-path": {
+        "steps": 2511,
+        "coverage": 0.7729988052568698,
+        "fallback_rate_implied": 0.22700119474313019,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 0.9258064516129032
+       },
+       "pick_cool_then_place_in_recep/loop-break": {
+        "steps": 695,
+        "coverage": 0.7294964028776978,
+        "fallback_rate_implied": 0.2705035971223022,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 0.9303597122302159
+       },
+       "pick_cool_then_place_in_recep/recovery": {
+        "steps": 2304,
+        "coverage": 0.6805555555555556,
+        "fallback_rate_implied": 0.3194444444444444,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 0.9200737847222222
+       },
+       "pick_heat_then_place_in_recep/expert-path": {
+        "steps": 2031,
+        "coverage": 0.794682422451994,
+        "fallback_rate_implied": 0.20531757754800595,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 0.9235598227474151
+       },
+       "pick_heat_then_place_in_recep/loop-break": {
+        "steps": 509,
+        "coverage": 0.768172888015717,
+        "fallback_rate_implied": 0.23182711198428296,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 0.9317288801571709
+       },
+       "pick_heat_then_place_in_recep/recovery": {
+        "steps": 1798,
+        "coverage": 0.7191323692992213,
+        "fallback_rate_implied": 0.2808676307007787,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 0.9160177975528365
+       },
+       "pick_two_obj_and_place/expert-path": {
+        "steps": 1721,
+        "coverage": 0.905868680999419,
+        "fallback_rate_implied": 0.09413131900058103,
+        "mean_menu_length": 16.88378849506101,
+        "go_to_slot_share": 0.7512475479230478
+       },
+       "pick_two_obj_and_place/loop-break": {
+        "steps": 652,
+        "coverage": 0.9279141104294478,
+        "fallback_rate_implied": 0.07208588957055218,
+        "mean_menu_length": 16.469325153374232,
+        "go_to_slot_share": 0.7185695660271931
+       },
+       "pick_two_obj_and_place/recovery": {
+        "steps": 1867,
+        "coverage": 0.8955543652919121,
+        "fallback_rate_implied": 0.10444563470808788,
+        "mean_menu_length": 16.95982860203535,
+        "go_to_slot_share": 0.7316195048004043
+       }
+      },
+      "by_label_kind": {
+       "clean": {
+        "steps": 140,
+        "coverage": 0.45,
+        "fallback_rate_implied": 0.55,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 0.8375
+       },
+       "close": {
+        "steps": 2035,
+        "coverage": 0.8628992628992629,
+        "fallback_rate_implied": 0.1371007371007371,
+        "mean_menu_length": 19.096805896805897,
+        "go_to_slot_share": 0.8559003653955021
+       },
+       "cool": {
+        "steps": 305,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 0.9
+       },
+       "examine": {
+        "steps": 38,
+        "coverage": 0.7368421052631579,
+        "fallback_rate_implied": 0.26315789473684215,
+        "mean_menu_length": 18.105263157894736,
+        "go_to_slot_share": 0.6526162790697675
+       },
+       "go to": {
+        "steps": 11702,
+        "coverage": 0.9127499572722612,
+        "fallback_rate_implied": 0.08725004272773884,
+        "mean_menu_length": 18.177661938130235,
+        "go_to_slot_share": 0.8501751169405073
+       },
+       "heat": {
+        "steps": 210,
+        "coverage": 0.19523809523809524,
+        "fallback_rate_implied": 0.8047619047619048,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 0.8902380952380953
+       },
+       "look": {
+        "steps": 498,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 16.85542168674699,
+        "go_to_slot_share": 0.9099356683345247
+       },
+       "move": {
+        "steps": 1754,
+        "coverage": 0.571835803876853,
+        "fallback_rate_implied": 0.42816419612314705,
+        "mean_menu_length": 18.06157354618016,
+        "go_to_slot_share": 0.8074810606060606
+       },
+       "open": {
+        "steps": 2913,
+        "coverage": 0.9292825266048746,
+        "fallback_rate_implied": 0.07071747339512535,
+        "mean_menu_length": 19.0219704771713,
+        "go_to_slot_share": 0.8581328617061594
+       },
+       "take": {
+        "steps": 1648,
+        "coverage": 0.5946601941747572,
+        "fallback_rate_implied": 0.40533980582524276,
+        "mean_menu_length": 18.619538834951456,
+        "go_to_slot_share": 0.7609581228613329
+       },
+       "use": {
+        "steps": 144,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 11.777777777777779,
+        "go_to_slot_share": 0.5094339622641509
+       }
+      },
+      "expert_runs_with_every_label_on_menu": 0.5160642570281124,
+      "expert_runs": 498
+     },
+     "all": {
+      "overall": {
+       "steps": 21387,
+       "coverage": 1.0,
+       "fallback_rate_implied": 0.0,
+       "mean_menu_length": 28.36648431290036,
+       "go_to_slot_share": 0.8186719720970406
+      },
+      "by_task_type": {
+       "look_at_obj_in_light": {
+        "steps": 1318,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 11.427162367223065,
+        "go_to_slot_share": 0.5324347652878295
+       },
+       "pick_and_place_simple": {
+        "steps": 3263,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 20.003371130861172,
+        "go_to_slot_share": 0.7545617502413017
+       },
+       "pick_clean_then_place_in_recep": {
+        "steps": 2718,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 29.309050772626932,
+        "go_to_slot_share": 0.8291029600060255
+       },
+       "pick_cool_then_place_in_recep": {
+        "steps": 5510,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 37.15117967332123,
+        "go_to_slot_share": 0.8576571911501053
+       },
+       "pick_heat_then_place_in_recep": {
+        "steps": 4338,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 37.06846473029046,
+        "go_to_slot_share": 0.860419270784749
+       },
+       "pick_two_obj_and_place": {
+        "steps": 4240,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 19.144811320754716,
+        "go_to_slot_share": 0.732081701037278
+       }
+      },
+      "by_family": {
+       "expert-path": {
+        "steps": 9193,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 28.851952572609594,
+        "go_to_slot_share": 0.8311993846989096
+       },
+       "loop-break": {
+        "steps": 3081,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 26.263550795196366,
+        "go_to_slot_share": 0.8072740305000123
+       },
+       "recovery": {
+        "steps": 9113,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 28.587731811697576,
+        "go_to_slot_share": 0.8094580070627975
+       }
+      },
+      "by_task_type_and_family": {
+       "look_at_obj_in_light/expert-path": {
+        "steps": 504,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 10.922619047619047,
+        "go_to_slot_share": 0.5656675749318801
+       },
+       "look_at_obj_in_light/loop-break": {
+        "steps": 286,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 11.548951048951048,
+        "go_to_slot_share": 0.5243717832273691
+       },
+       "look_at_obj_in_light/recovery": {
+        "steps": 528,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 11.842803030303031,
+        "go_to_slot_share": 0.5074364305133536
+       },
+       "pick_and_place_simple/expert-path": {
+        "steps": 1250,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 20.1232,
+        "go_to_slot_share": 0.7693408603005486
+       },
+       "pick_and_place_simple/loop-break": {
+        "steps": 607,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 19.5831960461285,
+        "go_to_slot_share": 0.7562042567510726
+       },
+       "pick_and_place_simple/recovery": {
+        "steps": 1406,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 20.078236130867708,
+        "go_to_slot_share": 0.740701381509033
+       },
+       "pick_clean_then_place_in_recep/expert-path": {
+        "steps": 1176,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 29.058673469387756,
+        "go_to_slot_share": 0.8346062681063998
+       },
+       "pick_clean_then_place_in_recep/loop-break": {
+        "steps": 332,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 28.59036144578313,
+        "go_to_slot_share": 0.8315423514538559
+       },
+       "pick_clean_then_place_in_recep/recovery": {
+        "steps": 1210,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 29.749586776859505,
+        "go_to_slot_share": 0.8232352696058005
+       },
+       "pick_cool_then_place_in_recep/expert-path": {
+        "steps": 2511,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 36.888888888888886,
+        "go_to_slot_share": 0.8647493198600855
+       },
+       "pick_cool_then_place_in_recep/loop-break": {
+        "steps": 695,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 36.97697841726619,
+        "go_to_slot_share": 0.8594108720183665
+       },
+       "pick_cool_then_place_in_recep/recovery": {
+        "steps": 2304,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 37.489583333333336,
+        "go_to_slot_share": 0.8495299620264889
+       },
+       "pick_heat_then_place_in_recep/expert-path": {
+        "steps": 2031,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 36.85081240768095,
+        "go_to_slot_share": 0.8662818662818663
+       },
+       "pick_heat_then_place_in_recep/loop-break": {
+        "steps": 509,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 36.69941060903733,
+        "go_to_slot_share": 0.8650963597430407
+       },
+       "pick_heat_then_place_in_recep/recovery": {
+        "steps": 1798,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 37.41879866518354,
+        "go_to_slot_share": 0.8525988792936875
+       },
+       "pick_two_obj_and_place/expert-path": {
+        "steps": 1721,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 19.13538640325392,
+        "go_to_slot_share": 0.7452022349082958
+       },
+       "pick_two_obj_and_place/loop-break": {
+        "steps": 652,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 18.18558282208589,
+        "go_to_slot_share": 0.7137555874167159
+       },
+       "pick_two_obj_and_place/recovery": {
+        "steps": 1867,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 19.488484199250134,
+        "go_to_slot_share": 0.7261783702075031
+       }
+      },
+      "by_label_kind": {
+       "clean": {
+        "steps": 140,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 29.9,
+        "go_to_slot_share": 0.7993311036789298
+       },
+       "close": {
+        "steps": 2035,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 31.672235872235873,
+        "go_to_slot_share": 0.8301242766046577
+       },
+       "cool": {
+        "steps": 305,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 38.02295081967213,
+        "go_to_slot_share": 0.8415969647322583
+       },
+       "examine": {
+        "steps": 38,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 21.263157894736842,
+        "go_to_slot_share": 0.6386138613861386
+       },
+       "go to": {
+        "steps": 11702,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 27.60596479234319,
+        "go_to_slot_share": 0.8269188503149716
+       },
+       "heat": {
+        "steps": 210,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 38.00476190476191,
+        "go_to_slot_share": 0.8419997494048365
+       },
+       "look": {
+        "steps": 498,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 24.08433734939759,
+        "go_to_slot_share": 0.9169584792396198
+       },
+       "move": {
+        "steps": 1754,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 25.56442417331813,
+        "go_to_slot_share": 0.7865298840321142
+       },
+       "open": {
+        "steps": 2913,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 30.644696189495367,
+        "go_to_slot_share": 0.8575861450911861
+       },
+       "take": {
+        "steps": 1648,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 28.401699029126213,
+        "go_to_slot_share": 0.6837584925009614
+       },
+       "use": {
+        "steps": 144,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 11.777777777777779,
+        "go_to_slot_share": 0.5094339622641509
+       }
+      },
+      "expert_runs_with_every_label_on_menu": 1.0,
+      "expert_runs": 498
+     }
+    },
+    "kind": {
+     "5": {
+      "overall": {
+       "steps": 21387,
+       "coverage": 0.11086173843923879,
+       "fallback_rate_implied": 0.8891382615607613,
+       "mean_menu_length": 5.0,
+       "go_to_slot_share": 1.0
+      },
+      "by_task_type": {
+       "look_at_obj_in_light": {
+        "steps": 1318,
+        "coverage": 0.3990895295902883,
+        "fallback_rate_implied": 0.6009104704097117,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_and_place_simple": {
+        "steps": 3263,
+        "coverage": 0.18939626110940852,
+        "fallback_rate_implied": 0.8106037388905915,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_clean_then_place_in_recep": {
+        "steps": 2718,
+        "coverage": 0.10743193524650478,
+        "fallback_rate_implied": 0.8925680647534953,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_cool_then_place_in_recep": {
+        "steps": 5510,
+        "coverage": 0.009437386569872959,
+        "fallback_rate_implied": 0.9905626134301271,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_heat_then_place_in_recep": {
+        "steps": 4338,
+        "coverage": 0.00714615029967727,
+        "fallback_rate_implied": 0.9928538497003228,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_two_obj_and_place": {
+        "steps": 4240,
+        "coverage": 0.2009433962264151,
+        "fallback_rate_implied": 0.7990566037735849,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       }
+      },
+      "by_family": {
+       "expert-path": {
+        "steps": 9193,
+        "coverage": 0.08843685412814098,
+        "fallback_rate_implied": 0.911563145871859,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "loop-break": {
+        "steps": 3081,
+        "coverage": 0.14670561506004545,
+        "fallback_rate_implied": 0.8532943849399546,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "recovery": {
+        "steps": 9113,
+        "coverage": 0.12136508284867771,
+        "fallback_rate_implied": 0.8786349171513222,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       }
+      },
+      "by_task_type_and_family": {
+       "look_at_obj_in_light/expert-path": {
+        "steps": 504,
+        "coverage": 0.35714285714285715,
+        "fallback_rate_implied": 0.6428571428571428,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "look_at_obj_in_light/loop-break": {
+        "steps": 286,
+        "coverage": 0.44405594405594406,
+        "fallback_rate_implied": 0.5559440559440559,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "look_at_obj_in_light/recovery": {
+        "steps": 528,
+        "coverage": 0.4147727272727273,
+        "fallback_rate_implied": 0.5852272727272727,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_and_place_simple/expert-path": {
+        "steps": 1250,
+        "coverage": 0.1608,
+        "fallback_rate_implied": 0.8392,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_and_place_simple/loop-break": {
+        "steps": 607,
+        "coverage": 0.2042833607907743,
+        "fallback_rate_implied": 0.7957166392092256,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_and_place_simple/recovery": {
+        "steps": 1406,
+        "coverage": 0.20839260312944524,
+        "fallback_rate_implied": 0.7916073968705548,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_clean_then_place_in_recep/expert-path": {
+        "steps": 1176,
+        "coverage": 0.10204081632653061,
+        "fallback_rate_implied": 0.8979591836734694,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_clean_then_place_in_recep/loop-break": {
+        "steps": 332,
+        "coverage": 0.12951807228915663,
+        "fallback_rate_implied": 0.8704819277108433,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_clean_then_place_in_recep/recovery": {
+        "steps": 1210,
+        "coverage": 0.10661157024793388,
+        "fallback_rate_implied": 0.8933884297520661,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_cool_then_place_in_recep/expert-path": {
+        "steps": 2511,
+        "coverage": 0.008363201911589008,
+        "fallback_rate_implied": 0.991636798088411,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_cool_then_place_in_recep/loop-break": {
+        "steps": 695,
+        "coverage": 0.0028776978417266188,
+        "fallback_rate_implied": 0.9971223021582734,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_cool_then_place_in_recep/recovery": {
+        "steps": 2304,
+        "coverage": 0.012586805555555556,
+        "fallback_rate_implied": 0.9874131944444444,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_heat_then_place_in_recep/expert-path": {
+        "steps": 2031,
+        "coverage": 0.005908419497784343,
+        "fallback_rate_implied": 0.9940915805022157,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_heat_then_place_in_recep/loop-break": {
+        "steps": 509,
+        "coverage": 0.003929273084479371,
+        "fallback_rate_implied": 0.9960707269155207,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_heat_then_place_in_recep/recovery": {
+        "steps": 1798,
+        "coverage": 0.009454949944382647,
+        "fallback_rate_implied": 0.9905450500556173,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_two_obj_and_place/expert-path": {
+        "steps": 1721,
+        "coverage": 0.1621150493898896,
+        "fallback_rate_implied": 0.8378849506101104,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_two_obj_and_place/loop-break": {
+        "steps": 652,
+        "coverage": 0.2361963190184049,
+        "fallback_rate_implied": 0.7638036809815951,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_two_obj_and_place/recovery": {
+        "steps": 1867,
+        "coverage": 0.2244242099625067,
+        "fallback_rate_implied": 0.7755757900374933,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       }
+      },
+      "by_label_kind": {
+       "clean": {
+        "steps": 140,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "close": {
+        "steps": 2035,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "cool": {
+        "steps": 305,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "examine": {
+        "steps": 38,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "go to": {
+        "steps": 11702,
+        "coverage": 0.2026149376175013,
+        "fallback_rate_implied": 0.7973850623824987,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "heat": {
+        "steps": 210,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "look": {
+        "steps": 498,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "move": {
+        "steps": 1754,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "open": {
+        "steps": 2913,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "take": {
+        "steps": 1648,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       },
+       "use": {
+        "steps": 144,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 5.0,
+        "go_to_slot_share": 1.0
+       }
+      },
+      "expert_runs_with_every_label_on_menu": 0.0,
+      "expert_runs": 498
+     },
+     "10": {
+      "overall": {
+       "steps": 21387,
+       "coverage": 0.25562257446112124,
+       "fallback_rate_implied": 0.7443774255388788,
+       "mean_menu_length": 9.98326085940057,
+       "go_to_slot_share": 0.9465884821462025
+      },
+      "by_task_type": {
+       "look_at_obj_in_light": {
+        "steps": 1318,
+        "coverage": 0.9833080424886191,
+        "fallback_rate_implied": 0.01669195751138086,
+        "mean_menu_length": 9.87101669195751,
+        "go_to_slot_share": 0.6163720215219062
+       },
+       "pick_and_place_simple": {
+        "steps": 3263,
+        "coverage": 0.4406987434875881,
+        "fallback_rate_implied": 0.5593012565124119,
+        "mean_menu_length": 9.970579221575237,
+        "go_to_slot_share": 0.9384029015798857
+       },
+       "pick_clean_then_place_in_recep": {
+        "steps": 2718,
+        "coverage": 0.15194996320824136,
+        "fallback_rate_implied": 0.8480500367917586,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_cool_then_place_in_recep": {
+        "steps": 5510,
+        "coverage": 0.009437386569872959,
+        "fallback_rate_implied": 0.9905626134301271,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_heat_then_place_in_recep": {
+        "steps": 4338,
+        "coverage": 0.00714615029967727,
+        "fallback_rate_implied": 0.9928538497003228,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_two_obj_and_place": {
+        "steps": 4240,
+        "coverage": 0.5275943396226415,
+        "fallback_rate_implied": 0.47240566037735854,
+        "mean_menu_length": 9.978301886792453,
+        "go_to_slot_share": 0.8957880306325045
+       }
+      },
+      "by_family": {
+       "expert-path": {
+        "steps": 9193,
+        "coverage": 0.2326770368758838,
+        "fallback_rate_implied": 0.7673229631241162,
+        "mean_menu_length": 9.974872185358425,
+        "go_to_slot_share": 0.956128202052367
+       },
+       "loop-break": {
+        "steps": 3081,
+        "coverage": 0.32749107432651736,
+        "fallback_rate_implied": 0.6725089256734826,
+        "mean_menu_length": 9.978578383641675,
+        "go_to_slot_share": 0.9232045277127244
+       },
+       "recovery": {
+        "steps": 9113,
+        "coverage": 0.2544716339295512,
+        "fallback_rate_implied": 0.7455283660704488,
+        "mean_menu_length": 9.99330626577417,
+        "go_to_slot_share": 0.9448769614248537
+       }
+      },
+      "by_task_type_and_family": {
+       "look_at_obj_in_light/expert-path": {
+        "steps": 504,
+        "coverage": 0.9920634920634921,
+        "fallback_rate_implied": 0.007936507936507908,
+        "mean_menu_length": 9.779761904761905,
+        "go_to_slot_share": 0.6317711503347535
+       },
+       "look_at_obj_in_light/loop-break": {
+        "steps": 286,
+        "coverage": 0.965034965034965,
+        "fallback_rate_implied": 0.034965034965035,
+        "mean_menu_length": 9.905594405594405,
+        "go_to_slot_share": 0.6113660430638899
+       },
+       "look_at_obj_in_light/recovery": {
+        "steps": 528,
+        "coverage": 0.9848484848484849,
+        "fallback_rate_implied": 0.015151515151515138,
+        "mean_menu_length": 9.93939393939394,
+        "go_to_slot_share": 0.6046112804878049
+       },
+       "pick_and_place_simple/expert-path": {
+        "steps": 1250,
+        "coverage": 0.4392,
+        "fallback_rate_implied": 0.5608,
+        "mean_menu_length": 9.9592,
+        "go_to_slot_share": 0.9477066431038638
+       },
+       "pick_and_place_simple/loop-break": {
+        "steps": 607,
+        "coverage": 0.46293245469522243,
+        "fallback_rate_implied": 0.5370675453047775,
+        "mean_menu_length": 9.957166392092256,
+        "go_to_slot_share": 0.92885506287227
+       },
+       "pick_and_place_simple/recovery": {
+        "steps": 1406,
+        "coverage": 0.43243243243243246,
+        "fallback_rate_implied": 0.5675675675675675,
+        "mean_menu_length": 9.986486486486486,
+        "go_to_slot_share": 0.9342639413147211
+       },
+       "pick_clean_then_place_in_recep/expert-path": {
+        "steps": 1176,
+        "coverage": 0.14540816326530612,
+        "fallback_rate_implied": 0.8545918367346939,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_clean_then_place_in_recep/loop-break": {
+        "steps": 332,
+        "coverage": 0.1716867469879518,
+        "fallback_rate_implied": 0.8283132530120482,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_clean_then_place_in_recep/recovery": {
+        "steps": 1210,
+        "coverage": 0.15289256198347106,
+        "fallback_rate_implied": 0.8471074380165289,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_cool_then_place_in_recep/expert-path": {
+        "steps": 2511,
+        "coverage": 0.008363201911589008,
+        "fallback_rate_implied": 0.991636798088411,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_cool_then_place_in_recep/loop-break": {
+        "steps": 695,
+        "coverage": 0.0028776978417266188,
+        "fallback_rate_implied": 0.9971223021582734,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_cool_then_place_in_recep/recovery": {
+        "steps": 2304,
+        "coverage": 0.012586805555555556,
+        "fallback_rate_implied": 0.9874131944444444,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_heat_then_place_in_recep/expert-path": {
+        "steps": 2031,
+        "coverage": 0.005908419497784343,
+        "fallback_rate_implied": 0.9940915805022157,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_heat_then_place_in_recep/loop-break": {
+        "steps": 509,
+        "coverage": 0.003929273084479371,
+        "fallback_rate_implied": 0.9960707269155207,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_heat_then_place_in_recep/recovery": {
+        "steps": 1798,
+        "coverage": 0.009454949944382647,
+        "fallback_rate_implied": 0.9905450500556173,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_two_obj_and_place/expert-path": {
+        "steps": 1721,
+        "coverage": 0.5148169668797211,
+        "fallback_rate_implied": 0.4851830331202789,
+        "mean_menu_length": 9.95990703079605,
+        "go_to_slot_share": 0.9091651595589523
+       },
+       "pick_two_obj_and_place/loop-break": {
+        "steps": 652,
+        "coverage": 0.5996932515337423,
+        "fallback_rate_implied": 0.4003067484662577,
+        "mean_menu_length": 9.980061349693251,
+        "go_to_slot_share": 0.8724450591670508
+       },
+       "pick_two_obj_and_place/recovery": {
+        "steps": 1867,
+        "coverage": 0.5141938939475094,
+        "fallback_rate_implied": 0.48580610605249064,
+        "mean_menu_length": 9.994643813604714,
+        "go_to_slot_share": 0.8916398713826367
+       }
+      },
+      "by_label_kind": {
+       "clean": {
+        "steps": 140,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 1.0
+       },
+       "close": {
+        "steps": 2035,
+        "coverage": 0.07567567567567568,
+        "fallback_rate_implied": 0.9243243243243243,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.9697297297297297
+       },
+       "cool": {
+        "steps": 305,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 1.0
+       },
+       "examine": {
+        "steps": 38,
+        "coverage": 0.05263157894736842,
+        "fallback_rate_implied": 0.9473684210526316,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.8736842105263158
+       },
+       "go to": {
+        "steps": 11702,
+        "coverage": 0.36019483848914713,
+        "fallback_rate_implied": 0.6398051615108529,
+        "mean_menu_length": 9.977867031276705,
+        "go_to_slot_share": 0.9451700482181551
+       },
+       "heat": {
+        "steps": 210,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 1.0
+       },
+       "look": {
+        "steps": 498,
+        "coverage": 0.19879518072289157,
+        "fallback_rate_implied": 0.8012048192771084,
+        "mean_menu_length": 9.801204819277109,
+        "go_to_slot_share": 0.9594345421020283
+       },
+       "move": {
+        "steps": 1754,
+        "coverage": 0.1864310148232611,
+        "fallback_rate_implied": 0.8135689851767389,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.9254275940706955
+       },
+       "open": {
+        "steps": 2913,
+        "coverage": 0.06762787504291108,
+        "fallback_rate_implied": 0.9323721249570889,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.9729488499828356
+       },
+       "take": {
+        "steps": 1648,
+        "coverage": 0.19963592233009708,
+        "fallback_rate_implied": 0.8003640776699029,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.9109223300970873
+       },
+       "use": {
+        "steps": 144,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 10.0,
+        "go_to_slot_share": 0.6
+       }
+      },
+      "expert_runs_with_every_label_on_menu": 0.178714859437751,
+      "expert_runs": 498
+     },
+     "20": {
+      "overall": {
+       "steps": 21387,
+       "coverage": 0.5099826997708888,
+       "fallback_rate_implied": 0.49001730022911116,
+       "mean_menu_length": 18.386449712442136,
+       "go_to_slot_share": 0.8887066380829589
+      },
+      "by_task_type": {
+       "look_at_obj_in_light": {
+        "steps": 1318,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 11.406676783004553,
+        "go_to_slot_share": 0.5333909804443262
+       },
+       "pick_and_place_simple": {
+        "steps": 3263,
+        "coverage": 0.8905914802329145,
+        "fallback_rate_implied": 0.10940851976708554,
+        "mean_menu_length": 17.44161814281336,
+        "go_to_slot_share": 0.7718758785493394
+       },
+       "pick_clean_then_place_in_recep": {
+        "steps": 2718,
+        "coverage": 0.5007358351729213,
+        "fallback_rate_implied": 0.4992641648270787,
+        "mean_menu_length": 19.450331125827816,
+        "go_to_slot_share": 0.8949419286497938
+       },
+       "pick_cool_then_place_in_recep": {
+        "steps": 5510,
+        "coverage": 0.16606170598911071,
+        "fallback_rate_implied": 0.8339382940108893,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_heat_then_place_in_recep": {
+        "steps": 4338,
+        "coverage": 0.14615029967727064,
+        "fallback_rate_implied": 0.8538497003227293,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_two_obj_and_place": {
+        "steps": 4240,
+        "coverage": 0.8898584905660377,
+        "fallback_rate_implied": 0.11014150943396228,
+        "mean_menu_length": 16.853537735849056,
+        "go_to_slot_share": 0.7451405701171301
+       }
+      },
+      "by_family": {
+       "expert-path": {
+        "steps": 9193,
+        "coverage": 0.47351245512890244,
+        "fallback_rate_implied": 0.5264875448710975,
+        "mean_menu_length": 18.49200478625041,
+        "go_to_slot_share": 0.903545356682765
+       },
+       "loop-break": {
+        "steps": 3081,
+        "coverage": 0.578383641674781,
+        "fallback_rate_implied": 0.42161635832521904,
+        "mean_menu_length": 17.844206426484906,
+        "go_to_slot_share": 0.8615809960347776
+       },
+       "recovery": {
+        "steps": 9113,
+        "coverage": 0.5236475364863382,
+        "fallback_rate_implied": 0.4763524635136618,
+        "mean_menu_length": 18.46329419510589,
+        "go_to_slot_share": 0.8825777386839102
+       }
+      },
+      "by_task_type_and_family": {
+       "look_at_obj_in_light/expert-path": {
+        "steps": 504,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 10.910714285714286,
+        "go_to_slot_share": 0.5662847790507365
+       },
+       "look_at_obj_in_light/loop-break": {
+        "steps": 286,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 11.513986013986013,
+        "go_to_slot_share": 0.5259641664136047
+       },
+       "look_at_obj_in_light/recovery": {
+        "steps": 528,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 11.821969696969697,
+        "go_to_slot_share": 0.5083306632489587
+       },
+       "pick_and_place_simple/expert-path": {
+        "steps": 1250,
+        "coverage": 0.8792,
+        "fallback_rate_implied": 0.12080000000000002,
+        "mean_menu_length": 17.4408,
+        "go_to_slot_share": 0.7866611623320031
+       },
+       "pick_and_place_simple/loop-break": {
+        "steps": 607,
+        "coverage": 0.9028006589785832,
+        "fallback_rate_implied": 0.09719934102141681,
+        "mean_menu_length": 17.174629324546952,
+        "go_to_slot_share": 0.7725659472422063
+       },
+       "pick_and_place_simple/recovery": {
+        "steps": 1406,
+        "coverage": 0.895448079658606,
+        "fallback_rate_implied": 0.10455192034139404,
+        "mean_menu_length": 17.55761024182077,
+        "go_to_slot_share": 0.7585271003807826
+       },
+       "pick_clean_then_place_in_recep/expert-path": {
+        "steps": 1176,
+        "coverage": 0.49489795918367346,
+        "fallback_rate_implied": 0.5051020408163265,
+        "mean_menu_length": 19.387755102040817,
+        "go_to_slot_share": 0.8972368421052631
+       },
+       "pick_clean_then_place_in_recep/loop-break": {
+        "steps": 332,
+        "coverage": 0.5602409638554217,
+        "fallback_rate_implied": 0.43975903614457834,
+        "mean_menu_length": 19.403614457831324,
+        "go_to_slot_share": 0.888699161751009
+       },
+       "pick_clean_then_place_in_recep/recovery": {
+        "steps": 1210,
+        "coverage": 0.4900826446280992,
+        "fallback_rate_implied": 0.5099173553719007,
+        "mean_menu_length": 19.52396694214876,
+        "go_to_slot_share": 0.8944293938367761
+       },
+       "pick_cool_then_place_in_recep/expert-path": {
+        "steps": 2511,
+        "coverage": 0.14814814814814814,
+        "fallback_rate_implied": 0.8518518518518519,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_cool_then_place_in_recep/loop-break": {
+        "steps": 695,
+        "coverage": 0.1539568345323741,
+        "fallback_rate_implied": 0.8460431654676259,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_cool_then_place_in_recep/recovery": {
+        "steps": 2304,
+        "coverage": 0.1892361111111111,
+        "fallback_rate_implied": 0.8107638888888888,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_heat_then_place_in_recep/expert-path": {
+        "steps": 2031,
+        "coverage": 0.12998522895125553,
+        "fallback_rate_implied": 0.8700147710487445,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_heat_then_place_in_recep/loop-break": {
+        "steps": 509,
+        "coverage": 0.11394891944990176,
+        "fallback_rate_implied": 0.8860510805500983,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_heat_then_place_in_recep/recovery": {
+        "steps": 1798,
+        "coverage": 0.1735261401557286,
+        "fallback_rate_implied": 0.8264738598442714,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 1.0
+       },
+       "pick_two_obj_and_place/expert-path": {
+        "steps": 1721,
+        "coverage": 0.8901801278326554,
+        "fallback_rate_implied": 0.10981987216734457,
+        "mean_menu_length": 16.88378849506101,
+        "go_to_slot_share": 0.7584747220979454
+       },
+       "pick_two_obj_and_place/loop-break": {
+        "steps": 652,
+        "coverage": 0.9156441717791411,
+        "fallback_rate_implied": 0.08435582822085885,
+        "mean_menu_length": 16.469325153374232,
+        "go_to_slot_share": 0.7242503259452412
+       },
+       "pick_two_obj_and_place/recovery": {
+        "steps": 1867,
+        "coverage": 0.8805570433851098,
+        "fallback_rate_implied": 0.11944295661489024,
+        "mean_menu_length": 16.95982860203535,
+        "go_to_slot_share": 0.739988630621526
+       }
+      },
+      "by_label_kind": {
+       "clean": {
+        "steps": 140,
+        "coverage": 0.45,
+        "fallback_rate_implied": 0.55,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 0.865
+       },
+       "close": {
+        "steps": 2035,
+        "coverage": 0.27960687960687963,
+        "fallback_rate_implied": 0.7203931203931204,
+        "mean_menu_length": 19.096805896805897,
+        "go_to_slot_share": 0.9244506201430703
+       },
+       "cool": {
+        "steps": 305,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 1.0
+       },
+       "examine": {
+        "steps": 38,
+        "coverage": 0.7368421052631579,
+        "fallback_rate_implied": 0.26315789473684215,
+        "mean_menu_length": 18.105263157894736,
+        "go_to_slot_share": 0.6656976744186046
+       },
+       "go to": {
+        "steps": 11702,
+        "coverage": 0.6014356520252948,
+        "fallback_rate_implied": 0.3985643479747052,
+        "mean_menu_length": 18.177661938130235,
+        "go_to_slot_share": 0.8910561079378511
+       },
+       "heat": {
+        "steps": 210,
+        "coverage": 0.0,
+        "fallback_rate_implied": 1.0,
+        "mean_menu_length": 20.0,
+        "go_to_slot_share": 1.0
+       },
+       "look": {
+        "steps": 498,
+        "coverage": 0.5180722891566265,
+        "fallback_rate_implied": 0.4819277108433735,
+        "mean_menu_length": 16.85542168674699,
+        "go_to_slot_share": 0.9385275196568977
+       },
+       "move": {
+        "steps": 1754,
+        "coverage": 0.571835803876853,
+        "fallback_rate_implied": 0.42816419612314705,
+        "mean_menu_length": 18.06157354618016,
+        "go_to_slot_share": 0.8345959595959596
+       },
+       "open": {
+        "steps": 2913,
+        "coverage": 0.28355647099210435,
+        "fallback_rate_implied": 0.7164435290078957,
+        "mean_menu_length": 19.0219704771713,
+        "go_to_slot_share": 0.9304289761960621
+       },
+       "take": {
+        "steps": 1648,
+        "coverage": 0.5934466019417476,
+        "fallback_rate_implied": 0.4065533980582524,
+        "mean_menu_length": 18.619538834951456,
+        "go_to_slot_share": 0.7848134267557438
+       },
+       "use": {
+        "steps": 144,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 11.777777777777779,
+        "go_to_slot_share": 0.5094339622641509
+       }
+      },
+      "expert_runs_with_every_label_on_menu": 0.5160642570281124,
+      "expert_runs": 498
+     },
+     "all": {
+      "overall": {
+       "steps": 21387,
+       "coverage": 1.0,
+       "fallback_rate_implied": 0.0,
+       "mean_menu_length": 28.36648431290036,
+       "go_to_slot_share": 0.8186719720970406
+      },
+      "by_task_type": {
+       "look_at_obj_in_light": {
+        "steps": 1318,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 11.427162367223065,
+        "go_to_slot_share": 0.5324347652878295
+       },
+       "pick_and_place_simple": {
+        "steps": 3263,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 20.003371130861172,
+        "go_to_slot_share": 0.7545617502413017
+       },
+       "pick_clean_then_place_in_recep": {
+        "steps": 2718,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 29.309050772626932,
+        "go_to_slot_share": 0.8291029600060255
+       },
+       "pick_cool_then_place_in_recep": {
+        "steps": 5510,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 37.15117967332123,
+        "go_to_slot_share": 0.8576571911501053
+       },
+       "pick_heat_then_place_in_recep": {
+        "steps": 4338,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 37.06846473029046,
+        "go_to_slot_share": 0.860419270784749
+       },
+       "pick_two_obj_and_place": {
+        "steps": 4240,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 19.144811320754716,
+        "go_to_slot_share": 0.732081701037278
+       }
+      },
+      "by_family": {
+       "expert-path": {
+        "steps": 9193,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 28.851952572609594,
+        "go_to_slot_share": 0.8311993846989096
+       },
+       "loop-break": {
+        "steps": 3081,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 26.263550795196366,
+        "go_to_slot_share": 0.8072740305000123
+       },
+       "recovery": {
+        "steps": 9113,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 28.587731811697576,
+        "go_to_slot_share": 0.8094580070627975
+       }
+      },
+      "by_task_type_and_family": {
+       "look_at_obj_in_light/expert-path": {
+        "steps": 504,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 10.922619047619047,
+        "go_to_slot_share": 0.5656675749318801
+       },
+       "look_at_obj_in_light/loop-break": {
+        "steps": 286,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 11.548951048951048,
+        "go_to_slot_share": 0.5243717832273691
+       },
+       "look_at_obj_in_light/recovery": {
+        "steps": 528,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 11.842803030303031,
+        "go_to_slot_share": 0.5074364305133536
+       },
+       "pick_and_place_simple/expert-path": {
+        "steps": 1250,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 20.1232,
+        "go_to_slot_share": 0.7693408603005486
+       },
+       "pick_and_place_simple/loop-break": {
+        "steps": 607,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 19.5831960461285,
+        "go_to_slot_share": 0.7562042567510726
+       },
+       "pick_and_place_simple/recovery": {
+        "steps": 1406,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 20.078236130867708,
+        "go_to_slot_share": 0.740701381509033
+       },
+       "pick_clean_then_place_in_recep/expert-path": {
+        "steps": 1176,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 29.058673469387756,
+        "go_to_slot_share": 0.8346062681063998
+       },
+       "pick_clean_then_place_in_recep/loop-break": {
+        "steps": 332,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 28.59036144578313,
+        "go_to_slot_share": 0.8315423514538559
+       },
+       "pick_clean_then_place_in_recep/recovery": {
+        "steps": 1210,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 29.749586776859505,
+        "go_to_slot_share": 0.8232352696058005
+       },
+       "pick_cool_then_place_in_recep/expert-path": {
+        "steps": 2511,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 36.888888888888886,
+        "go_to_slot_share": 0.8647493198600855
+       },
+       "pick_cool_then_place_in_recep/loop-break": {
+        "steps": 695,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 36.97697841726619,
+        "go_to_slot_share": 0.8594108720183665
+       },
+       "pick_cool_then_place_in_recep/recovery": {
+        "steps": 2304,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 37.489583333333336,
+        "go_to_slot_share": 0.8495299620264889
+       },
+       "pick_heat_then_place_in_recep/expert-path": {
+        "steps": 2031,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 36.85081240768095,
+        "go_to_slot_share": 0.8662818662818663
+       },
+       "pick_heat_then_place_in_recep/loop-break": {
+        "steps": 509,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 36.69941060903733,
+        "go_to_slot_share": 0.8650963597430407
+       },
+       "pick_heat_then_place_in_recep/recovery": {
+        "steps": 1798,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 37.41879866518354,
+        "go_to_slot_share": 0.8525988792936875
+       },
+       "pick_two_obj_and_place/expert-path": {
+        "steps": 1721,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 19.13538640325392,
+        "go_to_slot_share": 0.7452022349082958
+       },
+       "pick_two_obj_and_place/loop-break": {
+        "steps": 652,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 18.18558282208589,
+        "go_to_slot_share": 0.7137555874167159
+       },
+       "pick_two_obj_and_place/recovery": {
+        "steps": 1867,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 19.488484199250134,
+        "go_to_slot_share": 0.7261783702075031
+       }
+      },
+      "by_label_kind": {
+       "clean": {
+        "steps": 140,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 29.9,
+        "go_to_slot_share": 0.7993311036789298
+       },
+       "close": {
+        "steps": 2035,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 31.672235872235873,
+        "go_to_slot_share": 0.8301242766046577
+       },
+       "cool": {
+        "steps": 305,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 38.02295081967213,
+        "go_to_slot_share": 0.8415969647322583
+       },
+       "examine": {
+        "steps": 38,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 21.263157894736842,
+        "go_to_slot_share": 0.6386138613861386
+       },
+       "go to": {
+        "steps": 11702,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 27.60596479234319,
+        "go_to_slot_share": 0.8269188503149716
+       },
+       "heat": {
+        "steps": 210,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 38.00476190476191,
+        "go_to_slot_share": 0.8419997494048365
+       },
+       "look": {
+        "steps": 498,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 24.08433734939759,
+        "go_to_slot_share": 0.9169584792396198
+       },
+       "move": {
+        "steps": 1754,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 25.56442417331813,
+        "go_to_slot_share": 0.7865298840321142
+       },
+       "open": {
+        "steps": 2913,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 30.644696189495367,
+        "go_to_slot_share": 0.8575861450911861
+       },
+       "take": {
+        "steps": 1648,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 28.401699029126213,
+        "go_to_slot_share": 0.6837584925009614
+       },
+       "use": {
+        "steps": 144,
+        "coverage": 1.0,
+        "fallback_rate_implied": 0.0,
+        "mean_menu_length": 11.777777777777779,
+        "go_to_slot_share": 0.5094339622641509
+       }
+      },
+      "expert_runs_with_every_label_on_menu": 1.0,
+      "expert_runs": 498
+     }
+    }
+   }
+  }
+ }
+}

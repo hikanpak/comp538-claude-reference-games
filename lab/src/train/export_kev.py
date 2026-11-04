@@ -21,6 +21,10 @@ What the stored record does not say, and what this file assumes (`lab/INTERFACES
 - Rows are kept only from trajectories the checker marks won (`plan/results_plan.tex`, training labels). Rows flagged
   `label_random` stay out of training, and their commands stay in the trace because they ran. Both are counted.
 
+A record of the training set (`lab/src/dataset/rows.py`) stands alone: it carries `first_obs`, `trace` and `control_state`, so none of the assumptions above about neighbouring records
+apply. Its state is `render_prompt` on those fields, its `won` says whether its rollout was won, and rows flagged random, inadmissible or error are dropped and counted. Records of the
+two kinds cannot be mixed in one export.
+
 A row's `_meta.split` travels with it, and `lab/jobs/arm-classification.py` checks it again before training.
 """
 from __future__ import annotations
@@ -30,6 +34,7 @@ import glob
 import gzip
 import hashlib
 import json
+import random
 import subprocess
 import sys
 from collections import Counter, defaultdict
@@ -102,6 +107,59 @@ def kev_row(state: str, options: list[str], label: str, record: dict, trajectory
     }
 
 
+def is_standalone(record: dict) -> bool:
+    return "trace" in record and "first_obs" in record and "control_state" in record
+
+
+def _options_of(record, menu, k, counts):
+    """The menu with the fallback last, or None when the menu is empty."""
+    menu_commands = list(menu.menu(record["task_type"], record["admissible"], k))
+    if FALLBACK_TEXT in menu_commands:
+        raise ValueError(f"a menu holds the fallback text at {record['game_id']} step {record['step']}")
+    if not menu_commands:
+        counts["rows_dropped_empty_menu"] += 1
+        return None
+    options = menu_commands + [FALLBACK_TEXT]
+    if len(set(options)) != len(options):
+        raise ValueError(f"repeated command on the menu at {record['game_id']} step {record['step']}: {options}")
+    if len(options) > MAX_OPTIONS:
+        raise ValueError(f"{len(options)} options at {record['game_id']} step {record['step']}, Kev allows {MAX_OPTIONS}")
+    return options
+
+
+def export_standalone_rows(records, menu, k, *, render, trace_window, require_won, counts):
+    """Records that carry their own trace and control state. One row per usable record, in the order given."""
+    from harness.control import ControlState
+    rows = []
+    for record in records:
+        counts["standalone_records"] += 1
+        if require_won and not record.get("won"):
+            counts["rows_dropped_not_won"] += 1
+            continue
+        flag = next((f for f in ("label_random", "label_inadmissible", "label_error") if record.get(f)), None)
+        if flag:
+            counts[f"rows_dropped_{flag}"] += 1
+            continue
+        expert = record.get("expert")
+        if not expert:
+            counts["rows_dropped_no_expert"] += 1
+            continue
+        options = _options_of(record, menu, k, counts)
+        if options is None:
+            continue
+        on_menu = expert in options[:-1]
+        label = expert if on_menu else FALLBACK_TEXT
+        counts["rows"] += 1
+        counts["labels_fallback" if not on_menu else "labels_on_menu"] += 1
+        if expert not in record["admissible"]:
+            counts["expert_not_admissible"] += 1
+        state = render(record["goal"], record["first_obs"], record["trace"], ControlState(**record["control_state"]), window=trace_window)
+        row = kev_row(state, options, label, record, record["run_id"].split("#", 1)[1])
+        row["_meta"].update(family=record.get("family"), label_source=record.get("label_source"), control_varied=record.get("control_varied", False))
+        rows.append(row)
+    return rows
+
+
 def export_rows(records, menu, k, *, render=None, control_state=default_control_state, required_split="train", trace_window=5, fallbacks_before_handover=2, require_won=True):
     """-> (Kev rows, counts). `menu` has `.menu(task_type, admissible, k)`. `render` defaults to the harness's `render_prompt`."""
     if required_split not in SPLITS:
@@ -113,6 +171,12 @@ def export_rows(records, menu, k, *, render=None, control_state=default_control_
         check_split(record, required_split)
         checked.append(record)
     counts["records_in"] = len(checked)
+    standalone = sum(is_standalone(r) for r in checked)
+    if standalone:
+        if standalone != len(checked):
+            raise ValueError(f"{standalone} of {len(checked)} records carry their own trace: one export takes one kind")
+        rows = export_standalone_rows(checked, menu, k, render=render, trace_window=trace_window, require_won=require_won, counts=counts)
+        return rows, counts
     for index, trajectory in enumerate(trajectories(checked)):
         counts["trajectories"] += 1
         if require_won and not any(r.get("won") for r in trajectory):
@@ -131,18 +195,8 @@ def export_rows(records, menu, k, *, render=None, control_state=default_control_
                 usable = False
             options = None
             if usable:
-                menu_commands = list(menu.menu(record["task_type"], record["admissible"], k))
-                if FALLBACK_TEXT in menu_commands:
-                    raise ValueError(f"a menu holds the fallback text at {record['game_id']} step {record['step']}")
-                if not menu_commands:
-                    counts["rows_dropped_empty_menu"] += 1
-                    usable = False
-                else:
-                    options = menu_commands + [FALLBACK_TEXT]
-                    if len(set(options)) != len(options):
-                        raise ValueError(f"repeated command on the menu at {record['game_id']} step {record['step']}: {options}")
-                    if len(options) > MAX_OPTIONS:
-                        raise ValueError(f"{len(options)} options at {record['game_id']} step {record['step']}, Kev allows {MAX_OPTIONS}")
+                options = _options_of(record, menu, k, counts)
+                usable = options is not None
             on_menu = False
             if usable:
                 on_menu = expert in options[:-1]
@@ -288,6 +342,8 @@ def main(argv=None):
     ap.add_argument("--dedupe", default="none", choices=["none", "hard", "soft"])
     ap.add_argument("--keep-not-won", action="store_true", help="keep rows of trajectories the checker did not mark won")
     ap.add_argument("--no-token-report", action="store_true")
+    ap.add_argument("--sample", type=int, default=0, help="write only this many rows, drawn after the dedupe, for a speed test")
+    ap.add_argument("--sample-seed", type=int, default=0)
     a = ap.parse_args(argv)
     k = None if a.k == "all" else int(a.k)
     paths = sorted(p for pattern in a.records for p in glob.glob(pattern))
@@ -303,10 +359,13 @@ def main(argv=None):
         rows, dedupe_counts = dedupe(rows)
     elif a.dedupe == "soft":
         rows, dedupe_counts = soft_labels(rows)
+    rows_before_sample = len(rows)
+    if a.sample:
+        rows = random.Random(a.sample_seed).sample(rows, min(a.sample, len(rows)))
     write_jsonl(rows, a.out)
     report = {"split": a.split, "k": k, "trace_window": a.trace_window, "fallbacks_before_handover": a.fallbacks_before_handover, "dedupe": a.dedupe,
               "require_won": not a.keep_not_won, "fallback_text": FALLBACK_TEXT, "question_text": QUESTION_TEXT, "counts": dict(counts), "dedupe_counts": dedupe_counts,
-              "fallback_label_share": counts["labels_fallback"] / max(1, counts["rows"]), "rows_written": len(rows),
+              "fallback_label_share": counts["labels_fallback"] / max(1, counts["rows"]), "rows_written": len(rows), "rows_before_sample": rows_before_sample, "sample_seed": a.sample_seed if a.sample else None,
               "shards": [{"path": p, "sha256": sha256(p)} for p in paths], "menu": {"path": a.menu, "sha256": sha256(a.menu)}, "out_sha256": sha256(a.out),
               "git_commit": subprocess.run(["git", "rev-parse", "HEAD"], capture_output=True, text=True, cwd=LAB_SRC).stdout.strip()}
     if not a.no_token_report:
