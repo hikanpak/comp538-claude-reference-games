@@ -88,6 +88,9 @@ def install():
         raise RuntimeError(f"kev needs Python 3.12 or newer, this VM has {platform.python_version()}")
     pip = [sys.executable, "-m", "pip", "install", "-q"]
     run([*pip, f"kev @ {KEV_SOURCE}", *PINS])
+    # Kev's bound moves Colab's torch 2.11 down to 2.8 and leaves torchvision 0.26 behind, which breaks transformers' import of
+    # Qwen3_5ForCausalLM with "operator torchvision::nms does not exist". Nothing here uses torchvision.
+    run([sys.executable, "-m", "pip", "uninstall", "-y", "-q", "torchvision"])
     if INSTALL_FLA:
         # Installed apart from the line above: torch pins an older triton, and one resolver call would refuse the pair.
         run([*pip, *FLA_PINS])
