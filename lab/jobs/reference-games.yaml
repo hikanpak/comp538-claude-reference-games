@@ -1,0 +1,21 @@
+claim: >
+  Reference rows, not a hypothesis: how often elm, birch, cypress and ironwood, each through one command-line agent tool in a cloud session, win ALFWorld games, in the game stack and step limit of
+  Bonn's table. Halil asked for them on 2026-11-04 for benchmarking and reproducibility. They never train a model (lab/results/reference-games/CARD.md).
+falsified_by: nothing, because a reference row makes no claim to fail
+axis: {name: model, values: [elm, birch, cypress, ironwood]}
+second_axis: {name: game list, values: [test], later: [dev, dev_heldout_rooms]}
+controls:
+  held_constant:
+    - the fixed prompt in lab/jobs/reference-games.prompt.md, recorded by SHA-256 in each result
+    - ALFWorld 0.4.2 with the 50-step limit, admissible commands without help
+    - one process per game in a new empty folder with no settings, so nothing carries over between games
+    - the process may run the player's start and step commands and no other shell command
+  test_games: opened by Halil on 2026-11-04 for these models only, each game played once per model in a fresh session, totals gathered on his request, and Kev's choices are frozen on dev without reading them
+metrics:
+  primary: share of games won, per model and game list
+  reported_with_no_gate: [mean steps, refused commands, restarted games, games not played, repeat rate]
+tables: lab/results/reference-games/summary/test-by-model.csv, test-by-task.csv and test-by-game.csv, from gather --list test
+run: >
+  lab/jobs/reference-games.sh test sets up the game files. The launcher that plays a list stays in the private folder lab/data/reference-games-private/, because it names the models
+compute:
+  where: cloud sessions on Halil's cloud credits, which expired 2026-11-05 at 10:59 GMT+3
