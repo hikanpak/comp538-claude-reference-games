@@ -11,10 +11,10 @@ issue, the comment that raised it, the ruling, the report and the claim.
 
 | Issue | Assignee | Opened | Status | Raised by | Closed by |
 | --- | --- | --- | --- | --- | --- |
+| [2026-11-04-agent-test-games-four-models](issues/2026-11-04-agent-test-games-four-models.md) | agent | 2026-11-04 |  |  |  |
 | [2026-11-03-claude-execution-critique](issues/2026-11-03-claude-execution-critique.md) | claude | 2026-11-03 |  |  |  |
 | [2026-11-03-claude-plan-review-rounds](issues/2026-11-03-claude-plan-review-rounds.md) | claude | 2026-11-03 |  |  |  |
 | [2026-11-04-claude-installed-expert-faults](issues/2026-11-04-claude-installed-expert-faults.md) | claude | 2026-11-04 |  |  |  |
-| [2026-11-04-agent-test-games-four-models](issues/2026-11-04-agent-test-games-four-models.md) | claude | 2026-11-04 |  |  |  |
 
 ## PI comments
 
