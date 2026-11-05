@@ -1,0 +1,73 @@
+{
+ "topic": "reference-games",
+ "player": "birch",
+ "not_for_training": "These commands are a benchmark reference. The provider's usage policy lists using outputs to train an AI model without prior authorization, so nothing here may train Kev or any other model, as labels, features or fallback steps.",
+ "uid": "valid_unseen/look_at_obj_in_light-Bowl-None-DeskLamp-308/trial_T20190907_133935_066606",
+ "split": "valid_unseen",
+ "task_type": "look_at_obj_in_light",
+ "model_reported": "birch",
+ "max_steps": 50,
+ "git_commit": "263f2a3d276b2accd51d6158de455b2c7670ae34",
+ "git_dirty": false,
+ "python": "3.12.3",
+ "packages": {
+  "alfworld": "0.4.2",
+  "textworld": "1.7.0",
+  "fast-downward-textworld": "20.6.4",
+  "numpy": "2.5.4"
+ },
+ "machine": "Linux-6.18.44-fc-v233-x86_64-with-glibc2.39",
+ "cpus": 4,
+ "prompt_sha256": "35f2ae3c70c34f9b72c4a1a2300600fdbbd8ec3ec6d55367541290af1d1be6a5",
+ "python_hash_seed": "0",
+ "seed": null,
+ "seed_note": "The game has no randomness and the model's sampling cannot be seeded from here.",
+ "started_at": "2026-11-04T17:10:09Z",
+ "finished_at": "2026-11-04T17:10:35Z",
+ "finished": true,
+ "ended_early": false,
+ "won": true,
+ "steps": 5,
+ "refused_commands": [],
+ "abandoned_attempts": [],
+ "task": "look at bowl under the desklamp.",
+ "initial_observation": "You are in the middle of a room. Looking quickly around you, you see a bed 1, a desk 2, a desk 1, a drawer 6, a drawer 5, a drawer 4, a drawer 3, a drawer 2, a drawer 1, a garbagecan 1, a laundryhamper 1, a safe 1, a shelf 6, a shelf 5, a shelf 4, a shelf 3, a shelf 2, and a shelf 1.",
+ "trace": [
+  {
+   "command": "go to desk 1",
+   "observation": "You arrive at desk 1. On the desk 1, you see a alarmclock 1, a desklamp 1, a mug 1, and a pencil 1.",
+   "commands_on_offer": 24
+  },
+  {
+   "command": "go to desk 2",
+   "observation": "You arrive at desk 2. On the desk 2, you see a bowl 2, a bowl 1, a cd 2, a cd 1, and a creditcard 3.",
+   "commands_on_offer": 25
+  },
+  {
+   "command": "take bowl 1 from desk 2",
+   "observation": "You pick up the bowl 1 from the desk 2.",
+   "commands_on_offer": 22
+  },
+  {
+   "command": "go to desk 1",
+   "observation": "You arrive at desk 1. On the desk 1, you see a alarmclock 1, a desklamp 1, a mug 1, and a pencil 1.",
+   "commands_on_offer": 23
+  },
+  {
+   "command": "use desklamp 1",
+   "observation": "You turn on the desklamp 1.",
+   "commands_on_offer": 23
+  }
+ ],
+ "processes": [
+  {
+   "runner": "one CLI process",
+   "attempt": 1,
+   "model": "birch",
+   "ok": true,
+   "num_turns": 7,
+   "duration_ms": 33398,
+   "error": null
+  }
+ ]
+}

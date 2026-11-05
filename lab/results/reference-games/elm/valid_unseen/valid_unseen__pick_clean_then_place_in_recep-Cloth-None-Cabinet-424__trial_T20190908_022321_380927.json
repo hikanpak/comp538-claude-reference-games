@@ -1,0 +1,123 @@
+{
+ "topic": "reference-games",
+ "player": "elm",
+ "not_for_training": "These commands are a benchmark reference. The provider's usage policy lists using outputs to train an AI model without prior authorization, so nothing here may train Kev or any other model, as labels, features or fallback steps.",
+ "uid": "valid_unseen/pick_clean_then_place_in_recep-Cloth-None-Cabinet-424/trial_T20190908_022321_380927",
+ "split": "valid_unseen",
+ "task_type": "pick_clean_then_place_in_recep",
+ "model_reported": "elm",
+ "max_steps": 50,
+ "git_commit": "263f2a3d276b2accd51d6158de455b2c7670ae34",
+ "git_dirty": false,
+ "python": "3.12.3",
+ "packages": {
+  "alfworld": "0.4.2",
+  "textworld": "1.7.0",
+  "fast-downward-textworld": "20.6.4",
+  "numpy": "2.5.4"
+ },
+ "machine": "Linux-6.18.44-fc-v233-x86_64-with-glibc2.39",
+ "cpus": 4,
+ "prompt_sha256": "35f2ae3c70c34f9b72c4a1a2300600fdbbd8ec3ec6d55367541290af1d1be6a5",
+ "python_hash_seed": "0",
+ "seed": null,
+ "seed_note": "The game has no randomness and the model's sampling cannot be seeded from here.",
+ "started_at": "2026-11-04T17:08:15Z",
+ "finished_at": "2026-11-04T17:09:50Z",
+ "finished": true,
+ "ended_early": true,
+ "won": false,
+ "steps": 15,
+ "refused_commands": [],
+ "abandoned_attempts": [],
+ "task": "clean some cloth and put it in cabinet.",
+ "initial_observation": "You are in the middle of a room. Looking quickly around you, you see a cabinet 4, a cabinet 3, a cabinet 2, a cabinet 1, a countertop 1, a garbagecan 1, a handtowelholder 2, a handtowelholder 1, a sinkbasin 2, a sinkbasin 1, a toilet 1, a toiletpaperhanger 1, and a towelholder 1.",
+ "trace": [
+  {
+   "command": "go to towelholder 1",
+   "observation": "You arrive at towelholder 1. On the towelholder 1, you see a towel 1.",
+   "commands_on_offer": 16
+  },
+  {
+   "command": "take towel 1 from towelholder 1",
+   "observation": "You pick up the towel 1 from the towelholder 1.",
+   "commands_on_offer": 17
+  },
+  {
+   "command": "go to sinkbasin 1",
+   "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see nothing.",
+   "commands_on_offer": 16
+  },
+  {
+   "command": "look",
+   "observation": "You are facing the sinkbasin 1. Next to it, you see nothing.",
+   "commands_on_offer": 16
+  },
+  {
+   "command": "go to sinkbasin 2",
+   "observation": "You arrive at sinkbasin 2. On the sinkbasin 2, you see nothing.",
+   "commands_on_offer": 16
+  },
+  {
+   "command": "inventory",
+   "observation": "You are carrying: a towel 1.",
+   "commands_on_offer": 16
+  },
+  {
+   "command": "go to handtowelholder 1",
+   "observation": "You arrive at handtowelholder 1. On the handtowelholder 1, you see nothing.",
+   "commands_on_offer": 16
+  },
+  {
+   "command": "go to cabinet 1",
+   "observation": "You arrive at cabinet 1. The cabinet 1 is closed.",
+   "commands_on_offer": 17
+  },
+  {
+   "command": "open cabinet 1",
+   "observation": "You open the cabinet 1. The cabinet 1 is open. In it, you see a soapbottle 3.",
+   "commands_on_offer": 17
+  },
+  {
+   "command": "go to countertop 1",
+   "observation": "You arrive at countertop 1. On the countertop 1, you see a candle 2, a soapbar 1, a soapbottle 2, a soapbottle 1, and a spraybottle 1.",
+   "commands_on_offer": 16
+  },
+  {
+   "command": "go to toilet 1",
+   "observation": "You arrive at toilet 1. On the toilet 1, you see a candle 3, a toiletpaper 2, and a toiletpaper 1.",
+   "commands_on_offer": 16
+  },
+  {
+   "command": "go to handtowelholder 2",
+   "observation": "You arrive at handtowelholder 2. On the handtowelholder 2, you see a handtowel 1.",
+   "commands_on_offer": 16
+  },
+  {
+   "command": "go to garbagecan 1",
+   "observation": "You arrive at garbagecan 1. On the garbagecan 1, you see nothing.",
+   "commands_on_offer": 16
+  },
+  {
+   "command": "go to toiletpaperhanger 1",
+   "observation": "You arrive at toiletpaperhanger 1. On the toiletpaperhanger 1, you see nothing.",
+   "commands_on_offer": 16
+  },
+  {
+   "command": "go to sinkbasin 1",
+   "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see nothing.",
+   "commands_on_offer": 16
+  }
+ ],
+ "processes": [
+  {
+   "runner": "one CLI process",
+   "attempt": 1,
+   "model": "elm",
+   "ok": true,
+   "num_turns": 17,
+   "duration_ms": 99849,
+   "error": null
+  }
+ ]
+}

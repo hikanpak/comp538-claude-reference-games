@@ -1,0 +1,88 @@
+{
+ "topic": "reference-games",
+ "player": "birch",
+ "not_for_training": "These commands are a benchmark reference. The provider's usage policy lists using outputs to train an AI model without prior authorization, so nothing here may train Kev or any other model, as labels, features or fallback steps.",
+ "uid": "valid_unseen/pick_clean_then_place_in_recep-Plate-None-CounterTop-10/trial_T20190908_213533_897289",
+ "split": "valid_unseen",
+ "task_type": "pick_clean_then_place_in_recep",
+ "model_reported": "birch",
+ "max_steps": 50,
+ "git_commit": "263f2a3d276b2accd51d6158de455b2c7670ae34",
+ "git_dirty": false,
+ "python": "3.12.3",
+ "packages": {
+  "alfworld": "0.4.2",
+  "textworld": "1.7.0",
+  "fast-downward-textworld": "20.6.4",
+  "numpy": "2.5.4"
+ },
+ "machine": "Linux-6.18.44-fc-v233-x86_64-with-glibc2.39",
+ "cpus": 4,
+ "prompt_sha256": "35f2ae3c70c34f9b72c4a1a2300600fdbbd8ec3ec6d55367541290af1d1be6a5",
+ "python_hash_seed": "0",
+ "seed": null,
+ "seed_note": "The game has no randomness and the model's sampling cannot be seeded from here.",
+ "started_at": "2026-11-04T17:16:17Z",
+ "finished_at": "2026-11-04T17:17:12Z",
+ "finished": true,
+ "ended_early": false,
+ "won": true,
+ "steps": 8,
+ "refused_commands": [],
+ "abandoned_attempts": [],
+ "task": "clean some plate and put it in countertop.",
+ "initial_observation": "You are in the middle of a room. Looking quickly around you, you see a cabinet 6, a cabinet 5, a cabinet 4, a cabinet 3, a cabinet 2, a cabinet 1, a coffeemachine 1, a countertop 3, a countertop 2, a countertop 1, a drawer 3, a drawer 2, a drawer 1, a fridge 1, a garbagecan 1, a microwave 1, a shelf 3, a shelf 2, a shelf 1, a sinkbasin 1, a stoveburner 4, a stoveburner 3, a stoveburner 2, a stoveburner 1, and a toaster 1.",
+ "trace": [
+  {
+   "command": "go to countertop 1",
+   "observation": "You arrive at countertop 1. On the countertop 1, you see nothing.",
+   "commands_on_offer": 27
+  },
+  {
+   "command": "go to countertop 2",
+   "observation": "You arrive at countertop 2. On the countertop 2, you see nothing.",
+   "commands_on_offer": 27
+  },
+  {
+   "command": "go to countertop 3",
+   "observation": "You arrive at countertop 3. On the countertop 3, you see a apple 2, a bread 2, a butterknife 1, a egg 3, a houseplant 1, a papertowelroll 1, a plate 4, a plate 3, a spatula 3, a spatula 2, a spoon 3, a spoon 2, a spoon 1, a statue 2, a statue 1, and a tomato 3.",
+   "commands_on_offer": 42
+  },
+  {
+   "command": "take plate 3 from countertop 3",
+   "observation": "You pick up the plate 3 from the countertop 3.",
+   "commands_on_offer": 29
+  },
+  {
+   "command": "go to sinkbasin 1",
+   "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see nothing.",
+   "commands_on_offer": 30
+  },
+  {
+   "command": "clean plate 3 with sinkbasin 1",
+   "observation": "You clean the plate 3 using the sinkbasin 1.",
+   "commands_on_offer": 30
+  },
+  {
+   "command": "go to countertop 1",
+   "observation": "You arrive at countertop 1. On the countertop 1, you see nothing.",
+   "commands_on_offer": 29
+  },
+  {
+   "command": "move plate 3 to countertop 1",
+   "observation": "You move the plate 3 to the countertop 1.",
+   "commands_on_offer": 28
+  }
+ ],
+ "processes": [
+  {
+   "runner": "one CLI process",
+   "attempt": 1,
+   "model": "birch",
+   "ok": true,
+   "num_turns": 10,
+   "duration_ms": 62558,
+   "error": null
+  }
+ ]
+}

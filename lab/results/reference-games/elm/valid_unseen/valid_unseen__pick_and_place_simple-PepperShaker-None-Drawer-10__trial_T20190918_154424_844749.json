@@ -1,0 +1,88 @@
+{
+ "topic": "reference-games",
+ "player": "elm",
+ "not_for_training": "These commands are a benchmark reference. The provider's usage policy lists using outputs to train an AI model without prior authorization, so nothing here may train Kev or any other model, as labels, features or fallback steps.",
+ "uid": "valid_unseen/pick_and_place_simple-PepperShaker-None-Drawer-10/trial_T20190918_154424_844749",
+ "split": "valid_unseen",
+ "task_type": "pick_and_place_simple",
+ "model_reported": "elm",
+ "max_steps": 50,
+ "git_commit": "263f2a3d276b2accd51d6158de455b2c7670ae34",
+ "git_dirty": false,
+ "python": "3.12.3",
+ "packages": {
+  "alfworld": "0.4.2",
+  "textworld": "1.7.0",
+  "fast-downward-textworld": "20.6.4",
+  "numpy": "2.5.4"
+ },
+ "machine": "Linux-6.18.44-fc-v233-x86_64-with-glibc2.39",
+ "cpus": 4,
+ "prompt_sha256": "35f2ae3c70c34f9b72c4a1a2300600fdbbd8ec3ec6d55367541290af1d1be6a5",
+ "python_hash_seed": "0",
+ "seed": null,
+ "seed_note": "The game has no randomness and the model's sampling cannot be seeded from here.",
+ "started_at": "2026-11-04T17:12:54Z",
+ "finished_at": "2026-11-04T17:13:49Z",
+ "finished": true,
+ "ended_early": false,
+ "won": true,
+ "steps": 8,
+ "refused_commands": [],
+ "abandoned_attempts": [],
+ "task": "put some peppershaker on drawer.",
+ "initial_observation": "You are in the middle of a room. Looking quickly around you, you see a cabinet 6, a cabinet 5, a cabinet 4, a cabinet 3, a cabinet 2, a cabinet 1, a coffeemachine 1, a countertop 3, a countertop 2, a countertop 1, a drawer 3, a drawer 2, a drawer 1, a fridge 1, a garbagecan 1, a microwave 1, a shelf 3, a shelf 2, a shelf 1, a sinkbasin 1, a stoveburner 4, a stoveburner 3, a stoveburner 2, a stoveburner 1, and a toaster 1.",
+ "trace": [
+  {
+   "command": "go to shelf 1",
+   "observation": "You arrive at shelf 1. On the shelf 1, you see a statue 1.",
+   "commands_on_offer": 28
+  },
+  {
+   "command": "go to shelf 2",
+   "observation": "You arrive at shelf 2. On the shelf 2, you see a creditcard 1, a mug 1, a papertowelroll 1, and a plate 2.",
+   "commands_on_offer": 31
+  },
+  {
+   "command": "go to shelf 3",
+   "observation": "You arrive at shelf 3. On the shelf 3, you see a vase 2.",
+   "commands_on_offer": 28
+  },
+  {
+   "command": "go to cabinet 1",
+   "observation": "You arrive at cabinet 1. On the cabinet 1, you see a peppershaker 2, and a saltshaker 1.",
+   "commands_on_offer": 29
+  },
+  {
+   "command": "take peppershaker 2 from cabinet 1",
+   "observation": "You pick up the peppershaker 2 from the cabinet 1.",
+   "commands_on_offer": 29
+  },
+  {
+   "command": "go to drawer 1",
+   "observation": "You arrive at drawer 1. The drawer 1 is closed.",
+   "commands_on_offer": 29
+  },
+  {
+   "command": "open drawer 1",
+   "observation": "You open the drawer 1. The drawer 1 is open. In it, you see a cellphone 1.",
+   "commands_on_offer": 30
+  },
+  {
+   "command": "move peppershaker 2 to drawer 1",
+   "observation": "You move the peppershaker 2 to the drawer 1.",
+   "commands_on_offer": 30
+  }
+ ],
+ "processes": [
+  {
+   "runner": "one CLI process",
+   "attempt": 1,
+   "model": "elm",
+   "ok": true,
+   "num_turns": 10,
+   "duration_ms": 65163,
+   "error": null
+  }
+ ]
+}

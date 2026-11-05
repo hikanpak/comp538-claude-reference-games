@@ -1,0 +1,128 @@
+{
+ "topic": "reference-games",
+ "player": "elm",
+ "not_for_training": "These commands are a benchmark reference. The provider's usage policy lists using outputs to train an AI model without prior authorization, so nothing here may train Kev or any other model, as labels, features or fallback steps.",
+ "uid": "valid_unseen/pick_two_obj_and_place-CD-None-Safe-308/trial_T20190907_051056_585414",
+ "split": "valid_unseen",
+ "task_type": "pick_two_obj_and_place",
+ "model_reported": "elm",
+ "max_steps": 50,
+ "git_commit": "263f2a3d276b2accd51d6158de455b2c7670ae34",
+ "git_dirty": false,
+ "python": "3.12.3",
+ "packages": {
+  "alfworld": "0.4.2",
+  "textworld": "1.7.0",
+  "fast-downward-textworld": "20.6.4",
+  "numpy": "2.5.4"
+ },
+ "machine": "Linux-6.18.44-fc-v233-x86_64-with-glibc2.39",
+ "cpus": 4,
+ "prompt_sha256": "35f2ae3c70c34f9b72c4a1a2300600fdbbd8ec3ec6d55367541290af1d1be6a5",
+ "python_hash_seed": "0",
+ "seed": null,
+ "seed_note": "The game has no randomness and the model's sampling cannot be seeded from here.",
+ "started_at": "2026-11-04T17:27:04Z",
+ "finished_at": "2026-11-04T17:28:35Z",
+ "finished": true,
+ "ended_early": false,
+ "won": true,
+ "steps": 16,
+ "refused_commands": [],
+ "abandoned_attempts": [],
+ "task": "put two cd in safe.",
+ "initial_observation": "You are in the middle of a room. Looking quickly around you, you see a bed 1, a desk 2, a desk 1, a drawer 6, a drawer 5, a drawer 4, a drawer 3, a drawer 2, a drawer 1, a garbagecan 1, a laundryhamper 1, a safe 1, a shelf 6, a shelf 5, a shelf 4, a shelf 3, a shelf 2, and a shelf 1.",
+ "trace": [
+  {
+   "command": "go to shelf 1",
+   "observation": "You arrive at shelf 1. On the shelf 1, you see a alarmclock 1, a keychain 2, and a pencil 1.",
+   "commands_on_offer": 23
+  },
+  {
+   "command": "go to shelf 2",
+   "observation": "You arrive at shelf 2. On the shelf 2, you see nothing.",
+   "commands_on_offer": 20
+  },
+  {
+   "command": "go to shelf 3",
+   "observation": "You arrive at shelf 3. On the shelf 3, you see a alarmclock 2, a bowl 1, and a desklamp 1.",
+   "commands_on_offer": 23
+  },
+  {
+   "command": "go to shelf 4",
+   "observation": "You arrive at shelf 4. On the shelf 4, you see a pen 2.",
+   "commands_on_offer": 21
+  },
+  {
+   "command": "go to shelf 5",
+   "observation": "You arrive at shelf 5. On the shelf 5, you see nothing.",
+   "commands_on_offer": 20
+  },
+  {
+   "command": "go to shelf 6",
+   "observation": "You arrive at shelf 6. On the shelf 6, you see nothing.",
+   "commands_on_offer": 20
+  },
+  {
+   "command": "go to desk 1",
+   "observation": "You arrive at desk 1. On the desk 1, you see a alarmclock 2, a bowl 1, a desklamp 1, and a laptop 1.",
+   "commands_on_offer": 24
+  },
+  {
+   "command": "go to desk 2",
+   "observation": "You arrive at desk 2. On the desk 2, you see a alarmclock 3, a cd 2, a cd 1, a cellphone 3, a cellphone 2, a creditcard 1, and a mug 1.",
+   "commands_on_offer": 27
+  },
+  {
+   "command": "take cd 1 from desk 2",
+   "observation": "You pick up the cd 1 from the desk 2.",
+   "commands_on_offer": 22
+  },
+  {
+   "command": "go to safe 1",
+   "observation": "You arrive at safe 1. The safe 1 is closed.",
+   "commands_on_offer": 22
+  },
+  {
+   "command": "open safe 1",
+   "observation": "You open the safe 1. The safe 1 is open. In it, you see a cellphone 1.",
+   "commands_on_offer": 23
+  },
+  {
+   "command": "move cd 1 to safe 1",
+   "observation": "You move the cd 1 to the safe 1.",
+   "commands_on_offer": 23
+  },
+  {
+   "command": "go to desk 2",
+   "observation": "You arrive at desk 2. On the desk 2, you see a alarmclock 3, a cd 2, a cellphone 3, a cellphone 2, a creditcard 1, and a mug 1.",
+   "commands_on_offer": 26
+  },
+  {
+   "command": "take cd 2 from desk 2",
+   "observation": "You pick up the cd 2 from the desk 2.",
+   "commands_on_offer": 22
+  },
+  {
+   "command": "go to safe 1",
+   "observation": "You arrive at safe 1. The safe 1 is open. In it, you see a cd 1, and a cellphone 1.",
+   "commands_on_offer": 23
+  },
+  {
+   "command": "move cd 2 to safe 1",
+   "observation": "You move the cd 2 to the safe 1.",
+   "commands_on_offer": 24
+  }
+ ],
+ "processes": [
+  {
+   "runner": "one CLI process",
+   "attempt": 1,
+   "model": "elm",
+   "ok": true,
+   "num_turns": 19,
+   "duration_ms": 98371,
+   "error": null
+  }
+ ]
+}

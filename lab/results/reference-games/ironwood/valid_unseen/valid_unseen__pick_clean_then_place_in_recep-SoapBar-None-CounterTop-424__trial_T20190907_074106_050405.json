@@ -1,0 +1,88 @@
+{
+ "topic": "reference-games",
+ "player": "ironwood",
+ "not_for_training": "These commands are a benchmark reference. The provider's usage policy lists using outputs to train an AI model without prior authorization, so nothing here may train Kev or any other model, as labels, features or fallback steps.",
+ "uid": "valid_unseen/pick_clean_then_place_in_recep-SoapBar-None-CounterTop-424/trial_T20190907_074106_050405",
+ "split": "valid_unseen",
+ "task_type": "pick_clean_then_place_in_recep",
+ "model_reported": "ironwood",
+ "max_steps": 50,
+ "git_commit": "263f2a3d276b2accd51d6158de455b2c7670ae34",
+ "git_dirty": false,
+ "python": "3.12.3",
+ "packages": {
+  "alfworld": "0.4.2",
+  "textworld": "1.7.0",
+  "fast-downward-textworld": "20.6.4",
+  "numpy": "2.5.4"
+ },
+ "machine": "Linux-6.18.44-fc-v233-x86_64-with-glibc2.39",
+ "cpus": 4,
+ "prompt_sha256": "35f2ae3c70c34f9b72c4a1a2300600fdbbd8ec3ec6d55367541290af1d1be6a5",
+ "python_hash_seed": "0",
+ "seed": null,
+ "seed_note": "The game has no randomness and the model's sampling cannot be seeded from here.",
+ "started_at": "2026-11-04T17:17:03Z",
+ "finished_at": "2026-11-04T17:17:57Z",
+ "finished": true,
+ "ended_early": false,
+ "won": true,
+ "steps": 8,
+ "refused_commands": [],
+ "abandoned_attempts": [],
+ "task": "put a clean soapbar in countertop.",
+ "initial_observation": "You are in the middle of a room. Looking quickly around you, you see a cabinet 4, a cabinet 3, a cabinet 2, a cabinet 1, a countertop 1, a garbagecan 1, a handtowelholder 2, a handtowelholder 1, a sinkbasin 2, a sinkbasin 1, a toilet 1, a toiletpaperhanger 1, and a towelholder 1.",
+ "trace": [
+  {
+   "command": "go to sinkbasin 1",
+   "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see nothing.",
+   "commands_on_offer": 15
+  },
+  {
+   "command": "go to sinkbasin 2",
+   "observation": "You arrive at sinkbasin 2. On the sinkbasin 2, you see nothing.",
+   "commands_on_offer": 15
+  },
+  {
+   "command": "go to countertop 1",
+   "observation": "You arrive at countertop 1. On the countertop 1, you see a candle 2, a soapbar 1, a soapbottle 1, and a spraybottle 1.",
+   "commands_on_offer": 19
+  },
+  {
+   "command": "take soapbar 1 from countertop 1",
+   "observation": "You pick up the soapbar 1 from the countertop 1.",
+   "commands_on_offer": 17
+  },
+  {
+   "command": "go to sinkbasin 1",
+   "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see nothing.",
+   "commands_on_offer": 18
+  },
+  {
+   "command": "clean soapbar 1 with sinkbasin 1",
+   "observation": "You clean the soapbar 1 using the sinkbasin 1.",
+   "commands_on_offer": 18
+  },
+  {
+   "command": "go to countertop 1",
+   "observation": "You arrive at countertop 1. On the countertop 1, you see a candle 2, a soapbottle 1, and a spraybottle 1.",
+   "commands_on_offer": 17
+  },
+  {
+   "command": "move soapbar 1 to countertop 1",
+   "observation": "You move the soapbar 1 to the countertop 1.",
+   "commands_on_offer": 19
+  }
+ ],
+ "processes": [
+  {
+   "runner": "one CLI process",
+   "attempt": 1,
+   "model": "ironwood",
+   "ok": true,
+   "num_turns": 10,
+   "duration_ms": 62073,
+   "error": null
+  }
+ ]
+}

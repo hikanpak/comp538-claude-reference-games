@@ -1,0 +1,88 @@
+{
+ "topic": "reference-games",
+ "player": "birch",
+ "not_for_training": "These commands are a benchmark reference. The provider's usage policy lists using outputs to train an AI model without prior authorization, so nothing here may train Kev or any other model, as labels, features or fallback steps.",
+ "uid": "valid_unseen/pick_cool_then_place_in_recep-Potato-None-Microwave-10/trial_T20190907_033306_962974",
+ "split": "valid_unseen",
+ "task_type": "pick_cool_then_place_in_recep",
+ "model_reported": "birch",
+ "max_steps": 50,
+ "git_commit": "263f2a3d276b2accd51d6158de455b2c7670ae34",
+ "git_dirty": false,
+ "python": "3.12.3",
+ "packages": {
+  "alfworld": "0.4.2",
+  "textworld": "1.7.0",
+  "fast-downward-textworld": "20.6.4",
+  "numpy": "2.5.4"
+ },
+ "machine": "Linux-6.18.44-fc-v233-x86_64-with-glibc2.39",
+ "cpus": 4,
+ "prompt_sha256": "35f2ae3c70c34f9b72c4a1a2300600fdbbd8ec3ec6d55367541290af1d1be6a5",
+ "python_hash_seed": "0",
+ "seed": null,
+ "seed_note": "The game has no randomness and the model's sampling cannot be seeded from here.",
+ "started_at": "2026-11-04T17:05:28Z",
+ "finished_at": "2026-11-04T17:06:34Z",
+ "finished": true,
+ "ended_early": false,
+ "won": true,
+ "steps": 8,
+ "refused_commands": [],
+ "abandoned_attempts": [],
+ "task": "cool some potato and put it in microwave.",
+ "initial_observation": "You are in the middle of a room. Looking quickly around you, you see a cabinet 6, a cabinet 5, a cabinet 4, a cabinet 3, a cabinet 2, a cabinet 1, a coffeemachine 1, a countertop 3, a countertop 2, a countertop 1, a drawer 3, a drawer 2, a drawer 1, a fridge 1, a garbagecan 1, a microwave 1, a shelf 3, a shelf 2, a shelf 1, a sinkbasin 1, a stoveburner 4, a stoveburner 3, a stoveburner 2, a stoveburner 1, and a toaster 1.",
+ "trace": [
+  {
+   "command": "go to countertop 1",
+   "observation": "You arrive at countertop 1. On the countertop 1, you see a fork 2, and a mug 2.",
+   "commands_on_offer": 30
+  },
+  {
+   "command": "go to countertop 2",
+   "observation": "You arrive at countertop 2. On the countertop 2, you see a butterknife 1, a cellphone 1, a mug 1, a peppershaker 1, a potato 2, a potato 1, a soapbottle 1, a spoon 1, and a vase 1.",
+   "commands_on_offer": 36
+  },
+  {
+   "command": "take potato 1 from countertop 2",
+   "observation": "You pick up the potato 1 from the countertop 2.",
+   "commands_on_offer": 29
+  },
+  {
+   "command": "go to fridge 1",
+   "observation": "You arrive at fridge 1. The fridge 1 is closed.",
+   "commands_on_offer": 30
+  },
+  {
+   "command": "cool potato 1 with fridge 1",
+   "observation": "You cool the potato 1 using the fridge 1.",
+   "commands_on_offer": 30
+  },
+  {
+   "command": "go to microwave 1",
+   "observation": "You arrive at microwave 1. The microwave 1 is closed.",
+   "commands_on_offer": 30
+  },
+  {
+   "command": "open microwave 1",
+   "observation": "You open the microwave 1. The microwave 1 is open. In it, you see a egg 1.",
+   "commands_on_offer": 31
+  },
+  {
+   "command": "move potato 1 to microwave 1",
+   "observation": "You move the potato 1 to the microwave 1.",
+   "commands_on_offer": 30
+  }
+ ],
+ "processes": [
+  {
+   "runner": "one CLI process",
+   "attempt": 1,
+   "model": "birch",
+   "ok": true,
+   "num_turns": 10,
+   "duration_ms": 77694,
+   "error": null
+  }
+ ]
+}

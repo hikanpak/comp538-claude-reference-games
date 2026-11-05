@@ -1,0 +1,273 @@
+{
+ "topic": "reference-games",
+ "player": "elm",
+ "not_for_training": "These commands are a benchmark reference. The provider's usage policy lists using outputs to train an AI model without prior authorization, so nothing here may train Kev or any other model, as labels, features or fallback steps.",
+ "uid": "valid_unseen/pick_heat_then_place_in_recep-Egg-None-GarbageCan-10/trial_T20190908_113523_123938",
+ "split": "valid_unseen",
+ "task_type": "pick_heat_then_place_in_recep",
+ "model_reported": "elm",
+ "max_steps": 50,
+ "git_commit": "263f2a3d276b2accd51d6158de455b2c7670ae34",
+ "git_dirty": false,
+ "python": "3.12.3",
+ "packages": {
+  "alfworld": "0.4.2",
+  "textworld": "1.7.0",
+  "fast-downward-textworld": "20.6.4",
+  "numpy": "2.5.4"
+ },
+ "machine": "Linux-6.18.44-fc-v233-x86_64-with-glibc2.39",
+ "cpus": 4,
+ "prompt_sha256": "35f2ae3c70c34f9b72c4a1a2300600fdbbd8ec3ec6d55367541290af1d1be6a5",
+ "python_hash_seed": "0",
+ "seed": null,
+ "seed_note": "The game has no randomness and the model's sampling cannot be seeded from here.",
+ "started_at": "2026-11-04T17:14:16Z",
+ "finished_at": "2026-11-04T17:21:10Z",
+ "finished": true,
+ "ended_early": false,
+ "won": true,
+ "steps": 45,
+ "refused_commands": [],
+ "abandoned_attempts": [],
+ "task": "heat some egg and put it in garbagecan.",
+ "initial_observation": "You are in the middle of a room. Looking quickly around you, you see a cabinet 6, a cabinet 5, a cabinet 4, a cabinet 3, a cabinet 2, a cabinet 1, a coffeemachine 1, a countertop 3, a countertop 2, a countertop 1, a drawer 3, a drawer 2, a drawer 1, a fridge 1, a garbagecan 1, a microwave 1, a shelf 3, a shelf 2, a shelf 1, a sinkbasin 1, a stoveburner 4, a stoveburner 3, a stoveburner 2, a stoveburner 1, and a toaster 1.",
+ "trace": [
+  {
+   "command": "go to countertop 1",
+   "observation": "You arrive at countertop 1. On the countertop 1, you see a cellphone 3, a pan 1, and a peppershaker 2.",
+   "commands_on_offer": 30
+  },
+  {
+   "command": "go to countertop 2",
+   "observation": "You arrive at countertop 2. On the countertop 2, you see a bread 1, a cellphone 1, a creditcard 2, a creditcard 1, a lettuce 1, a mug 1, a spoon 1, and a statue 1.",
+   "commands_on_offer": 35
+  },
+  {
+   "command": "go to countertop 3",
+   "observation": "You arrive at countertop 3. On the countertop 3, you see a butterknife 1, a fork 1, a glassbottle 3, a houseplant 1, a knife 1, a lettuce 3, a saltshaker 3, a soapbottle 1, a spoon 2, and a tomato 1.",
+   "commands_on_offer": 36
+  },
+  {
+   "command": "go to fridge 1",
+   "observation": "You arrive at fridge 1. The fridge 1 is closed.",
+   "commands_on_offer": 28
+  },
+  {
+   "command": "open fridge 1",
+   "observation": "You open the fridge 1. The fridge 1 is open. In it, you see a apple 1, a cup 2, a cup 1, a lettuce 2, a potato 2, and a potato 1.",
+   "commands_on_offer": 34
+  },
+  {
+   "command": "close fridge 1",
+   "observation": "You close the fridge 1.",
+   "commands_on_offer": 28
+  },
+  {
+   "command": "go to shelf 1",
+   "observation": "You arrive at shelf 1. On the shelf 1, you see a saltshaker 2.",
+   "commands_on_offer": 28
+  },
+  {
+   "command": "go to shelf 2",
+   "observation": "You arrive at shelf 2. On the shelf 2, you see a papertowelroll 1, and a vase 1.",
+   "commands_on_offer": 29
+  },
+  {
+   "command": "go to shelf 3",
+   "observation": "You arrive at shelf 3. On the shelf 3, you see a vase 2.",
+   "commands_on_offer": 28
+  },
+  {
+   "command": "go to drawer 1",
+   "observation": "You arrive at drawer 1. The drawer 1 is closed.",
+   "commands_on_offer": 28
+  },
+  {
+   "command": "open drawer 1",
+   "observation": "You open the drawer 1. The drawer 1 is open. In it, you see a spatula 1.",
+   "commands_on_offer": 29
+  },
+  {
+   "command": "close drawer 1",
+   "observation": "You close the drawer 1.",
+   "commands_on_offer": 28
+  },
+  {
+   "command": "go to drawer 2",
+   "observation": "You arrive at drawer 2. The drawer 2 is closed.",
+   "commands_on_offer": 28
+  },
+  {
+   "command": "open drawer 2",
+   "observation": "You open the drawer 2. The drawer 2 is open. In it, you see a dishsponge 1.",
+   "commands_on_offer": 29
+  },
+  {
+   "command": "close drawer 2",
+   "observation": "You close the drawer 2.",
+   "commands_on_offer": 28
+  },
+  {
+   "command": "go to drawer 3",
+   "observation": "You arrive at drawer 3. The drawer 3 is closed.",
+   "commands_on_offer": 28
+  },
+  {
+   "command": "open drawer 3",
+   "observation": "You open the drawer 3. The drawer 3 is open. In it, you see a cellphone 2, and a peppershaker 1.",
+   "commands_on_offer": 30
+  },
+  {
+   "command": "close drawer 3",
+   "observation": "You close the drawer 3.",
+   "commands_on_offer": 28
+  },
+  {
+   "command": "go to cabinet 1",
+   "observation": "You arrive at cabinet 1. On the cabinet 1, you see a plate 1.",
+   "commands_on_offer": 28
+  },
+  {
+   "command": "go to cabinet 2",
+   "observation": "You arrive at cabinet 2. The cabinet 2 is closed.",
+   "commands_on_offer": 28
+  },
+  {
+   "command": "open cabinet 2",
+   "observation": "You open the cabinet 2. The cabinet 2 is open. In it, you see nothing.",
+   "commands_on_offer": 28
+  },
+  {
+   "command": "close cabinet 2",
+   "observation": "You close the cabinet 2.",
+   "commands_on_offer": 28
+  },
+  {
+   "command": "go to cabinet 3",
+   "observation": "You arrive at cabinet 3. On the cabinet 3, you see a bowl 1, and a glassbottle 1.",
+   "commands_on_offer": 29
+  },
+  {
+   "command": "go to cabinet 4",
+   "observation": "You arrive at cabinet 4. On the cabinet 4, you see a saltshaker 1.",
+   "commands_on_offer": 28
+  },
+  {
+   "command": "go to cabinet 5",
+   "observation": "You arrive at cabinet 5. The cabinet 5 is closed.",
+   "commands_on_offer": 28
+  },
+  {
+   "command": "open cabinet 5",
+   "observation": "You open the cabinet 5. The cabinet 5 is open. In it, you see a glassbottle 2.",
+   "commands_on_offer": 29
+  },
+  {
+   "command": "close cabinet 5",
+   "observation": "You close the cabinet 5.",
+   "commands_on_offer": 28
+  },
+  {
+   "command": "go to cabinet 6",
+   "observation": "You arrive at cabinet 6. The cabinet 6 is closed.",
+   "commands_on_offer": 28
+  },
+  {
+   "command": "open cabinet 6",
+   "observation": "You open the cabinet 6. The cabinet 6 is open. In it, you see nothing.",
+   "commands_on_offer": 28
+  },
+  {
+   "command": "go to microwave 1",
+   "observation": "You arrive at microwave 1. The microwave 1 is closed.",
+   "commands_on_offer": 28
+  },
+  {
+   "command": "open microwave 1",
+   "observation": "You open the microwave 1. The microwave 1 is open. In it, you see nothing.",
+   "commands_on_offer": 28
+  },
+  {
+   "command": "close microwave 1",
+   "observation": "You close the microwave 1.",
+   "commands_on_offer": 28
+  },
+  {
+   "command": "go to stoveburner 1",
+   "observation": "You arrive at stoveburner 1. On the stoveburner 1, you see a pan 1.",
+   "commands_on_offer": 29
+  },
+  {
+   "command": "go to stoveburner 2",
+   "observation": "You arrive at stoveburner 2. On the stoveburner 2, you see a pot 1.",
+   "commands_on_offer": 29
+  },
+  {
+   "command": "go to stoveburner 3",
+   "observation": "You arrive at stoveburner 3. On the stoveburner 3, you see a pan 1.",
+   "commands_on_offer": 29
+  },
+  {
+   "command": "go to stoveburner 4",
+   "observation": "You arrive at stoveburner 4. On the stoveburner 4, you see a pot 1.",
+   "commands_on_offer": 29
+  },
+  {
+   "command": "go to toaster 1",
+   "observation": "You arrive at toaster 1. On the toaster 1, you see nothing.",
+   "commands_on_offer": 27
+  },
+  {
+   "command": "go to sinkbasin 1",
+   "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see a fork 2, a spatula 2, and a spoon 3.",
+   "commands_on_offer": 30
+  },
+  {
+   "command": "go to coffeemachine 1",
+   "observation": "You arrive at coffeemachine 1. On the coffeemachine 1, you see nothing.",
+   "commands_on_offer": 30
+  },
+  {
+   "command": "go to garbagecan 1",
+   "observation": "You arrive at garbagecan 1. On the garbagecan 1, you see a apple 2, a egg 2, and a egg 1.",
+   "commands_on_offer": 30
+  },
+  {
+   "command": "take egg 1 from garbagecan 1",
+   "observation": "You pick up the egg 1 from the garbagecan 1.",
+   "commands_on_offer": 29
+  },
+  {
+   "command": "go to microwave 1",
+   "observation": "You arrive at microwave 1. The microwave 1 is closed.",
+   "commands_on_offer": 30
+  },
+  {
+   "command": "heat egg 1 with microwave 1",
+   "observation": "You heat the egg 1 using the microwave 1.",
+   "commands_on_offer": 30
+  },
+  {
+   "command": "go to garbagecan 1",
+   "observation": "You arrive at garbagecan 1. On the garbagecan 1, you see a apple 2, and a egg 2.",
+   "commands_on_offer": 29
+  },
+  {
+   "command": "move egg 1 to garbagecan 1",
+   "observation": "You move the egg 1 to the garbagecan 1.",
+   "commands_on_offer": 30
+  }
+ ],
+ "processes": [
+  {
+   "runner": "one CLI process",
+   "attempt": 1,
+   "model": "elm",
+   "ok": true,
+   "num_turns": 47,
+   "duration_ms": 423477,
+   "error": null
+  }
+ ]
+}

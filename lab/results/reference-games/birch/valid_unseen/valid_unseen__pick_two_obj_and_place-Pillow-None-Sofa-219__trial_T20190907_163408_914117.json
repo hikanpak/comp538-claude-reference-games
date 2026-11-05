@@ -1,0 +1,88 @@
+{
+ "topic": "reference-games",
+ "player": "birch",
+ "not_for_training": "These commands are a benchmark reference. The provider's usage policy lists using outputs to train an AI model without prior authorization, so nothing here may train Kev or any other model, as labels, features or fallback steps.",
+ "uid": "valid_unseen/pick_two_obj_and_place-Pillow-None-Sofa-219/trial_T20190907_163408_914117",
+ "split": "valid_unseen",
+ "task_type": "pick_two_obj_and_place",
+ "model_reported": "birch",
+ "max_steps": 50,
+ "git_commit": "263f2a3d276b2accd51d6158de455b2c7670ae34",
+ "git_dirty": false,
+ "python": "3.12.3",
+ "packages": {
+  "alfworld": "0.4.2",
+  "textworld": "1.7.0",
+  "fast-downward-textworld": "20.6.4",
+  "numpy": "2.5.4"
+ },
+ "machine": "Linux-6.18.44-fc-v233-x86_64-with-glibc2.39",
+ "cpus": 4,
+ "prompt_sha256": "35f2ae3c70c34f9b72c4a1a2300600fdbbd8ec3ec6d55367541290af1d1be6a5",
+ "python_hash_seed": "0",
+ "seed": null,
+ "seed_note": "The game has no randomness and the model's sampling cannot be seeded from here.",
+ "started_at": "2026-11-04T16:51:59Z",
+ "finished_at": "2026-11-04T16:52:38Z",
+ "finished": true,
+ "ended_early": false,
+ "won": true,
+ "steps": 8,
+ "refused_commands": [],
+ "abandoned_attempts": [],
+ "task": "put two pillow in sofa.",
+ "initial_observation": "You are in the middle of a room. Looking quickly around you, you see a armchair 1, a cabinet 4, a cabinet 3, a cabinet 2, a cabinet 1, a drawer 5, a drawer 4, a drawer 3, a drawer 2, a drawer 1, a dresser 1, a garbagecan 1, a safe 1, a shelf 12, a shelf 11, a shelf 10, a shelf 9, a shelf 8, a shelf 7, a shelf 6, a shelf 5, a shelf 4, a shelf 3, a shelf 2, a shelf 1, a sidetable 1, and a sofa 1.",
+ "trace": [
+  {
+   "command": "go to armchair 1",
+   "observation": "You arrive at armchair 1. On the armchair 1, you see a cellphone 2, a pillow 2, and a pillow 1.",
+   "commands_on_offer": 32
+  },
+  {
+   "command": "take pillow 1 from armchair 1",
+   "observation": "You pick up the pillow 1 from the armchair 1.",
+   "commands_on_offer": 31
+  },
+  {
+   "command": "go to sofa 1",
+   "observation": "You arrive at sofa 1. On the sofa 1, you see a newspaper 3.",
+   "commands_on_offer": 31
+  },
+  {
+   "command": "move pillow 1 to sofa 1",
+   "observation": "You move the pillow 1 to the sofa 1.",
+   "commands_on_offer": 31
+  },
+  {
+   "command": "go to armchair 1",
+   "observation": "You arrive at armchair 1. On the armchair 1, you see a cellphone 2, and a pillow 2.",
+   "commands_on_offer": 31
+  },
+  {
+   "command": "take pillow 2 from armchair 1",
+   "observation": "You pick up the pillow 2 from the armchair 1.",
+   "commands_on_offer": 31
+  },
+  {
+   "command": "go to sofa 1",
+   "observation": "You arrive at sofa 1. On the sofa 1, you see a newspaper 3, and a pillow 1.",
+   "commands_on_offer": 31
+  },
+  {
+   "command": "move pillow 2 to sofa 1",
+   "observation": "You move the pillow 2 to the sofa 1.",
+   "commands_on_offer": 32
+  }
+ ],
+ "processes": [
+  {
+   "runner": "one CLI process",
+   "attempt": 1,
+   "model": "birch",
+   "ok": true,
+   "num_turns": 10,
+   "duration_ms": 48207,
+   "error": null
+  }
+ ]
+}

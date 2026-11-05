@@ -1,0 +1,68 @@
+{
+ "topic": "reference-games",
+ "player": "ironwood",
+ "not_for_training": "These commands are a benchmark reference. The provider's usage policy lists using outputs to train an AI model without prior authorization, so nothing here may train Kev or any other model, as labels, features or fallback steps.",
+ "uid": "valid_unseen/pick_cool_then_place_in_recep-Pan-None-CounterTop-10/trial_T20190908_114622_738670",
+ "split": "valid_unseen",
+ "task_type": "pick_cool_then_place_in_recep",
+ "model_reported": "ironwood",
+ "max_steps": 50,
+ "git_commit": "263f2a3d276b2accd51d6158de455b2c7670ae34",
+ "git_dirty": false,
+ "python": "3.12.3",
+ "packages": {
+  "alfworld": "0.4.2",
+  "textworld": "1.7.0",
+  "fast-downward-textworld": "20.6.4",
+  "numpy": "2.5.4"
+ },
+ "machine": "Linux-6.18.44-fc-v233-x86_64-with-glibc2.39",
+ "cpus": 4,
+ "prompt_sha256": "35f2ae3c70c34f9b72c4a1a2300600fdbbd8ec3ec6d55367541290af1d1be6a5",
+ "python_hash_seed": "0",
+ "seed": null,
+ "seed_note": "The game has no randomness and the model's sampling cannot be seeded from here.",
+ "started_at": "2026-11-04T17:18:12Z",
+ "finished_at": "2026-11-04T17:18:50Z",
+ "finished": true,
+ "ended_early": false,
+ "won": true,
+ "steps": 4,
+ "refused_commands": [],
+ "abandoned_attempts": [],
+ "task": "put a cool pan in countertop.",
+ "initial_observation": "You are in the middle of a room. Looking quickly around you, you see a cabinet 6, a cabinet 5, a cabinet 4, a cabinet 3, a cabinet 2, a cabinet 1, a coffeemachine 1, a countertop 3, a countertop 2, a countertop 1, a drawer 3, a drawer 2, a drawer 1, a fridge 1, a garbagecan 1, a microwave 1, a shelf 3, a shelf 2, a shelf 1, a sinkbasin 1, a stoveburner 4, a stoveburner 3, a stoveburner 2, a stoveburner 1, and a toaster 1.",
+ "trace": [
+  {
+   "command": "go to stoveburner 1",
+   "observation": "You arrive at stoveburner 1. On the stoveburner 1, you see a pan 2.",
+   "commands_on_offer": 29
+  },
+  {
+   "command": "take pan 2 from stoveburner 1",
+   "observation": "You pick up the pan 2 from the stoveburner 1.",
+   "commands_on_offer": 30
+  },
+  {
+   "command": "go to fridge 1",
+   "observation": "You arrive at fridge 1. The fridge 1 is closed.",
+   "commands_on_offer": 30
+  },
+  {
+   "command": "cool pan 2 with fridge 1",
+   "observation": "You cool the pan 2 using the fridge 1.",
+   "commands_on_offer": 30
+  }
+ ],
+ "processes": [
+  {
+   "runner": "one CLI process",
+   "attempt": 1,
+   "model": "ironwood",
+   "ok": true,
+   "num_turns": 6,
+   "duration_ms": 45310,
+   "error": null
+  }
+ ]
+}
