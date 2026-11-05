@@ -20,6 +20,9 @@ scaffold requires. `paper/` is Halil's: no agent drafts report prose.
   that was not measured. Test games run once, after every choice is frozen on dev.
 - Prose in reports follows plain exact terms, with epistemic labels Proven,
   Heuristic, Empirical or Open. Mathematics goes in compiled files, not chat.
+- The four reference models are elm, birch, cypress and ironwood in every tracked file, commit message and branch name, and a longer name is a larger model. Their real names, their prices, their
+  tokens and their transcripts stay in `lab/data/reference-games-private/`, because Halil asked for anonymity on 2026-11-05 and both repositories are public.
+- `proposal/`, `lib/work-log.md`, `lib/llm-use-log.md` and `lib/cloud-sessions.md` are kept on Halil's Mac and never tracked, because they stay truthful about the models and both repositories are public.
 - Append what you do to `lib/work-log.md`, as Halil asked: "note down everything you do".
 - Compute limits are in `CONTEXT.md`. Log AI work in `lib/llm-use-log.md`, because
   the course requires disclosure with each deliverable.

@@ -55,3 +55,9 @@ lab/results/**/*.safetensors
 
 # Row shards live on branch data-training-set-seed0
 lab/results/sys1-training-set/*.jsonl.gz
+
+# Kept on Halil's Mac and out of every branch, because both repositories are public
+proposal/
+lib/work-log.md
+lib/llm-use-log.md
+lib/cloud-sessions.md

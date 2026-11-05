@@ -47,7 +47,8 @@ and every choice with who made it is `plan/choices.tex`.
 | control state | Who controls, fallbacks in a row, LLM rounds left | |
 | teacher | Whoever supplies the right command in training. ALFWorld's handcoded expert here | oracle, checker |
 | checker | The game's own success test | verifier, teacher |
-| Reference games | Birch, Cypress, Elm or Ironwood playing ALFWorld games in a cloud session for benchmarking. Never training data | reference-model labels, reference-model teacher |
+| Reference games | Elm, Birch, Cypress or Ironwood playing ALFWorld games in a cloud session for benchmarking. Never training data | reference-model labels, reference-model teacher |
+| elm, birch, cypress, ironwood | The four reference models, anonymized on Halil's request. A longer name is a larger model. Real names only in `lab/data/reference-games-private/` | |
 | arm | One way of training Sys1 | variant |
 | step match | How often Sys1's pick equals the teacher's | accuracy |
 | handover | One step given to Qwen 27B, one call. Only in the Qwen question of the plan | fallback |

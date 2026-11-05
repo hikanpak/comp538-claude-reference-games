@@ -1,0 +1,83 @@
+%%============================================================================
+%% A report. Created by report-new.sh. Do not copy this file by hand.
+%% Compile from the repository root:  report-build.sh lib/reports/src/<this file>
+%%============================================================================
+\documentclass{labreport}
+\lrnoreflection   % lib/reports/src/config.yml says reflection: false
+
+\lrdate{2026-11-05}
+\lrslug{agent-test-games-four-models}
+\lrtitle{Elm, Birch, Cypress and Ironwood on the 134 ALFWorld test games}
+\lrauthor{Coding agent}
+\lrissue{2026-11-04-agent-test-games-four-models}
+\lrstatus{final}          % draft | reviewed | final
+
+\lrresults{lab/results/reference-games}
+
+\lrdefine{Games}{134}{lab/results/reference-games/summary/test-by-model.csv}
+\lrdefine{ElmWon}{130}{lab/results/reference-games/summary/test-by-model.csv}
+\lrdefine{ElmLost}{4}{lab/results/reference-games/summary/test-by-game.csv}
+\lrdefine{ElmStopLow}{9}{lab/results/reference-games/summary/test-by-game.csv}
+\lrdefine{ElmStopHigh}{29}{lab/results/reference-games/summary/test-by-game.csv}
+\lrdefine{StepsLow}{7.612}{lab/results/reference-games/summary/test-by-model.csv}
+\lrdefine{StepsHigh}{7.925}{lab/results/reference-games/summary/test-by-model.csv}
+\lrdefine{ElmSteps}{11.963}{lab/results/reference-games/summary/test-by-model.csv}
+\lrdefine{PlanSteps}{5.627}{lab/results/reference-games/summary/test-by-model.csv}
+\lrdefine{ReplayFailed}{0}{lab/results/reference-games/summary/test-replay-check.txt}
+\lrdefine{OtherCommands}{2}{lab/results/reference-games/summary/test-transcript-audit.csv}
+\lrdefine{NamingFiles}{0}{lab/results/reference-games/summary/test-transcript-audit.csv}
+\lrdefine{CostTotal}{64.95}{lab/results/reference-games/summary/test-total-cost.csv}
+
+\begin{document}
+\lrmaketitle
+
+%%----------------------------------------------------------------------------
+\lrscope
+The question is how four reference models score on the \lrv{Games} ALFWorld test games, the \texttt{valid\_unseen} split.
+Elm, Birch, Cypress and Ironwood are anonymized names, and a longer name is a larger model.
+Each model played each game once in a fresh process, in a new empty folder with no settings, limited to the player's \texttt{start} and \texttt{step} commands, and the saved games were then replayed in the real game on the Mac.
+
+%%----------------------------------------------------------------------------
+\lrresult
+Birch, Cypress and Ironwood each won all \lrv{Games} test games and Elm won \lrv{ElmWon} (Empirical), so this list does not separate the first three models.
+All \lrv{ElmLost} Elm losses are \texttt{clean cloth} games in room 424, where Elm took a towel, judged the game stuck and stopped after \lrv{ElmStopLow} to \lrv{ElmStopHigh} steps.
+The runner counts a process that stops before the game ends as a lost game.
+Birch, Cypress and Ironwood took \lrv{StepsLow} to \lrv{StepsHigh} steps on average and Elm took \lrv{ElmSteps}, against \lrv{PlanSteps} for the plan that ships with each game, which uses known object locations.
+Replaying every saved game gave \lrv{ReplayFailed} mismatches in any observation, win or step count.
+Every tool call in the transcripts is the player's own command, apart from \lrv{OtherCommands} empty placeholders from Elm, and \lrv{NamingFiles} tool results name a game file.
+
+\input{lib/reports/src/data/2026-11-05-agent-test-games-four-models-by-model.tex}
+
+\lrboundary{These rows hold for one run per game through one command-line agent tool, with each model's default thinking and effort, on ALFWorld 0.4.2. The admissible commands were listed every turn, and a command off the list cost no step. These rows are not one forward pass with thinking off, so they do not compare directly with Bonn's rows (arXiv 2609.37647). They say nothing about Gemma, Qwen 27B or Kev.}
+
+%%----------------------------------------------------------------------------
+\lrproduced
+\begin{lrfacts}
+  \lrfact{Code}{Commit \texttt{263f2a3}, the rewritten form of the commit the games started from. See "Commit ids after anonymizing" in the card.}
+  \lrfact{Prompt}{\lrpath{lab/jobs/reference-games.prompt.md}, one SHA-256 across all records, beginning \texttt{35f2ae3c}.}
+  \lrfact{Machine}{Cloud sessions: Linux x86\_64, 4 CPUs, Python 3.12.3, hash seed 0. Replay and tables: Halil's Mac.}
+  \lrfact{Seed}{None. The game has no randomness and the model's sampling cannot be seeded from here.}
+  \lrfact{Ran}{Games on 2026-11-04, 16:43 to 17:41 UTC. Replay and tables on 2026-11-05.}
+  \lrfact{Artifacts}{\lrpath{lab/results/reference-games/summary/}. Per-game records are on branch \texttt{data-reference-games}, commit \texttt{1c6d984}. Transcripts are private.}
+  \lrfact{Reproduce}{The steps under "Gathering" in \lrpath{lab/results/reference-games/CARD.md}.}
+\end{lrfacts}
+
+%%----------------------------------------------------------------------------
+\lrchanges
+A reference row now exists for all four models on the test set, and nothing from these games trains any model.
+Per-game outcomes are public in both repositories, so Kev's choices stay frozen on dev without reading these files.
+
+%%----------------------------------------------------------------------------
+\lrfailures
+The results waited about 20 hours on the cloud machines, because GitHub refused every push.
+The pushes landed at 13:55 UTC on 2026-11-05 after Halil changed GitHub access and pasted the push line into each session himself.
+No result was lost and no game was played twice.
+
+\lrcost
+The game processes report \lrv{CostTotal} USD in total, and the sessions' own turns are outside that figure.
+Cost per model stays in the private folder, because a price identifies a model.
+Whether the games drew on the cloud credits is Open.
+
+\lrprovenance
+
+\end{document}

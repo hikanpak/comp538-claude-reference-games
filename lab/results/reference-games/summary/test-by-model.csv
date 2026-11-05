@@ -1,0 +1,5 @@
+model,games_on_list,played,not_played,won,win_percent,ci95_low,ci95_high,ended_early,restarted,mean_steps,mean_steps_won,mean_plan_steps,repeat_rate,episodes_with_loop,refused_commands,mean_seconds_per_process,prompt_hashes,git_commits
+elm,134,134,0,130,97.0,92.6,98.8,4,0,11.963,11.831,5.627,0.0,0.0,19,92.475,1,263f2a3d2
+birch,134,134,0,134,100.0,97.2,100.0,0,0,7.851,7.851,5.627,0.004752851711026616,0.0,4,61.576,1,263f2a3d2
+cypress,134,134,0,134,100.0,97.2,100.0,0,0,7.612,7.612,5.627,0.0,0.0,0,64.242,1,263f2a3d2
+ironwood,134,134,0,134,100.0,97.2,100.0,0,0,7.925,7.925,5.627,0.0,0.0,4,74.367,1,263f2a3d2
